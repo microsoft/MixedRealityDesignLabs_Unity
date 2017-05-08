@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 74154c01851d1174b89ac67209b1d140
+timeCreated: 1436302993
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - SphereMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  - CylinderMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

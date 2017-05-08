@@ -1,0 +1,471 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: RingInteraction
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: -0.14998513, y: -0.14998513, z: -0.14998513}
+        outSlope: {x: -0.14998513, y: -0.14998513, z: -0.14998513}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: {x: 0.000001, y: 0.000001, z: 0.000001}
+        inSlope: {x: -0.11254133, y: -0.11254133, z: -0.11254133}
+        outSlope: {x: -0.11254133, y: -0.11254133, z: -0.11254133}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: {x: 0.0024972556, y: 0.0024972556, z: 0.0024972556}
+        inSlope: {x: 0.09988505, y: 0.09988505, z: 0.09988505}
+        outSlope: {x: 0.09988505, y: 0.09988505, z: 0.09988505}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: ring_bone_interaction_root/joint_inner
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: -0.050100043, y: -0.050100043, z: -0.050100043}
+        outSlope: {x: -0.050100043, y: -0.050100043, z: -0.050100043}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: {x: 0.00666, y: 0.00666, z: 0.00666}
+        inSlope: {x: -0.037111137, y: -0.037111137, z: -0.037111137}
+        outSlope: {x: -0.037111137, y: -0.037111137, z: -0.037111137}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: {x: 0.007525928, y: 0.007525928, z: 0.007525928}
+        inSlope: {x: 0.037111133, y: 0.037111133, z: 0.037111133}
+        outSlope: {x: 0.037111133, y: 0.037111133, z: 0.037111133}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: ring_bone_interaction_root/joint_outer
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: {x: 0.01, y: 0.01, z: 0.01}
+        inSlope: {x: -0.050100043, y: -0.050100043, z: -0.050100043}
+        outSlope: {x: -0.050100043, y: -0.050100043, z: -0.050100043}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: {x: 0.00666, y: 0.00666, z: 0.00666}
+        inSlope: {x: -0.037111137, y: -0.037111137, z: -0.037111137}
+        outSlope: {x: -0.037111137, y: -0.037111137, z: -0.037111137}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: {x: 0.007525928, y: 0.007525928, z: 0.007525928}
+        inSlope: {x: 0.037111133, y: 0.037111133, z: 0.037111133}
+        outSlope: {x: 0.037111133, y: 0.037111133, z: 0.037111133}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: ring_bone_interaction_root/joint_outer_gestureFOV
+  m_FloatCurves: []
+  m_PPtrCurves: []
+  m_SampleRate: 30
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - path: 2663251480
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2270494080
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 773779773
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 0.10033333
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.14998513
+        outSlope: -0.14998513
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.000001
+        inSlope: -0.11254133
+        outSlope: -0.11254133
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.0024972556
+        inSlope: 0.09988505
+        outSlope: 0.09988505
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: ring_bone_interaction_root/joint_inner
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.14998513
+        outSlope: -0.14998513
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.000001
+        inSlope: -0.11254133
+        outSlope: -0.11254133
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.0024972556
+        inSlope: 0.09988505
+        outSlope: 0.09988505
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: ring_bone_interaction_root/joint_inner
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.14998513
+        outSlope: -0.14998513
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.000001
+        inSlope: -0.11254133
+        outSlope: -0.11254133
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.0024972556
+        inSlope: 0.09988505
+        outSlope: 0.09988505
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: ring_bone_interaction_root/joint_inner
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: ring_bone_interaction_root/joint_outer
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: ring_bone_interaction_root/joint_outer
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: ring_bone_interaction_root/joint_outer
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: ring_bone_interaction_root/joint_outer_gestureFOV
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: ring_bone_interaction_root/joint_outer_gestureFOV
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0.00033333333
+        value: 0.01
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.033666667
+        value: 0.01
+        inSlope: -0.050100043
+        outSlope: -0.050100043
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.067
+        value: 0.00666
+        inSlope: -0.037111137
+        outSlope: -0.037111137
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.10033333
+        value: 0.007525928
+        inSlope: 0.037111133
+        outSlope: 0.037111133
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: ring_bone_interaction_root/joint_outer_gestureFOV
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_GenerateMotionCurves: 0
+  m_IsEmpty: 0
+  m_Events: []

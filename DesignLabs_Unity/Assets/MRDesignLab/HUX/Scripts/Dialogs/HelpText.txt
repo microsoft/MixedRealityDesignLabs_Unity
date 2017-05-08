@@ -1,0 +1,14 @@
+=================================================
+| Notes App
+=================================================
+
+A quick example of how HUX and HTK can be used together to produce an app.
+
+Usage:
+- The category screen allows creation of additional categories, and when a category is selected you are able to create a note.
+
+Commands:
+"help" : displays help screen
+"got it" : closes help screen
+[h] : show help screen
+[j] : hide help screen

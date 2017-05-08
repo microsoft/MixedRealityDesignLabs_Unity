@@ -1,0 +1,120 @@
+fileFormatVersion: 2
+guid: a055aeea07df14b40b67b05fcdd0b591
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: cursor_interaction
+    100002: cursor_interaction_inner_geo
+    100004: cursor_interaction_ring_geo
+    100006: cursor_observation
+    100008: cursor_observation_geo
+    100010: cursor_observation_shadowGlow_card
+    100012: cursor_press
+    100014: cursor_press_inner
+    100016: cursor_press_outer
+    100018: cursor_press_shadowGlow_card
+    100020: cursor_press_shadowGlow_card 1
+    100022: cursor_press_top
+    100024: //RootNode
+    100026: cursorLight
+    400000: cursor_interaction
+    400002: cursor_interaction_inner_geo
+    400004: cursor_interaction_ring_geo
+    400006: cursor_observation
+    400008: cursor_observation_geo
+    400010: cursor_observation_shadowGlow_card
+    400012: cursor_press
+    400014: cursor_press_inner
+    400016: cursor_press_outer
+    400018: cursor_press_shadowGlow_card
+    400020: cursor_press_shadowGlow_card 1
+    400022: cursor_press_top
+    400024: //RootNode
+    400026: cursorLight
+    2300000: cursor_interaction_inner_geo
+    2300002: cursor_interaction_ring_geo
+    2300004: cursor_observation_geo
+    2300006: cursor_observation_shadowGlow_card
+    2300008: cursor_press_inner
+    2300010: cursor_press_outer
+    2300012: cursor_press_shadowGlow_card
+    2300014: cursor_press_shadowGlow_card 1
+    2300016: cursor_press_top
+    3300000: cursor_interaction_inner_geo
+    3300002: cursor_interaction_ring_geo
+    3300004: cursor_observation_geo
+    3300006: cursor_observation_shadowGlow_card
+    3300008: cursor_press_inner
+    3300010: cursor_press_outer
+    3300012: cursor_press_shadowGlow_card
+    3300014: cursor_press_shadowGlow_card 1
+    3300016: cursor_press_top
+    4300000: cursor_press_shadowGlow_card
+    4300002: cursor_press_outer
+    4300004: cursor_press_top
+    4300006: cursor_press_inner
+    4300008: cursor_observation_shadowGlow_card
+    4300010: cursor_observation_geo
+    4300012: cursor_press_shadowGlow_card
+    4300014: cursor_interaction_ring_geo
+    4300016: cursor_interaction_inner_geo
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    pivotNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 

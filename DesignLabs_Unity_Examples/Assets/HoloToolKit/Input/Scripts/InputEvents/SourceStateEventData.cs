@@ -1,0 +1,19 @@
+﻿using UnityEngine.EventSystems;
+
+namespace HoloToolkit.Unity.InputModule
+{
+    /// <summary>
+    /// Describes an source state event that has a source id. 
+    /// </summary>
+    public class SourceStateEventData : BaseInputEventData
+    {
+        public SourceStateEventData(EventSystem eventSystem) : base(eventSystem)
+        {
+        }
+
+        public void Initialize(IInputSource inputSource, uint sourceId)
+        {
+            BaseInitialize(inputSource, sourceId);
+        }
+    }
+}
