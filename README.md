@@ -1,12 +1,25 @@
-
 # Mixed Reality Design Labs
 This repo is where Microsoft's Windows Mixed Reality Design team publishes examples and explorations. The goal is to inspire creators and help them to build Mixed Reality experiences. We share sample app projects here that demonstrate how to use various types of common controls and patterns in Mixed Reality. Find out details about common controls and sample apps on https://developer.microsoft.com/en-us/windows/mixed-reality/design
 
-# Sample app - Periodic Table of the Elements
+# Common controls and examples
+https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Examples
+## Interactable Object ##
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Hero.jpg">
+
+## Object Collection ##
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/ObjectCollection_Hero.jpg">
+
+## Progress ##
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Hero.jpg">
+
+## Holobar and Bounding Box ##
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HolobarAndBoundingBox_Hero.jpg">
+
+
+# More from Mixed Reality Design Labs #
+**Sample app - Periodic Table of the Elements**
 https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable
 
-# Common controls and examples
-https://github.com/Microsoft/MRDesignLabs_Unity
 
 # Contributing
 
