@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650553636706960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.00025}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4415358915469728}
@@ -304,7 +304,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650553636706960}
-  m_Mesh: {fileID: 4300016, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
+  m_Mesh: {fileID: 4300010, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
 --- !u!33 &33642101824296140
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -416,16 +416,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff02dbb374b62340a93479237fb9319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IconProfile: {fileID: 11400000, guid: a05b72560895bf146a8fcc7cdc391aae, type: 2}
   DisableIcon: 0
   OverrideIcon: 0
-  IconProfile: {fileID: 11400000, guid: d3650015c87b77c4183828f0cf2bcb07, type: 2}
-  IconRenderer: {fileID: 23604992949361786}
-  IconMaterial: {fileID: 2100000, guid: 4f37668d794e3694c9ee36b62447d99b, type: 2}
-  AlphaColorProperty: _Color
   iconOverride: {fileID: 0}
-  iconName: Camera
+  iconName: ObjectCollectionDefault
   alpha: 1
-  instantiatedMaterial: {fileID: 0}
+  targetIconRenderer: {fileID: 23604992949361786}
 --- !u!114 &114885005672001796
 MonoBehaviour:
   m_ObjectHideFlags: 1

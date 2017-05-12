@@ -11,10 +11,7 @@ namespace HUX.Buttons
     [RequireComponent(typeof(CompoundButton))]
     public class CompoundButtonIcon : MonoBehaviour
     {
-        /// <summary>
-        /// How quickly to animate changing icon alpha at runtime
-        /// </summary>
-        const float AlphaTransitionSpeed = 0.25f;
+        public ButtonIconProfile IconProfile;
 
         /// <summary>
         /// Turns off the icon entirely
@@ -88,28 +85,40 @@ namespace HUX.Buttons
             }
         }
 
-        public ButtonIconProfile IconProfile;
-        public MeshRenderer IconRenderer;
-        public Material IconMaterial;
+        public MeshRenderer IconRenderer
+        {
+            get
+            {
+                return targetIconRenderer;
+            } set
+            {
+                targetIconRenderer = value;
+            }
+        }
 
-        /// <summary>
-        /// Property used to modify icon alpha
-        /// If this is null alpha will not be appiled
-        /// </summary>
-        public string AlphaColorProperty = "_Color";
-
+        public MeshFilter IconMeshFilter
+        {
+            get
+            {
+                if (IconRenderer != null)
+                {
+                    return IconRenderer.GetComponent<MeshFilter>();
+                }
+                return null;
+            }
+        }
+        
         #if UNITY_EDITOR
         /// <summary>
         /// Called by CompoundButtonSaveInterceptor
-        /// Prevents saving a scene with instanced materials
+        /// Prevents saving a scene with instanced materials / meshes
         /// </summary>
         public void OnWillSaveScene()
         {
-            if (IconRenderer != null && instantiatedMaterial != null)
-            {
-                IconRenderer.sharedMaterial = IconMaterial;
-                GameObject.DestroyImmediate(instantiatedMaterial);
-            }
+            ClearInstancedAssets();
+
+            SetIconName(iconName);
+            
         }
         #endif
 
@@ -127,11 +136,12 @@ namespace HUX.Buttons
 
         private void SetIconName(string newName)
         {
-            if (IconRenderer == null)
-            {
-                Debug.LogError("Icon renderer null in in CompoundButtonIcon " + name);
+            // Avoid exploding if possible
+            if (IconProfile == null)
                 return;
-            }
+
+            if (IconRenderer == null)
+                return;
 
             if (DisableIcon)
             {
@@ -139,129 +149,141 @@ namespace HUX.Buttons
                 return;
             }
 
+            if (IconProfile.IconMaterial == null || IconProfile.IconMesh == null)
+                return;
+
             // Instantiate our local material now, if we don't have one
             if (instantiatedMaterial == null)
             {
-                instantiatedMaterial = new Material(IconMaterial);
+                instantiatedMaterial = new Material(IconProfile.IconMaterial);
+                instantiatedMaterial.name = IconProfile.IconMaterial.name;
             }
-            else if (!instantiatedMaterial.name.Contains(IconMaterial.name))
-            {
-                if (!Application.isPlaying)
-                {
-                    // Prevent material leaks
-                    GameObject.DestroyImmediate(instantiatedMaterial);
-                }
-                instantiatedMaterial = new Material(IconMaterial);
-                instantiatedMaterial.name = IconMaterial.name;
-            }
-
             IconRenderer.sharedMaterial = instantiatedMaterial;
+            
+            // Instantiate our local mesh now, if we don't have one
+            if (instantiatedMesh == null)
+            {
+                instantiatedMesh = Mesh.Instantiate (IconProfile.IconMesh) as Mesh;
+                instantiatedMesh.name = IconProfile.IconMesh.name;
+            }
+            IconMeshFilter.sharedMesh = instantiatedMesh;
 
             if (OverrideIcon)
             {
+                // Use the default mesh for override icons
                 IconRenderer.enabled = true;
+                IconMeshFilter.sharedMesh = IconProfile.IconMesh;
+                IconMeshFilter.transform.localScale = Vector3.one;
                 instantiatedMaterial.mainTexture = iconOverride;
                 return;
             }
 
-            if (IconProfile == null)
-            {
-                Debug.LogError("Icon profile was null in CompoundButtonIcon " + name);
-                return;
-            }
-
+            // Disable the renderer if the name is empty
             if (string.IsNullOrEmpty(newName))
             {
                 IconRenderer.enabled = false;
                 iconName = newName;
                 return;
             }
-
-            Texture2D icon = null;
-            if (!IconProfile.GetIcon(newName, out icon, true))
+            
+            // Moment of truth - try to get our icon
+            if (!IconProfile.GetIcon(iconName, IconRenderer, IconMeshFilter, true))
             {
-                Debug.LogError("Icon " + newName + " not found in icon profile " + IconProfile.name + " in CompoundButtonIcon " + name);
+                IconRenderer.enabled = false;
                 return;
             }
 
+            // If we've made it this far we're golden
             IconRenderer.enabled = true;
             iconName = newName;
-
-            instantiatedMaterial.mainTexture = icon;
             RefreshAlpha();
-
         }
 
         private void OnDisable()
         {
-            // Prevent material leaks
-            if (instantiatedMaterial != null)
-            {
-                GameObject.DestroyImmediate(instantiatedMaterial);
-            }
-
-            // Restore the icon material to the renderer
-            IconRenderer.sharedMaterial = IconMaterial;
-            // Reset our alpha to the alpha target
-            alpha = alphaTarget;
+            ClearInstancedAssets();
         }
 
         private void OnEnable()
         {
-            // Prevent material leaks
-            if (instantiatedMaterial != null)
+            if (Application.isPlaying)
             {
-                GameObject.DestroyImmediate(instantiatedMaterial);
+                ClearInstancedAssets();
             }
 
             SetIconName(iconName);
         }
 
+        private void Start()
+        {
+            SetIconName(iconName);
+        }
+
         private void RefreshAlpha()
         {
-            if (instantiatedMaterial != null && !string.IsNullOrEmpty(AlphaColorProperty))
+            if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
             {
-                Color c = instantiatedMaterial.GetColor(AlphaColorProperty);
+                Color c = instantiatedMaterial.GetColor(IconProfile.AlphaColorProperty);
                 c.a = alpha;
-                instantiatedMaterial.SetColor(AlphaColorProperty, c);
+                instantiatedMaterial.SetColor(IconProfile.AlphaColorProperty, c);
             }
         }
 
-        private void OnDrawGizmos()
+        private void ClearInstancedAssets()
         {
-            if (DisableIcon)
+            // Prevent material leaks
+            if (instantiatedMaterial != null)
+            {
+                if (Application.isPlaying)
+                    GameObject.Destroy(instantiatedMaterial);
+                else
+                    GameObject.DestroyImmediate(instantiatedMaterial);
+
+                instantiatedMaterial = null;
+            }
+            if (instantiatedMesh != null)
+            {
+                if (Application.isPlaying)
+                    GameObject.Destroy(instantiatedMesh);
+                else
+                    GameObject.DestroyImmediate(instantiatedMesh);
+
+                instantiatedMesh = null;
+            }
+
+            // Reset to default mats and meshes
+            if (IconProfile != null)
             {
                 if (IconRenderer != null)
                 {
-                    IconRenderer.enabled = false;
+                    // Restore the icon material to the renderer
+                    IconRenderer.sharedMaterial = IconProfile.IconMaterial;
                 }
-            }
-            else
-            {
-                IconRenderer.enabled = true;
-                if (IconProfile != null)
+                if (IconMeshFilter != null)
                 {
-                    SetIconName(iconName);
+                    IconMeshFilter.sharedMesh = IconProfile.IconMesh;
                 }
             }
+            // Reset our alpha to the alpha target
+            alpha = alphaTarget;
         }
 
         private IEnumerator UpdateAlpha()
         {
             float startTime = Time.time;
             Color color = Color.white;
-            if (instantiatedMaterial != null && !string.IsNullOrEmpty(AlphaColorProperty))
+            if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
             {
-                color = instantiatedMaterial.GetColor(AlphaColorProperty);
+                color = instantiatedMaterial.GetColor(IconProfile.AlphaColorProperty);
                 color.a = alpha;
             }
-            while (Time.time < startTime + AlphaTransitionSpeed)
+            while (Time.time < startTime + IconProfile.AlphaTransitionSpeed)
             {
-                alpha = Mathf.Lerp(alpha, alphaTarget, (Time.time - startTime) / AlphaTransitionSpeed);
-                if (instantiatedMaterial != null && !string.IsNullOrEmpty(AlphaColorProperty))
+                alpha = Mathf.Lerp(alpha, alphaTarget, (Time.time - startTime) / IconProfile.AlphaTransitionSpeed);
+                if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
                 {
                     color.a = alpha;
-                    instantiatedMaterial.SetColor(AlphaColorProperty, color);
+                    instantiatedMaterial.SetColor(IconProfile.AlphaColorProperty, color);
                 }
                 yield return null;
             }
@@ -281,8 +303,10 @@ namespace HUX.Buttons
         private float alpha = 1f;
 
         [SerializeField]
-        private Material instantiatedMaterial;
+        private MeshRenderer targetIconRenderer;
 
+        private Material instantiatedMaterial;
+        private Mesh instantiatedMesh;
         private bool updatingAlpha = false;
         private float alphaTarget = 1f;
     }

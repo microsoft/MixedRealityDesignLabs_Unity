@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1163656720214182}
   m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.42397848, y: 0.23400196, z: 0.42397884}
+  m_LocalScale: {x: 0.2299056, y: 0.12688927, z: 0.22990562}
   m_Children: []
   m_Father: {fileID: 4822243243319398}
   m_RootOrder: 0
@@ -173,5 +173,3 @@ MonoBehaviour:
     Tag: Default
   ButtonState: 4
   RequireGaze: 1
-  MainCollider: {fileID: 0}
-  MainRenderer: {fileID: 0}

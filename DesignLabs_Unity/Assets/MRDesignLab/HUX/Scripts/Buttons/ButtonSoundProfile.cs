@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace HUX.Buttons
 {
-    public class ButtonSoundProfile : ScriptableObject
+    public class ButtonSoundProfile : ButtonProfile
     {
         // Direct interaction clips
         public AudioClip ButtonCancelled;

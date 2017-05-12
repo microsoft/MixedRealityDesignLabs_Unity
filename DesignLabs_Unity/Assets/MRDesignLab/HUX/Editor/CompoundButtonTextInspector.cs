@@ -72,8 +72,14 @@ namespace HUX
                 textButton.Size = EditorGUILayout.IntField(textButton.Size);
             }
             EditorGUILayout.EndHorizontal();
-            
+
+            EditorGUILayout.BeginHorizontal();
             textButton.OverrideOffset = EditorGUILayout.Toggle("Offset", textButton.OverrideOffset);
+            if (textButton.OverrideOffset)
+            {
+                EditorGUILayout.LabelField("(You may now manually adjust the offset of the text)", EditorStyles.miniLabel);
+            }
+            EditorGUILayout.EndHorizontal();
 
             HUXEditorUtils.EndSectionBox();
 
@@ -83,6 +89,8 @@ namespace HUX
 
             HUXEditorUtils.EndSectionBox();
             //textButton.Alpha = EditorGUILayout.Slider("Text transparency", textButton.Alpha, 0f, 1f);
+
+            HUXEditorUtils.DrawProfileInspector(textButton.TextProfile, textButton);
 
             HUXEditorUtils.SaveChanges(target);
         }

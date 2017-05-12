@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace HUX.Buttons
 {
-    public class ButtonMeshProfile : ScriptableObject
+    public class ButtonMeshProfile : ButtonProfile
     {
         /// <summary>
         /// Name of the shader color property that will be modified (default "_Color")

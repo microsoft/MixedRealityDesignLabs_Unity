@@ -717,24 +717,24 @@ namespace HUX.Interaction
         /// <summary>
         /// These are used to make complex scaling operations simpler
         /// </summary>
-        private Transform transformHelper;
-        private Transform targetStandIn;
+        private Transform transformHelper = null;
+        private Transform targetStandIn = null;
 
-        private Vector3 targetBoundsWorldCenter;
-        private Vector3 targetBoundsLocalScale;
+        private Vector3 targetBoundsWorldCenter = Vector3.zero;
+        private Vector3 targetBoundsLocalScale = Vector3.zero;
 
-        private Vector3 lastNavigatePos;
-        private Vector3 navigateVelocity;
+        private Vector3 lastNavigatePos = Vector3.zero;
+        private Vector3 navigateVelocity = Vector3.zero;
 
-        private Vector3 smoothVelocity;
-        private Vector3 adjustedScaleTarget;
-        private Vector3 targetPosition;
+        private Vector3 smoothVelocity = Vector3.zero;
+        private Vector3 adjustedScaleTarget = Vector3.one;
+        private Vector3 targetPosition = Vector3.zero;
 
-        private Vector3[] corners;
-        private Bounds localTargetBounds;
+        private Vector3[] corners = null;
+        private Bounds localTargetBounds = new Bounds();
         private List<Vector3> boundsPoints = new List<Vector3>();
-        private Vector3 scaleOnStartManipulation;
-        private AFocuser focuser;
+        private Vector3 scaleOnStartManipulation = Vector3.one;
+        private AFocuser focuser = null;
 
         #endregion
     }

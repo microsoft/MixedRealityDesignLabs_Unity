@@ -45,7 +45,7 @@ Shader "HUX/Button Highlight"
 			//float dist = distance(IN.worldPos, _HUXButtonGlowTarget);
 			//dist = dist * dist;
 			//float glow = clamp((_HUXButtonGlowRadius / dist), 0, 1) * tex.a;
-			o.Emission = 0;// _HUXButtonEdgeColor * glow;
+			o.Emission = _Color * tex;// _HUXButtonEdgeColor * glow;
 			// HUX buttons glow just a bit even if they're not selected
 			// So add a bit of that glow to the alpha
 			o.Alpha = tex.a * _Color.a;// max(_Color.a, glow);

@@ -18,8 +18,8 @@ namespace HUX.Buttons
         
         [SerializeField]
         private AudioSource audioSource;
-        private static string lastClipName;
-        private static float lastClipTime;
+        private static string lastClipName = string.Empty;
+        private static float lastClipTime = 0f;
 
         void Start ()
         {

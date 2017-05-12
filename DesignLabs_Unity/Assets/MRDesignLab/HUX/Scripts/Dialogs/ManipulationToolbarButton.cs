@@ -16,71 +16,18 @@ namespace HUX.Interaction
         public Vector3 DefaultOffset;
         public Vector3 HiddenOffset;
         public Vector3 ManipulateOffset;
+        public FilterTag VisibleFilterTag;
+        public FilterTag HiddenFilterTag;
 
-        protected void Start ()
+        protected void OnEnable ()
         {
-            // TODO move this into button templates
-
-            string buttonName = string.Empty;
-            string buttonText = string.Empty;
-            string buttonIcon = string.Empty;
-            targetPosition = Vector3.zero;
-
-            switch (Type)
-            {
-                case ManipulationToolbar.ButtonTypeEnum.Adjust:
-                    buttonName = "Adjust";
-                    buttonText = "Adjust";
-                    buttonIcon = "AdjustHologram";
-                    DefaultOffset = new Vector3(0.0f, 0f, -0.0001f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0001f);
-                    break;
-
-                case ManipulationToolbar.ButtonTypeEnum.Done:
-                    buttonName = "Done";
-                    buttonText = "Done";
-                    buttonIcon = "Accept";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0002f);
-                    ManipulateOffset = new Vector3(-0.04f, 0f, -0.0002f);
-                    break;
-
-                case ManipulationToolbar.ButtonTypeEnum.Hide:
-                    buttonName = "Hide";
-                    buttonText = "Hide Menu";
-                    buttonIcon = "ChevronRight";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0003f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0003f);
-                    break;
-
-                case ManipulationToolbar.ButtonTypeEnum.Remove:
-                    buttonName = "Remove";
-                    buttonText = "Remove";
-                    buttonIcon = "RemoveHologram";
-                    DefaultOffset = new Vector3(0.08f, 0f, -0.0004f);
-                    ManipulateOffset = new Vector3(0.04f, 0f, -0.0004f);
-                    break;
-
-                case ManipulationToolbar.ButtonTypeEnum.Show:
-                    buttonName = "Show";
-                    buttonText = "Show Menu";
-                    buttonIcon = "Add";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0005f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0005f);
-                    break;
-
-                case ManipulationToolbar.ButtonTypeEnum.Custom:
-                default:
-                    break;
-            }
-
-            gameObject.name = buttonName;
-            cButton = GetComponent<CompoundButton>();
-            cButton.MainRenderer.enabled = false;
-            text = GetComponent<CompoundButtonText>();
-            text.Text = buttonText;
-            icon = GetComponent<CompoundButtonIcon>();
-            icon.IconName = buttonIcon;
-            icon.Alpha = 0f;
+            // TODO move this into the tag manager
+            VisibleFilterTag = new FilterTag();
+            VisibleFilterTag.Tag = "Default";
+            HiddenFilterTag = new FilterTag();
+            HiddenFilterTag.Tag = "Hidden";
+            RefreshType();
+            Hide();
         }
         
         protected void Update()
@@ -147,11 +94,7 @@ namespace HUX.Interaction
             icon.Alpha = 0f;
             text.DisableText = true;
             cButton.enabled = false;
-            /*if (cButton.ButtonState != Button.ButtonStateEnum.Disabled)
-            {
-                cButton.ButtonState = Button.ButtonStateEnum.Disabled;
-            }*/
-            cButton.FilterTag.Tag = "Hidden";
+            cButton.FilterTag = HiddenFilterTag;
         }
 
         private void Show()
@@ -159,11 +102,72 @@ namespace HUX.Interaction
             icon.Alpha = 1f;
             text.DisableText = false;
             cButton.enabled = true;
-            /*if (cButton.ButtonState == Button.ButtonStateEnum.Disabled)
+            cButton.FilterTag = VisibleFilterTag;
+        }
+
+        private void RefreshType()
+        {
+            // TODO move this into button templates
+
+            string buttonName = string.Empty;
+            string buttonText = string.Empty;
+            string buttonIcon = string.Empty;
+            
+            switch (Type)
             {
-                cButton.ButtonState = Button.ButtonStateEnum.Interactive;
-            }*/
-            cButton.FilterTag.Tag = "Default";
+                case ManipulationToolbar.ButtonTypeEnum.Adjust:
+                    buttonName = "Adjust";
+                    buttonText = "Adjust";
+                    buttonIcon = "EBD2";
+                    DefaultOffset = new Vector3(0.0f, 0f, -0.0001f);
+                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0001f);
+                    break;
+
+                case ManipulationToolbar.ButtonTypeEnum.Done:
+                    buttonName = "Done";
+                    buttonText = "Done";
+                    buttonIcon = "E8FB";
+                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0002f);
+                    ManipulateOffset = new Vector3(-0.04f, 0f, -0.0002f);
+                    break;
+
+                case ManipulationToolbar.ButtonTypeEnum.Hide:
+                    buttonName = "Hide";
+                    buttonText = "Hide Menu";
+                    buttonIcon = "E76C";
+                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0003f);
+                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0003f);
+                    break;
+
+                case ManipulationToolbar.ButtonTypeEnum.Remove:
+                    buttonName = "Remove";
+                    buttonText = "Remove";
+                    buttonIcon = "EC90";
+                    DefaultOffset = new Vector3(0.08f, 0f, -0.0004f);
+                    ManipulateOffset = new Vector3(0.04f, 0f, -0.0004f);
+                    break;
+
+                case ManipulationToolbar.ButtonTypeEnum.Show:
+                    buttonName = "Show";
+                    buttonText = "Show Menu";
+                    buttonIcon = "E700";
+                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0005f);
+                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0005f);
+                    break;
+
+                case ManipulationToolbar.ButtonTypeEnum.Custom:
+                default:
+                    break;
+            }
+
+            gameObject.name = buttonName;
+            cButton = GetComponent<CompoundButton>();
+            cButton.MainRenderer.enabled = false;
+            text = GetComponent<CompoundButtonText>();
+            text.Text = buttonText;
+            icon = GetComponent<CompoundButtonIcon>();
+            icon.IconName = buttonIcon;
+
         }
 
         private Vector3 targetPosition;

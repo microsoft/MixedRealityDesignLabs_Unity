@@ -2,10 +2,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using HUX.Utility;
+using UnityEngine;
 
 /// <summary>
 /// Adapted from Holotoolkit's LoadingAnimation script
@@ -15,7 +13,6 @@ namespace HUX.Dialogs
     public class LoadingAnimation : MonoBehaviour
     {
         public GameObject[] Orbs;
-        private int mOrbIndex = -1;
         private bool mStartingLoader = false;
         private int mStartingIndex;
         

@@ -76,7 +76,7 @@ namespace HUX.Interaction
         private Material edgeMaterial;
         private List<Matrix4x4> cubeHandleMatrixes = new List<Matrix4x4>();
         private List<Matrix4x4> sphereHandleMatrixes = new List<Matrix4x4>();
-        private Bounds localBounds;
+        private Bounds localBounds = new Bounds();
         private MaterialPropertyBlock propertyBlock;
         private int colorID;
 

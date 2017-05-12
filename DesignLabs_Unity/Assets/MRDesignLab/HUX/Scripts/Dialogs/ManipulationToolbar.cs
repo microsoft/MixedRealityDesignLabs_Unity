@@ -114,9 +114,8 @@ namespace HUX.Interaction
             lastTimeTapped = Time.time + coolDownTime;
         }
 
-        public override void OnEnable()
+        public void Start()
         {
-            base.OnEnable();
             State = ToolbarStateEnum.Default;
             if (Interactibles.Count == 0)
             {
@@ -169,17 +168,6 @@ namespace HUX.Interaction
                 default:
                     break;
             }
-        }
-
-        private void Awake()
-        {
-            // Create our default buttons
-            /*defaultButtons = new ButtonTemplate[] {
-            new ButtonTemplate (RemoveTransform, "Remove", "RemoveHologram", "Remove"),
-            new ButtonTemplate (AdjustTransform, "Adjust", "AdjustHologram", "Adjust"),
-            new ButtonTemplate (HideTransform, "Hide", "Hide Menu", "ChevronRight"),
-            new ButtonTemplate (ShowTransform, "Show", "Add", "Show Menu"),
-            new ButtonTemplate (DoneTransform, "Done", "Accept", "Done") };*/
         }
 
         private void CreateButton(ButtonTypeEnum type)

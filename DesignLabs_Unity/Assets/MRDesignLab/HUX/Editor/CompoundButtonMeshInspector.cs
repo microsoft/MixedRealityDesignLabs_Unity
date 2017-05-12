@@ -3,7 +3,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
 using HUX.Buttons;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -74,94 +73,8 @@ namespace HUX
 
             HUXEditorUtils.EndSectionBox();
 
-            HUXEditorUtils.BeginSectionBox("States", HUXEditorUtils.WarningColor);
-            HUXEditorUtils.DrawSubtleMiniLabel("(Warning: this section edits the button profile. These changes will affect all buttons that use this profile.)");
-            // Draw an editor for each state datum
-            meshButton.MeshProfile.SmoothStateChanges = EditorGUILayout.Toggle("Smooth state changes", meshButton.MeshProfile.SmoothStateChanges);
-            if (meshButton.MeshProfile.SmoothStateChanges)
-            {
-                meshButton.MeshProfile.AnimationSpeed = EditorGUILayout.Slider("Animation speed", meshButton.MeshProfile.AnimationSpeed, 0.01f, 1f);
-            }
-            meshButton.MeshProfile.StickyPressedEvents = EditorGUILayout.Toggle("'Sticky' pressed events", meshButton.MeshProfile.StickyPressedEvents);
-            if (meshButton.MeshProfile.StickyPressedEvents)
-            {
-                meshButton.MeshProfile.StickyPressedTime = EditorGUILayout.Slider("'Sticky' pressed event time", meshButton.MeshProfile.StickyPressedTime, 0.01f, 1f);
-            }
-
-            // Validate our button states - ensure there's one for each button state enum value
-            Button.ButtonStateEnum[] buttonStates = (Button.ButtonStateEnum[])System.Enum.GetValues(typeof(Button.ButtonStateEnum));
-            List<CompoundButtonMesh.MeshButtonDatum> missingStates = new List<CompoundButtonMesh.MeshButtonDatum>();
-            foreach (Button.ButtonStateEnum buttonState in buttonStates)
-            {
-                bool foundState = false;
-                foreach (CompoundButtonMesh.MeshButtonDatum datum in meshButton.MeshProfile.ButtonStates)
-                {
-                    if (datum.ActiveState == buttonState)
-                    {
-                        foundState = true;
-                        break;
-                    }
-                }
-
-                if (!foundState)
-                {
-                    CompoundButtonMesh.MeshButtonDatum missingState = new CompoundButtonMesh.MeshButtonDatum(buttonState);
-                    missingState.Name = buttonState.ToString();
-                    missingStates.Add(missingState);
-                }
-            }
-
-            // If any were missing, add them to our button states
-            // They may be out of order but we don't care
-            if (missingStates.Count > 0)
-            {
-                missingStates.AddRange(meshButton.MeshProfile.ButtonStates);
-                meshButton.MeshProfile.ButtonStates = missingStates.ToArray();
-            }
-
-            foreach (CompoundButtonMesh.MeshButtonDatum datum in meshButton.MeshProfile.ButtonStates)
-            {
-                HUXEditorUtils.BeginSubSectionBox(datum.ActiveState.ToString());
-                //datum.Name = EditorGUILayout.TextField("Name", datum.Name);
-                if (meshButton.TargetTransform != null)
-                {
-                    datum.Offset = EditorGUILayout.Vector3Field("Offset", datum.Offset);
-                    datum.Scale = EditorGUILayout.Vector3Field("Scale", datum.Scale);
-
-                    if (datum.Scale == Vector3.zero)
-                    {
-                        GUI.color = HUXEditorUtils.WarningColor;
-                        if (GUILayout.Button("Warning: Button state scale is zero. Click here to fix.", EditorStyles.miniButton))
-                        {
-                            datum.Scale = Vector3.one;
-                        }
-                    }
-                }
-                else
-                {
-                    HUXEditorUtils.DrawSubtleMiniLabel("(No target transform specified for scale / offset)");
-                }
-
-                GUI.color = HUXEditorUtils.DefaultColor;
-                if (meshButton.Renderer != null)
-                {
-                    if (!string.IsNullOrEmpty(meshButton.MeshProfile.ColorPropertyName))
-                    {
-                        datum.StateColor = EditorGUILayout.ColorField(meshButton.MeshProfile.ColorPropertyName + " value", datum.StateColor);
-                    }
-                    if (!string.IsNullOrEmpty(meshButton.MeshProfile.ValuePropertyName))
-                    {
-                        datum.StateValue = EditorGUILayout.FloatField(meshButton.MeshProfile.ValuePropertyName + " value", datum.StateValue);
-                    }
-                }
-                else
-                {
-                    HUXEditorUtils.DrawSubtleMiniLabel("(No target renderer specified for color / value material properties)");
-                }
-                HUXEditorUtils.EndSubSectionBox();
-            }
-
-            HUXEditorUtils.EndSectionBox();
+            // Draw the profile
+            HUXEditorUtils.DrawProfileInspector(meshButton.MeshProfile, meshButton);
 
             HUXEditorUtils.SaveChanges(target, meshButton.MeshProfile);
         }

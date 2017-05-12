@@ -187,40 +187,6 @@ public class HUXEditorMenu : MonoBehaviour
         }
     }
 
-    [MenuItem("HUX/Buttons/Profiles/Create Button Mesh Profile", false, 20)]
-    public static void CreateButtonMeshProfile()
-    {
-        HUX.Buttons.ButtonMeshProfile profile = HUXEditorUtils.CreateProfile<HUX.Buttons.ButtonMeshProfile>();
-        UnityEditor.Selection.activeObject = profile;
-    }
-
-    [MenuItem("HUX/Buttons/Profiles/Create Button Sound Profile", false, 20)]
-    public static void CreateButtonSoundProfile()
-    {
-        HUX.Buttons.ButtonSoundProfile profile = HUXEditorUtils.CreateProfile<HUX.Buttons.ButtonSoundProfile>();
-        UnityEditor.Selection.activeObject = profile;
-    }
-
-    [MenuItem("HUX/Buttons/Profiles/Create Button Icon Profile", false, 20)]
-    public static void CreateButtonIconProfile()
-    {
-        HUX.Buttons.ButtonIconProfile profile = HUXEditorUtils.CreateProfile<HUX.Buttons.ButtonIconProfile>();
-        UnityEditor.Selection.activeObject = profile;
-    }
-
-    [MenuItem("HUX/Buttons/Profiles/Create Button Text Profile", false, 20)]
-    public static void CreateButtonTextProfile()
-    {
-        HUX.Buttons.ButtonTextProfile profile = HUXEditorUtils.CreateProfile<HUX.Buttons.ButtonTextProfile>();
-        UnityEditor.Selection.activeObject = profile;
-    }
-
-    /*[MenuItem("HUX/Buttons/Profiles/Create Button Anim Profile", false, 20)]
-    public static void CreateButtonAnimProfile()
-    {
-        HUX.Buttons.ButtonAnimProfile profile = HUXEditorUtils.CreateProfile<HUX.Buttons.ButtonAnimProfile>();
-        UnityEditor.Selection.activeObject = profile;
-    }*/
     #endregion
 
     #region Receivers
