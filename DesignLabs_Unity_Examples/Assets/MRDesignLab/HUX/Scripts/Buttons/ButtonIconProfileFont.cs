@@ -196,6 +196,7 @@ namespace HUX.Buttons
             if (useDefaultMesh)
             {
                 targetMesh.sharedMesh = IconMesh;
+                targetMesh.transform.localScale = Vector3.one;
             }
             return icon != null;
         }
@@ -295,6 +296,11 @@ namespace HUX.Buttons
         #if UNITY_EDITOR
         public override string DrawIconSelectField(string iconName)
         {
+            if (iconFont == null)
+            {
+                return iconName;
+            }
+
             List<string> iconKeys = GetIconKeys();
             int selectedIconIndex = -1;
             for (int i = 0; i < iconKeys.Count; i++)
