@@ -132,4 +132,30 @@ You can find Progress.prefab under **Assets/MRDesignLab/HUX/Prefabs/Dialogs/**
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Types2.jpg" alt="Progress Examples">
 
+## [App bar & Bounding box](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ManipulationGizmo_Examples.unity)
+
+There are three components to ensure the Holobar and bounding box work inside of your Unity project. The first is the **App bar prefab**. It behaves much like a singleton. You only need one in your scene hierarchy. If an object in the scene is interacted with, it will request the App bar and take it from the last interacted object. The App bar prefab has a **Manipulation Toolbar** [ManipulationToolbar.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Dialogs/ManipulationToolbar.cs) script which handles all of the properties of how and what the Holobar should display.
+
+The second is the **Bounding box prefab**. This prefab works much like the Holobar prefab. You only need one bounding box in the scene. If an object in the scene is put into adjust mode, the object will take the bounding box from the last adjusted object. The prefab has two scripts associated with it. The **Bounding box manipulate** [BoundingBoxManipulate.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxManipulate.cs) script which does the actual manipulating of the object its currently assigned to. The other script is the **Bounding box gizmo** [BoundingBoxGizmo.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxGizmo.cs) prefab. This script handles the visual representation of the bounding box and renders the transform affordances dynamically.
+
+The last is the **BoundingBoxTarget** [BoundingBoxTarget.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxTarget.cs) script. This script gives objects in the scene ability to request the Holobar and bounding box by linking the two prefabs together. It essentially is the glue to make all of the MRDesignLab manipulation components talk to each other.
+
+
+Clone and open the project [MRDesignLabs_Unity](https://github.com/Microsoft/MRDesignLabs_Unity) in Unity.
+
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/NewHLCamera.png" alt="Use the HUX menu to create a new HoloLens camera instance">
+
+The default **HololensCamera** prefab provided in [MRDesignLabs_Unity](https://github.com/Microsoft/MRDesignLabs_Unity) provides global event and input handling required for the Holobar and Bounding box to work. It can be found at [/MRDesignLab/Hux/Prefab/Interface](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Prefabs/Interface). Additionally, once **MRDesignLabs** is in your unity project, you can use the menu system to create an instance of the HoloLens default camera.
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/BoundingBoxAppBar-scene.jpg" alt="The bounding box and manipulation toolbar prefabs in the scene">
+
+You can find the **ManipulationToolbar** prefab in [/MRDesignLab/HUX/Prefabs/Dialogs](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Prefabs/Dialogs/) and the **BoundingBox** prefab can be found in [/MRDesignLab/HUX/Examples/Prefabs/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/MRDesignLab/HUX/Prefabs/Dialogs/Assets/MRDesignLab/HUX/Examples/Prefabs/) Drag both of these prefabs into the scene.
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/BoundingBoxAppBar-TargetInspector.jpg" alt="Bounding Box Target script provides everything needed to enable object manipulation">
+
+Apply the **BoundingBoxTarget.cs** [/MRDesignLab/HUX/Scripts/interaction/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Scripts/Interaction/) script to any object in the scene to enable object manipulation. The script provides full customization of how the object can transform. The default set is Drag, ScaleUniform, and RotateY.
 
