@@ -120,3 +120,16 @@ You can find the examples in the scene **ObjectCollection_Examples.unity**. In t
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/ObjectCollection_ExampleScene2.jpg" alt="ObjectCollection in Unity">
 
+## [Progress](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/Progress_Examples.unity)
+
+A progress control provides feedback to the user that a long-running operation is underway. It can mean that the user cannot interact with the app when the progress indicator is visible, and can also indicate how long the wait time might be, depending on the indicator used. 
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Hero.jpg" alt="Progress Ring">
+
+You can find Progress.prefab under **Assets/MRDesignLab/HUX/Prefabs/Dialogs/**
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Types1.jpg" alt="Progress Examples">
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Types2.jpg" alt="Progress Examples">
+
+
