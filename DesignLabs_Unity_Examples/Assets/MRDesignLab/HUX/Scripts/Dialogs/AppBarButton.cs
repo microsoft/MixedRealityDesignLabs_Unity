@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace HUX.Interaction
 {
-    public class ManipulationToolbarButton : MonoBehaviour
+    public class AppBarButton : MonoBehaviour
     {
         const float MoveSpeed = 5f;
 
-        public ManipulationToolbar ParentToolbar;
-        public ManipulationToolbar.ButtonTypeEnum Type = ManipulationToolbar.ButtonTypeEnum.Custom;
+        public AppBar ParentToolbar;
+        public AppBar.ButtonTypeEnum Type = AppBar.ButtonTypeEnum.Custom;
         public Vector3 DefaultOffset;
         public Vector3 HiddenOffset;
         public Vector3 ManipulateOffset;
@@ -34,15 +34,15 @@ namespace HUX.Interaction
         {
             switch (ParentToolbar.State)
             {
-                case ManipulationToolbar.ToolbarStateEnum.Default:
+                case AppBar.ToolbarStateEnum.Default:
                     // Show hide, adjust, remove buttons
                     // The rest are hidden
                     targetPosition = DefaultOffset;
                     switch (Type)
                     {
-                        case ManipulationToolbar.ButtonTypeEnum.Hide:
-                        case ManipulationToolbar.ButtonTypeEnum.Adjust:
-                        case ManipulationToolbar.ButtonTypeEnum.Remove:
+                        case AppBar.ButtonTypeEnum.Hide:
+                        case AppBar.ButtonTypeEnum.Adjust:
+                        case AppBar.ButtonTypeEnum.Remove:
                             Show();
                             break;
 
@@ -52,13 +52,13 @@ namespace HUX.Interaction
                     }
                     break;
 
-                case ManipulationToolbar.ToolbarStateEnum.Hidden:
+                case AppBar.ToolbarStateEnum.Hidden:
                     // Show show button
                     // The rest are hidden
                     targetPosition = HiddenOffset;
                     switch (Type)
                     {
-                        case ManipulationToolbar.ButtonTypeEnum.Show:
+                        case AppBar.ButtonTypeEnum.Show:
                             Show();
                             break;
 
@@ -68,14 +68,14 @@ namespace HUX.Interaction
                     }
                     break;
 
-                case ManipulationToolbar.ToolbarStateEnum.Manipulation:
+                case AppBar.ToolbarStateEnum.Manipulation:
                     // Show done / remove buttons
                     // The rest are hidden
                     targetPosition = ManipulateOffset;
                     switch (Type)
                     {
-                        case ManipulationToolbar.ButtonTypeEnum.Done:
-                        case ManipulationToolbar.ButtonTypeEnum.Remove:
+                        case AppBar.ButtonTypeEnum.Done:
+                        case AppBar.ButtonTypeEnum.Remove:
                             Show();
                             break;
 
@@ -115,7 +115,7 @@ namespace HUX.Interaction
             
             switch (Type)
             {
-                case ManipulationToolbar.ButtonTypeEnum.Adjust:
+                case AppBar.ButtonTypeEnum.Adjust:
                     buttonName = "Adjust";
                     buttonText = "Adjust";
                     buttonIcon = "EBD2";
@@ -123,7 +123,7 @@ namespace HUX.Interaction
                     ManipulateOffset = new Vector3(0.0f, 0f, -0.0001f);
                     break;
 
-                case ManipulationToolbar.ButtonTypeEnum.Done:
+                case AppBar.ButtonTypeEnum.Done:
                     buttonName = "Done";
                     buttonText = "Done";
                     buttonIcon = "E8FB";
@@ -131,7 +131,7 @@ namespace HUX.Interaction
                     ManipulateOffset = new Vector3(-0.04f, 0f, -0.0002f);
                     break;
 
-                case ManipulationToolbar.ButtonTypeEnum.Hide:
+                case AppBar.ButtonTypeEnum.Hide:
                     buttonName = "Hide";
                     buttonText = "Hide Menu";
                     buttonIcon = "E76C";
@@ -139,7 +139,7 @@ namespace HUX.Interaction
                     ManipulateOffset = new Vector3(0.0f, 0f, -0.0003f);
                     break;
 
-                case ManipulationToolbar.ButtonTypeEnum.Remove:
+                case AppBar.ButtonTypeEnum.Remove:
                     buttonName = "Remove";
                     buttonText = "Remove";
                     buttonIcon = "EC90";
@@ -147,7 +147,7 @@ namespace HUX.Interaction
                     ManipulateOffset = new Vector3(0.04f, 0f, -0.0004f);
                     break;
 
-                case ManipulationToolbar.ButtonTypeEnum.Show:
+                case AppBar.ButtonTypeEnum.Show:
                     buttonName = "Show";
                     buttonText = "Show Menu";
                     buttonIcon = "E700";
@@ -155,7 +155,7 @@ namespace HUX.Interaction
                     ManipulateOffset = new Vector3(0.0f, 0f, -0.0005f);
                     break;
 
-                case ManipulationToolbar.ButtonTypeEnum.Custom:
+                case AppBar.ButtonTypeEnum.Custom:
                 default:
                     break;
             }

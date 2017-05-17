@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 114523468403159170}
   - component: {fileID: 65447928988615780}
   - component: {fileID: 114426487396550078}
-  - component: {fileID: 114634780108149278}
   m_Layer: 5
   m_Name: Fitbox
   m_TagString: Untagged
@@ -158,18 +157,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveCollectionOnDismiss: 0
   StartupObject: {fileID: 0}
---- !u!114 &114634780108149278
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519591274494568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77a98cf320fe9340a55eecfe4567ca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FilterTag:
-    Tag: Default
-  ButtonState: 4
-  RequireGaze: 1

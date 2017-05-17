@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 namespace HUX.Interaction
 {
-    public class ManipulationToolbar : InteractionReceiver
+    public class AppBar : InteractionReceiver
     {
         /// <summary>
         /// How many custom buttons can be added to the toolbar
@@ -175,7 +175,7 @@ namespace HUX.Interaction
             GameObject newButton = GameObject.Instantiate(SquareButtonPrefab, buttonParent);
             newButton.transform.localPosition = Vector3.zero;
             newButton.transform.localRotation = Quaternion.identity;
-            ManipulationToolbarButton mtb = newButton.AddComponent<ManipulationToolbarButton>();
+            AppBarButton mtb = newButton.AddComponent<AppBarButton>();
             mtb.Type = type;
             mtb.ParentToolbar = this;
 

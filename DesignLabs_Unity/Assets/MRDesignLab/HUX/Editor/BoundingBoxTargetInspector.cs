@@ -12,7 +12,7 @@ namespace HUX
     public class BoundingBoxTargetInspector : Editor
     {
         const string BoundingBoxPrefabPath = "Assets/MRDesignLab/HUX/Prefabs/Dialogs/BoundingBox.prefab";
-        const string ToolbarPrefabPath = "Assets/MRDesignLab/HUX/Prefabs/Dialogs/ManipulationToolbar.prefab";
+        const string ToolbarPrefabPath = "Assets/MRDesignLab/HUX/Prefabs/Dialogs/AppBar.prefab";
 
         public override void OnInspectorGUI()
         {
@@ -20,7 +20,7 @@ namespace HUX
 
             // See if there's a bounding box yet
             BoundingBoxManipulate bbm = GameObject.FindObjectOfType<BoundingBoxManipulate>();
-            ManipulationToolbar toolbar = GameObject.FindObjectOfType<ManipulationToolbar>();
+            AppBar toolbar = GameObject.FindObjectOfType<AppBar>();
             if (bbm == null || toolbar == null)
             {                
                 HUXEditorUtils.ErrorMessage(
@@ -37,7 +37,7 @@ namespace HUX
                 BoundingBoxManipulate.OperationEnum.ScaleUniform | BoundingBoxManipulate.OperationEnum.RotateY | BoundingBoxManipulate.OperationEnum.Drag,
                 BoundingBoxManipulate.OperationEnum.Drag);
 
-            bbt.ManipulationDisplay = (ManipulationToolbar.DisplayEnum)EditorGUILayout.EnumPopup("Toolbar Display", bbt.ManipulationDisplay);
+            bbt.ManipulationDisplay = (AppBar.DisplayEnum)EditorGUILayout.EnumPopup("Toolbar Display", bbt.ManipulationDisplay);
 
 
             HUXEditorUtils.SaveChanges(bbt);
@@ -46,7 +46,7 @@ namespace HUX
         private void AddBoundingBox ()
         {
             BoundingBoxManipulate bbm = GameObject.FindObjectOfType<BoundingBoxManipulate>();
-            ManipulationToolbar toolbar = GameObject.FindObjectOfType<ManipulationToolbar>();
+            AppBar toolbar = GameObject.FindObjectOfType<AppBar>();
             if (bbm == null)
             {
                 Object prefab = AssetDatabase.LoadAssetAtPath(BoundingBoxPrefabPath, typeof(GameObject));

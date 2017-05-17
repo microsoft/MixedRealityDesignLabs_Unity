@@ -343,7 +343,7 @@ public class HUXEditorMenu : MonoBehaviour
     #endregion
 
     #region Spatial
-    protected const string TagAlongSolverPath = "Assets/MRDesignLab/HUX/Prefabs/Spatial/TagAlongSolver.prefab";
+    /*protected const string TagAlongSolverPath = "Assets/MRDesignLab/HUX/Prefabs/Spatial/TagAlongSolver.prefab";
     protected const string BodyLockSolverPath = "Assets/MRDesignLab/HUX/Prefabs/Spatial/BodyLockSolver.prefab";
     protected const string RadialViewSolverPath = "Assets/MRDesignLab/HUX/Prefabs/Spatial/RadialViewSolver.prefab";
 
@@ -384,7 +384,7 @@ public class HUXEditorMenu : MonoBehaviour
         {
             _go.transform.parent = clone.transform;
         }
-    }
+    }*/
 
     #endregion
 }

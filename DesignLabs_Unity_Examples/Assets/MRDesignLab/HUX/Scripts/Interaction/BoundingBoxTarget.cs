@@ -34,7 +34,7 @@ namespace HUX.Interaction
         /// Whether to show the manipulation display when the bounding box targets this object
         /// </summary>
         [HideInInspector]
-        public ManipulationToolbar.DisplayEnum ManipulationDisplay = ManipulationToolbar.DisplayEnum.Show;
+        public AppBar.DisplayEnum ManipulationDisplay = AppBar.DisplayEnum.Show;
 
         /// <summary>
         /// Bounding box to use. If this is not set, the first bounding box in the scene will be used.
@@ -44,7 +44,7 @@ namespace HUX.Interaction
         /// <summary>
         /// Manipulation toolbar to use. If this is not set, the first toolbar in the scene will be uesd.
         /// </summary>
-        private ManipulationToolbar toolbar;
+        private AppBar toolbar;
 
         private void Start()
         {
@@ -83,11 +83,11 @@ namespace HUX.Interaction
             // Try to find our toolbar
             if (toolbar == null)
             {
-                toolbar = GameObject.FindObjectOfType<ManipulationToolbar>();
+                toolbar = GameObject.FindObjectOfType<AppBar>();
                 if (toolbar == null)
                 {
                     // This is only a problem if we want to display one
-                    if (ManipulationDisplay != ManipulationToolbar.DisplayEnum.None)
+                    if (ManipulationDisplay != AppBar.DisplayEnum.None)
                     {
                         Debug.LogError("Couldn't find toolbar for object " + name);
                         return;
@@ -99,7 +99,7 @@ namespace HUX.Interaction
             boundingBox.PermittedOperations = PermittedOperations;
             boundingBox.Target = gameObject;
             
-            if (ManipulationDisplay != ManipulationToolbar.DisplayEnum.None)
+            if (ManipulationDisplay != AppBar.DisplayEnum.None)
             {
                 // Show it and set its bounding box object
                 toolbar.BoundingBox = boundingBox;
