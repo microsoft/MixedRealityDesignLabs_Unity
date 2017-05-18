@@ -63,13 +63,13 @@ namespace HUX.Interaction
             Done = 16,
         }
 
-        public enum DisplayEnum
+        public enum AppBarDisplayTypeEnum
         {
-            None,
-            Show,
+            Manipulation,
+            Standalone,
         }
 
-        public enum ToolbarStateEnum
+        public enum AppBarStateEnum
         {
             Default,
             Manipulation,
@@ -117,7 +117,9 @@ namespace HUX.Interaction
             }
         }
 
-        public ToolbarStateEnum State = ToolbarStateEnum.Default;
+        public AppBarDisplayTypeEnum DisplayType = AppBarDisplayTypeEnum.Manipulation;
+
+        public AppBarStateEnum State = AppBarStateEnum.Default;
 
         /// <summary>
         /// Custom icon profile
@@ -141,7 +143,7 @@ namespace HUX.Interaction
         private BoundingBoxManipulate boundingBox;
 
         public void Reset() {
-            State = ToolbarStateEnum.Default;
+            State = AppBarStateEnum.Default;
             if (boundingBox != null) {
                 boundingBox.AcceptInput = false;
             }
@@ -150,7 +152,7 @@ namespace HUX.Interaction
         }
 
         public void Start() {
-            State = ToolbarStateEnum.Default;
+            State = AppBarStateEnum.Default;
             if (Interactibles.Count == 0) {
                 RefreshTemplates();
                 for (int i = 0; i < defaultButtons.Length; i++) {
@@ -180,20 +182,20 @@ namespace HUX.Interaction
 
                 case "Adjust":
                     // Make the bounding box active so users can manipulate it
-                    State = ToolbarStateEnum.Manipulation;
+                    State = AppBarStateEnum.Manipulation;
                     break;
 
                 case "Hide":
                     // Make the bounding box inactive and invisible
-                    State = ToolbarStateEnum.Hidden;
+                    State = AppBarStateEnum.Hidden;
                     break;
 
                 case "Show":
-                    State = ToolbarStateEnum.Default;
+                    State = AppBarStateEnum.Default;
                     break;
 
                 case "Done":
-                    State = ToolbarStateEnum.Default;
+                    State = AppBarStateEnum.Default;
                     break;
 
                 default:
@@ -205,6 +207,7 @@ namespace HUX.Interaction
             if (template.IsEmpty)
                 return;
 
+            // TODO find a less inelegant way to do this
             switch (template.Type) {
                 case ButtonTypeEnum.Custom:
                     numDefaultButtons++;
@@ -233,20 +236,25 @@ namespace HUX.Interaction
             }
 
             GameObject newButton = GameObject.Instantiate(SquareButtonPrefab, buttonParent);
+            newButton.name = template.Name;
             newButton.transform.localPosition = Vector3.zero;
             newButton.transform.localRotation = Quaternion.identity;
             AppBarButton mtb = newButton.AddComponent<AppBarButton>();
-            mtb.Template = template;
-            mtb.CustomIconProfile = customIconProfile;
-            mtb.ParentToolbar = this;
+            mtb.Initialize(this, template, customIconProfile);
 
             RegisterInteractible(newButton);
         }
 
         private void FollowBoundingBox(bool smooth) {
             if (boundingBox == null) {
-                // Hide our buttons
-                baseRenderer.SetActive(false);
+                if (DisplayType == AppBarDisplayTypeEnum.Manipulation)
+                {
+                    // Hide our buttons
+                    baseRenderer.SetActive(false);
+                } else
+                {
+                    baseRenderer.SetActive(true);
+                }
                 return;
             }
 
@@ -294,20 +302,20 @@ namespace HUX.Interaction
             FollowBoundingBox(true);
             
             switch (State) {
-                case ToolbarStateEnum.Default:
+                case AppBarStateEnum.Default:
                 default:
                     targetBarSize = new Vector3 (numDefaultButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = false;
                     break;
 
-                case ToolbarStateEnum.Hidden:
+                case AppBarStateEnum.Hidden:
                     targetBarSize = new Vector3(numHiddenButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = false;
                     break;
 
-                case ToolbarStateEnum.Manipulation:
+                case AppBarStateEnum.Manipulation:
                     targetBarSize = new Vector3(numManipulationButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = true;

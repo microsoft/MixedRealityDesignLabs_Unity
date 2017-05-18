@@ -13,35 +13,55 @@ namespace HUX.Interaction
         public const float ButtonDepth = -0.0001f;
         const float MoveSpeed = 5f;
 
-        public ButtonIconProfile CustomIconProfile;
-        public AppBar ParentToolbar;
-        public AppBar.ButtonTemplate Template;
-        public Vector3 DefaultOffset;
-        public Vector3 HiddenOffset;
-        public Vector3 ManipulateOffset;
         public FilterTag VisibleFilterTag;
         public FilterTag HiddenFilterTag;
 
-        protected void OnEnable ()
+        public void Initialize (AppBar newParentToolBar, AppBar.ButtonTemplate newTemplate, ButtonIconProfile newCustomProfile)
         {
             // TODO move this into the tag manager
             VisibleFilterTag = new FilterTag();
             VisibleFilterTag.Tag = "Default";
             HiddenFilterTag = new FilterTag();
             HiddenFilterTag.Tag = "Hidden";
-            RefreshType();
+
+            template = newTemplate;
+            customIconProfile = newCustomProfile;
+            parentToolBar = newParentToolBar;
+
+            cButton = GetComponent<CompoundButton>();
+            cButton.MainRenderer.enabled = false;
+            text = GetComponent<CompoundButtonText>();
+            text.Text = template.Text;
+            icon = GetComponent<CompoundButtonIcon>();
+            if (customIconProfile != null)
+            {
+                icon.IconProfile = customIconProfile;
+                icon.IconName = string.Empty;
+            }
+            icon.IconName = template.Icon;
+            initialized = true;
+            Hide();
+        }
+
+        protected void OnEnable ()
+        {
             Hide();
         }
         
         protected void Update()
         {
-            switch (ParentToolbar.State)
+            if (!initialized)
+                return;
+
+            RefreshOffsets();
+
+            switch (parentToolBar.State)
             {
-                case AppBar.ToolbarStateEnum.Default:
+                case AppBar.AppBarStateEnum.Default:
                     // Show hide, adjust, remove buttons
                     // The rest are hidden
-                    targetPosition = DefaultOffset;
-                    switch (Template.Type)
+                    targetPosition = defaultOffset;
+                    switch (template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Hide:
                         case AppBar.ButtonTypeEnum.Remove:
@@ -56,11 +76,11 @@ namespace HUX.Interaction
                     }
                     break;
 
-                case AppBar.ToolbarStateEnum.Hidden:
+                case AppBar.AppBarStateEnum.Hidden:
                     // Show show button
                     // The rest are hidden
-                    targetPosition = HiddenOffset;
-                    switch (Template.Type)
+                    targetPosition = hiddenOffset;
+                    switch (template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Show:
                             Show();
@@ -72,11 +92,11 @@ namespace HUX.Interaction
                     }
                     break;
 
-                case AppBar.ToolbarStateEnum.Manipulation:
+                case AppBar.AppBarStateEnum.Manipulation:
                     // Show done / remove buttons
                     // The rest are hidden
-                    targetPosition = ManipulateOffset;
-                    switch (Template.Type)
+                    targetPosition = manipulationOffset;
+                    switch (template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Done:
                         case AppBar.ButtonTypeEnum.Remove:
@@ -95,6 +115,9 @@ namespace HUX.Interaction
 
         private void Hide()
         {
+            if (!initialized)
+                return;
+
             icon.Alpha = 0f;
             text.DisableText = true;
             cButton.enabled = false;
@@ -103,53 +126,52 @@ namespace HUX.Interaction
 
         private void Show()
         {
+            if (!initialized)
+                return;
+
             icon.Alpha = 1f;
             text.DisableText = false;
             cButton.enabled = true;
             cButton.FilterTag = VisibleFilterTag;
         }
 
-        private void RefreshType()
+        private void RefreshOffsets()
         {
-            gameObject.name = Template.Name;
-            cButton = GetComponent<CompoundButton>();
-            cButton.MainRenderer.enabled = false;
-            text = GetComponent<CompoundButtonText>();
-            text.Text = Template.Text;
-            icon = GetComponent<CompoundButtonIcon>();
-            if (CustomIconProfile != null) {
-                icon.IconProfile = CustomIconProfile;
-                icon.IconName = string.Empty;
-            }
-            icon.IconName = Template.Icon;
-
-
             // Apply offset based on total number of buttons
-            float xDefaultOffset = (ParentToolbar.NumDefaultButtons / 2) * ButtonWidth;
-            float xManipulationOffset = (ParentToolbar.NumManipulationButtons / 2) * ButtonWidth;
+            float xDefaultOffset = (parentToolBar.NumDefaultButtons / 2) * ButtonWidth;
+            float xManipulationOffset = (parentToolBar.NumManipulationButtons / 2) * ButtonWidth;
 
             // For odd numbers of buttons, add an additional 1/2 button offset
-            if (ParentToolbar.NumDefaultButtons > 1 && ParentToolbar.NumDefaultButtons % 2 == 0) {
+            if (parentToolBar.NumDefaultButtons > 1 && parentToolBar.NumDefaultButtons % 2 == 0)
+            {
                 xDefaultOffset -= (ButtonWidth / 2);
             }
-            if (ParentToolbar.NumManipulationButtons > 1 && ParentToolbar.NumManipulationButtons % 2 == 0) {
+            if (parentToolBar.NumManipulationButtons > 1 && parentToolBar.NumManipulationButtons % 2 == 0)
+            {
                 xManipulationOffset -= (ButtonWidth / 2);
             }
 
-            DefaultOffset = new Vector3(
-                Template.DefaultPosition * ButtonWidth - xDefaultOffset,
+            defaultOffset = new Vector3(
+                template.DefaultPosition * ButtonWidth - xDefaultOffset,
                 0f,
-                Template.DefaultPosition * ButtonDepth);
-            ManipulateOffset = new Vector3(
-                Template.ManipulationPosition * ButtonWidth - xManipulationOffset,
+                template.DefaultPosition * ButtonDepth);
+            manipulationOffset = new Vector3(
+                template.ManipulationPosition * ButtonWidth - xManipulationOffset,
                 0f,
-                Template.ManipulationPosition * ButtonDepth);
-            HiddenOffset = Vector3.zero;
+                template.ManipulationPosition * ButtonDepth);
+            hiddenOffset = Vector3.zero;
         }
 
+        private ButtonIconProfile customIconProfile;
+        private AppBar.ButtonTemplate template;
         private Vector3 targetPosition;
+        private Vector3 defaultOffset;
+        private Vector3 hiddenOffset;
+        private Vector3 manipulationOffset;
         private CompoundButton cButton;
         private CompoundButtonText text;
         private CompoundButtonIcon icon;
+        private AppBar parentToolBar;
+        private bool initialized = false;
     }
 }

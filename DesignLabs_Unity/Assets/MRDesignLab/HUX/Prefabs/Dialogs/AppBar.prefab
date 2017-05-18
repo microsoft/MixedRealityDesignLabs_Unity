@@ -158,6 +158,7 @@ MonoBehaviour:
   UseRemove: 1
   UseAdjust: 1
   UseHide: 1
+  DisplayType: 0
   State: 0
   CustomButtonIconProfile: {fileID: 0}
   buttons:

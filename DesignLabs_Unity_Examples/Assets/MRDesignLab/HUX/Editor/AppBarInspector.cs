@@ -8,7 +8,6 @@ using HUX.Receivers;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace HUX
 {
@@ -16,7 +15,7 @@ namespace HUX
     public class AppBarInspector : Editor
     {
         static Vector2 scrollPosition;
-        static AppBar.ToolbarStateEnum previewState = AppBar.ToolbarStateEnum.Default;
+        static AppBar.AppBarStateEnum previewState = AppBar.AppBarStateEnum.Default;
         static GUIStyle buttonPreviewStyle;
 
         const float previewButtonSize = 65f;
@@ -24,12 +23,18 @@ namespace HUX
         public override void OnInspectorGUI() {
             AppBar appBar = (AppBar)target;
 
-            HUXEditorUtils.BeginSectionBox("Bounding box");
-            appBar.BoundingBox = HUXEditorUtils.SceneObjectField<BoundingBoxManipulate>(null, appBar.BoundingBox);
-            if (appBar.BoundingBox == null) {
-                HUXEditorUtils.WarningMessage("Manipulation state will not function correctly at runtime without a bounding box. (If you're using BoundingBoxTarget this is not a problem.)");
+            appBar.DisplayType = (AppBar.AppBarDisplayTypeEnum)EditorGUILayout.EnumPopup("Display Type", appBar.DisplayType);
+
+            if (appBar.DisplayType == AppBar.AppBarDisplayTypeEnum.Manipulation)
+            {
+                HUXEditorUtils.BeginSectionBox("Bounding box");
+                appBar.BoundingBox = HUXEditorUtils.SceneObjectField<BoundingBoxManipulate>(null, appBar.BoundingBox);
+                if (appBar.BoundingBox == null)
+                {
+                    HUXEditorUtils.WarningMessage("Manipulation state will not function correctly at runtime without a bounding box. (If you're using BoundingBoxTarget this is not a problem.)");
+                }
+                HUXEditorUtils.EndSectionBox();
             }
-            HUXEditorUtils.EndSectionBox();
 
             HUXEditorUtils.BeginSectionBox("App bar options");
             appBar.SquareButtonPrefab = (GameObject)EditorGUILayout.ObjectField("Button Prefab", appBar.SquareButtonPrefab, typeof(GameObject));
@@ -92,12 +97,12 @@ namespace HUX
 
             HUXEditorUtils.BeginSubSectionBox("App bar preview");
             HUXEditorUtils.DrawSubtleMiniLabel("An approximation of what the final bar will look like. 'Hidden' and 'Manipulation' states depend on default button settings and may not be available.");
-            previewState = (AppBar.ToolbarStateEnum)EditorGUILayout.EnumPopup(previewState);
+            previewState = (AppBar.AppBarStateEnum)EditorGUILayout.EnumPopup(previewState);
             List<AppBar.ButtonTemplate> buttonList = new List<AppBar.ButtonTemplate>();
             buttonList.AddRange(appBar.DefaultButtons);
             buttonList.AddRange(buttons);
 
-            if (previewState == AppBar.ToolbarStateEnum.Default) {
+            if (previewState == AppBar.AppBarStateEnum.Default) {
                 buttonList.Sort(delegate (AppBar.ButtonTemplate b1, AppBar.ButtonTemplate b2) { return b1.DefaultPosition.CompareTo(b2.DefaultPosition); });
             } else {
                 buttonList.Sort(delegate (AppBar.ButtonTemplate b1, AppBar.ButtonTemplate b2) { return b1.ManipulationPosition.CompareTo(b2.ManipulationPosition); });
@@ -175,7 +180,7 @@ namespace HUX
             return template;
         }
 
-        private bool DrawPreviewButton (AppBar.ButtonTemplate template, AppBar.ToolbarStateEnum state, bool useHide, bool useAdjust, bool useRemove) {
+        private bool DrawPreviewButton (AppBar.ButtonTemplate template, AppBar.AppBarStateEnum state, bool useHide, bool useAdjust, bool useRemove) {
             bool drewButton = false;
 
             if (template.IsEmpty)
@@ -191,7 +196,7 @@ namespace HUX
             GUI.color = Color.Lerp(Color.gray, HUXEditorUtils.DefaultColor, 0.5f);
 
             switch (state) {
-                case AppBar.ToolbarStateEnum.Default:
+                case AppBar.AppBarStateEnum.Default:
                     switch (template.Type) {
                         case AppBar.ButtonTypeEnum.Custom:
                             GUILayout.Button(template.Text, buttonPreviewStyle);
@@ -224,7 +229,7 @@ namespace HUX
                     }
                     break;
 
-                case AppBar.ToolbarStateEnum.Hidden:
+                case AppBar.AppBarStateEnum.Hidden:
                    switch (template.Type) {
                         case AppBar.ButtonTypeEnum.Show:
                             if (useHide) {
@@ -238,7 +243,7 @@ namespace HUX
                     }
                     break;
 
-                case AppBar.ToolbarStateEnum.Manipulation:
+                case AppBar.AppBarStateEnum.Manipulation:
                     switch (template.Type) {
                         default:
                             break;

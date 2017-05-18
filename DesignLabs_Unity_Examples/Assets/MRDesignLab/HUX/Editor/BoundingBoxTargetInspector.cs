@@ -37,7 +37,7 @@ namespace HUX
                 BoundingBoxManipulate.OperationEnum.ScaleUniform | BoundingBoxManipulate.OperationEnum.RotateY | BoundingBoxManipulate.OperationEnum.Drag,
                 BoundingBoxManipulate.OperationEnum.Drag);
 
-            bbt.ManipulationDisplay = (AppBar.DisplayEnum)EditorGUILayout.EnumPopup("Toolbar Display", bbt.ManipulationDisplay);
+            bbt.ShowAppBar = EditorGUILayout.Toggle("Toolbar Display", bbt.ShowAppBar);
 
 
             HUXEditorUtils.SaveChanges(bbt);

@@ -15,8 +15,8 @@ MonoBehaviour:
   AlphaTransitionSpeed: 0.16
   IconMaterial: {fileID: 2100000, guid: 98cc92d28255c914ab0d0be3fedc8ae9, type: 2}
   IconMesh: {fileID: 4300010, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
-  AlphaColorProperty: _Color
+  AlphaColorProperty: 
   OSFontName: Segoe MDL2 Assets
   RendererScale: 0.00675
   FontScaleFactor: 16
-  iconFont: {fileID: 12800000, guid: 032ebe6faf6eb884498d50fed899140b, type: 3}
+  iconFont: {fileID: 12800000, guid: d1bbdd4c387c51341ab90f23802ec680, type: 3}

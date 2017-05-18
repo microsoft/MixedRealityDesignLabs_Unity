@@ -18,6 +18,9 @@ ExportedObj/
 *.booproj
 *.svd
 
+# Font assets
+HoloSymMDL2*
+
 # Unity3D generated meta files
 *.pidb.meta
 
