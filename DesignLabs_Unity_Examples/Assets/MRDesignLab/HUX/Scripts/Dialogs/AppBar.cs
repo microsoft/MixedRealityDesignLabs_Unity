@@ -2,8 +2,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
+using HUX.Buttons;
 using HUX.Receivers;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +16,7 @@ namespace HUX.Interaction
         /// <summary>
         /// How many custom buttons can be added to the toolbar
         /// </summary>
-        const int MaxCustomButtons = 5;
+        public const int MaxCustomButtons = 5;
 
         /// <summary>
         /// Class used for building toolbar buttons
@@ -23,29 +25,44 @@ namespace HUX.Interaction
         [Serializable]
         public struct ButtonTemplate
         {
-            public ButtonTemplate (Transform parent, string name, string icon, string text)
-            {
+            public ButtonTemplate(ButtonTypeEnum type, string name, string icon, string text, int defaultPosition, int manipulationPosition) {
+                Type = type;
                 Name = name;
                 Icon = icon;
                 Text = text;
+                DefaultPosition = defaultPosition;
+                ManipulationPosition = manipulationPosition;
                 EventTarget = null;
                 OnTappedEvent = null;
             }
 
-            public bool IsEmpty
-            {
-                get
-                {
+            public bool IsEmpty {
+                get {
                     return string.IsNullOrEmpty(Name);
                 }
             }
+
+            public int DefaultPosition;
+            public int ManipulationPosition;
+            public ButtonTypeEnum Type;
             public string Name;
             public string Icon;
             public string Text;
-            public GameObject EventTarget;
+            public InteractionReceiver EventTarget;
             public UnityEvent OnTappedEvent;
         }
-        
+
+        [Flags]
+        public enum ButtonTypeEnum
+        {
+            Custom = 0,
+            Remove = 1,
+            Adjust = 2,
+            Hide = 4,
+            Show = 8,
+            Done = 16,
+        }
+
         public enum DisplayEnum
         {
             None,
@@ -59,37 +76,57 @@ namespace HUX.Interaction
             Hidden,
         }
 
-        [Flags]
-        public enum ButtonTypeEnum
-        {
-            Custom = 0,
-            Remove = 1,
-            Adjust = 2,
-            Hide = 4,
-            Show = 8,
-            Done = 16
-        }
-
-        public BoundingBoxManipulate BoundingBox
-        {
-            get
-            {
+        public BoundingBoxManipulate BoundingBox {
+            get {
                 return boundingBox;
             }
-            set
-            {
+            set {
                 boundingBox = value;
             }
         }
 
         public GameObject SquareButtonPrefab;
 
+        public int NumDefaultButtons {
+            get {
+                return numDefaultButtons;
+            }
+        }
+
+        public int NumManipulationButtons {
+            get {
+                return numManipulationButtons;
+            }
+        }
+
+        public bool UseRemove = true;
+        public bool UseAdjust = true;
+        public bool UseHide = true;
+
+        public ButtonTemplate[] Buttons {
+            get {
+                return buttons;
+            } set {
+                buttons = value;
+            }
+        }
+
+        public ButtonTemplate[] DefaultButtons {
+            get {
+                return defaultButtons;
+            }
+        }
+
         public ToolbarStateEnum State = ToolbarStateEnum.Default;
 
-        //[SerializeField]
-        //private ButtonTemplate[] buttons = new ButtonTemplate[MaxCustomButtons];
+        /// <summary>
+        /// Custom icon profile
+        /// If null, the profile in the SquareButtonPrefab object will be used
+        /// </summary>
+        public ButtonIconProfile CustomButtonIconProfile;
 
-        private ButtonTemplate[] defaultButtons;
+        [SerializeField]
+        private ButtonTemplate[] buttons = new ButtonTemplate[MaxCustomButtons];
 
         [SerializeField]
         private Transform buttonParent;
@@ -103,43 +140,37 @@ namespace HUX.Interaction
         [SerializeField]
         private BoundingBoxManipulate boundingBox;
 
-        public void Reset()
-        {
+        public void Reset() {
             State = ToolbarStateEnum.Default;
-            if (boundingBox != null)
-            {
+            if (boundingBox != null) {
                 boundingBox.AcceptInput = false;
             }
             FollowBoundingBox(false);
             lastTimeTapped = Time.time + coolDownTime;
         }
 
-        public void Start()
-        {
+        public void Start() {
             State = ToolbarStateEnum.Default;
-            if (Interactibles.Count == 0)
-            {
-                // Create our base buttons
-                // TODO - create custom buttons using templates
-                CreateButton(ButtonTypeEnum.Remove);
-                CreateButton(ButtonTypeEnum.Adjust);
-                CreateButton(ButtonTypeEnum.Hide);
-                CreateButton(ButtonTypeEnum.Show);
-                CreateButton(ButtonTypeEnum.Done);
+            if (Interactibles.Count == 0) {
+                RefreshTemplates();
+                for (int i = 0; i < defaultButtons.Length; i++) {
+                    CreateButton(defaultButtons[i], null);
+                }
+                for (int i = 0; i < buttons.Length; i++) {
+                    CreateButton(buttons[i], CustomButtonIconProfile);
+                }
             }
         }
 
-        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs)
-        {
+        protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs) {
             if (Time.time < lastTimeTapped + coolDownTime)
                 return;
 
             lastTimeTapped = Time.time;
 
             base.OnTapped(obj, eventArgs);
-                        
-            switch (obj.name)
-            {
+
+            switch (obj.name) {
                 case "Remove":
                     // Destroy the target object
                     GameObject.Destroy(boundingBox.Target);
@@ -170,22 +201,50 @@ namespace HUX.Interaction
             }
         }
 
-        private void CreateButton(ButtonTypeEnum type)
-        {
+        private void CreateButton(ButtonTemplate template, ButtonIconProfile customIconProfile) {
+            if (template.IsEmpty)
+                return;
+
+            switch (template.Type) {
+                case ButtonTypeEnum.Custom:
+                    numDefaultButtons++;
+                    break;
+
+                case ButtonTypeEnum.Adjust:
+                    numDefaultButtons++;
+                    break;
+
+                case ButtonTypeEnum.Done:
+                    numManipulationButtons++;
+                    break;
+
+                case ButtonTypeEnum.Remove:
+                    numManipulationButtons++;
+                    numDefaultButtons++;
+                    break;
+
+                case ButtonTypeEnum.Hide:
+                    numDefaultButtons++;
+                    break;
+
+                case ButtonTypeEnum.Show:
+                    numHiddenButtons++;
+                    break;
+            }
+
             GameObject newButton = GameObject.Instantiate(SquareButtonPrefab, buttonParent);
             newButton.transform.localPosition = Vector3.zero;
             newButton.transform.localRotation = Quaternion.identity;
             AppBarButton mtb = newButton.AddComponent<AppBarButton>();
-            mtb.Type = type;
+            mtb.Template = template;
+            mtb.CustomIconProfile = customIconProfile;
             mtb.ParentToolbar = this;
 
             RegisterInteractible(newButton);
         }
 
-        private void FollowBoundingBox(bool smooth)
-        {
-            if (boundingBox == null)
-            {
+        private void FollowBoundingBox(bool smooth) {
+            if (boundingBox == null) {
                 // Hide our buttons
                 baseRenderer.SetActive(false);
                 return;
@@ -206,26 +265,22 @@ namespace HUX.Interaction
             Vector3 finalPosition = Vector3.zero;
             Vector3 headPosition = Camera.main.transform.position;
 
-            for (int i = 0; i < forwards.Length; i++)
-            {
+            for (int i = 0; i < forwards.Length; i++) {
                 Vector3 nextPosition = boundingBox.transform.position +
                 (forwards[i] * -maxXYScale) +
                 (Vector3.up * (-scale.y * 0.25f));
 
                 float distance = Vector3.Distance(nextPosition, headPosition);
-                if (distance < closestSoFar)
-                {
+                if (distance < closestSoFar) {
                     closestSoFar = distance;
                     finalPosition = nextPosition;
                 }
             }
 
             // Follow our bounding box
-            if (smooth)
-            {
+            if (smooth) {
                 transform.position = Vector3.Lerp(transform.position, finalPosition, 0.5f);
-            } else
-            {
+            } else {
                 transform.position = finalPosition;
             }
             // Rotate on the y axis
@@ -235,27 +290,25 @@ namespace HUX.Interaction
             transform.eulerAngles = eulerAngles;
         }
 
-        private void Update()
-        {
+        private void Update() {
             FollowBoundingBox(true);
-
-            switch (State)
-            {
+            
+            switch (State) {
                 case ToolbarStateEnum.Default:
                 default:
-                    targetBarSize = Vector3.one;
+                    targetBarSize = new Vector3 (numDefaultButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = false;
                     break;
 
                 case ToolbarStateEnum.Hidden:
-                    targetBarSize = new Vector3(0.333f, 1f, 1f);
+                    targetBarSize = new Vector3(numHiddenButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = false;
                     break;
 
                 case ToolbarStateEnum.Manipulation:
-                    targetBarSize = new Vector3(0.666f, 1f, 1f);
+                    targetBarSize = new Vector3(numManipulationButtons, 1f, 1f);
                     if (boundingBox != null)
                         boundingBox.AcceptInput = true;
                     break;
@@ -264,19 +317,126 @@ namespace HUX.Interaction
             backgroundBar.transform.localScale = Vector3.Lerp(backgroundBar.transform.localScale, targetBarSize, 0.5f);
         }
 
-        #if UNITY_EDITOR
-        protected override void OnDrawGizmos()
-        {
+        private void RefreshTemplates () {
+            int numCustomButtons = 0;
+            for (int i = 0; i < buttons.Length; i++) {
+                if (!buttons[i].IsEmpty) {
+                    numCustomButtons++;
+                }
+            }
+            List<ButtonTemplate> defaultButtonsList = new List<ButtonTemplate>();
+            // Create our default button templates based on user preferences
+            if (UseRemove) {
+                defaultButtonsList.Add(GetDefaultButtonTemplateFromType(ButtonTypeEnum.Remove, numCustomButtons, UseHide, UseAdjust, UseRemove));
+            }
+            if (UseAdjust) {
+                defaultButtonsList.Add(GetDefaultButtonTemplateFromType(ButtonTypeEnum.Adjust, numCustomButtons, UseHide, UseAdjust, UseRemove));
+                defaultButtonsList.Add(GetDefaultButtonTemplateFromType(ButtonTypeEnum.Done, numCustomButtons, UseHide, UseAdjust, UseRemove));
+            }
+            if (UseHide) {
+                defaultButtonsList.Add(GetDefaultButtonTemplateFromType(ButtonTypeEnum.Hide, numCustomButtons, UseHide, UseAdjust, UseRemove));
+                defaultButtonsList.Add(GetDefaultButtonTemplateFromType(ButtonTypeEnum.Show, numCustomButtons, UseHide, UseAdjust, UseRemove));
+            }
+            defaultButtons = defaultButtonsList.ToArray();
+        }
+
+#if UNITY_EDITOR
+        public void EditorRefreshTemplates () {
+            RefreshTemplates();
+        }
+
+        protected override void OnDrawGizmos() {
             if (Application.isPlaying)
                 return;
 
             FollowBoundingBox(true);
         }
-        #endif
+#endif
 
+        private ButtonTemplate[] defaultButtons;
         private Vector3[] forwards = new Vector3[4];
         private Vector3 targetBarSize = Vector3.one;
         private float lastTimeTapped = 0f;
         private float coolDownTime = 0.5f;
+        private int numDefaultButtons;
+        private int numHiddenButtons;
+        private int numManipulationButtons;
+
+        /// <summary>
+        /// Generates a template for a default button based on type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static ButtonTemplate GetDefaultButtonTemplateFromType(ButtonTypeEnum type, int numCustomButtons, bool useHide, bool useAdjust, bool useRemove) {
+            // Button position is based on custom buttons
+            // In the app bar, Hide/Show
+            switch (type) {
+                default:
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Custom,
+                        "Custom",
+                        "",
+                        "Custom",
+                        0,
+                        0);
+
+                case ButtonTypeEnum.Adjust:
+                    int adjustPosition = numCustomButtons + 1;
+                    if (!useHide) {
+                        adjustPosition--;
+                    }
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Adjust,
+                        "Adjust",
+                        "EBD2",
+                        "Adjust",
+                        adjustPosition, // Always next-to-last to appear
+                        0);
+
+                case ButtonTypeEnum.Done:
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Done,
+                        "Done",
+                        "E8FB",
+                        "Done",
+                        0,//-2,
+                        0);//-1);
+
+                case ButtonTypeEnum.Hide:
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Hide,
+                        "Hide",
+                        "E76C",
+                        "Hide Menu",
+                        0,// Always the first to appear
+                        0);
+
+                case ButtonTypeEnum.Remove:
+                    int removePosition = numCustomButtons + 1;
+                    if (useAdjust) {
+                        removePosition++;
+                    }
+                    if (!useHide) {
+                        removePosition--;
+                    }
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Remove,
+                        "Remove",
+                        "EC90",
+                        "Remove",
+                        removePosition, // Always the last to appear
+                        1);
+
+                case ButtonTypeEnum.Show:
+                    return new ButtonTemplate(
+                        ButtonTypeEnum.Show,
+                        "Show",
+                        "E700",
+                        //"EC90",
+                        "Show Menu",
+                        0,//-2,
+                        0);
+            }
+        }
     }
 }

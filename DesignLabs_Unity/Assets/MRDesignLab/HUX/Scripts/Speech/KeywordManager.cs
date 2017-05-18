@@ -248,16 +248,25 @@ namespace HUX.Speech
             /// <param name="keyword">The keyword that should be listened for.</param>
             public KeywordCommandInfo(string keyword)
             {
-#if UNITY_WSA || UNITY_STANDALONE_WIN
-                m_Recognizer = new KeywordRecognizer(new string[] { keyword });
-                m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
-
-                if (!m_Recognizer.IsRunning)
-                {
-                    m_Recognizer.Start();
+                if (string.IsNullOrEmpty (keyword)) {
+                    Debug.LogError("Attempted to register null keyword in keyword manager.");
+                    return;
                 }
+
+#if UNITY_WSA || UNITY_STANDALONE_WIN
+                try {
+                    m_Recognizer = new KeywordRecognizer(new string[] { keyword });
+                    m_Recognizer.OnPhraseRecognized += OnPhraseRecognized;
+
+                    if (!m_Recognizer.IsRunning) {
+                        m_Recognizer.Start();
+                    }
 #endif
-                Enabled = true;
+                    Enabled = true;
+                } catch (System.Exception e) {
+                    Debug.Log("Unable to register keyword. Speech recognition may not be supported on this machine. Full exception: " + e.ToString());
+                    Enabled = false;
+                }
             }
 
             public void Destroy()

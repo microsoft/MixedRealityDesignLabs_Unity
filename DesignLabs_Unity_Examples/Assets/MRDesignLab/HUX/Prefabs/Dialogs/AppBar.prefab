@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4773597359991020}
   - component: {fileID: 114718255250903984}
   m_Layer: 0
-  m_Name: ManipulationToolbar
+  m_Name: AppBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093294406509342}
-  m_Mesh: {fileID: 4300018, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
+  m_Mesh: {fileID: 4300006, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
 --- !u!114 &114718255250903984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +155,72 @@ MonoBehaviour:
   bLockFocus: 0
   SquareButtonPrefab: {fileID: 1820333246347296, guid: 7bcb89df8599d00448726407181348bd,
     type: 2}
+  UseRemove: 1
+  UseAdjust: 1
+  UseHide: 1
   State: 0
+  CustomButtonIconProfile: {fileID: 0}
+  buttons:
+  - DefaultPosition: 0
+    ManipulationPosition: 0
+    Type: 0
+    Name: 
+    Icon: E700
+    Text: Button 1
+    EventTarget: {fileID: 0}
+    OnTappedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - DefaultPosition: 0
+    ManipulationPosition: 0
+    Type: 0
+    Name: 
+    Icon: E700
+    Text: Button 2
+    EventTarget: {fileID: 0}
+    OnTappedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - DefaultPosition: 0
+    ManipulationPosition: 0
+    Type: 0
+    Name: 
+    Icon: E700
+    Text: Button 3
+    EventTarget: {fileID: 0}
+    OnTappedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - DefaultPosition: 0
+    ManipulationPosition: 0
+    Type: 0
+    Name: 
+    Icon: E700
+    Text: Button 4
+    EventTarget: {fileID: 0}
+    OnTappedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - DefaultPosition: 0
+    ManipulationPosition: 0
+    Type: 0
+    Name: 
+    Icon: E700
+    Text: Button 5
+    EventTarget: {fileID: 0}
+    OnTappedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
   buttonParent: {fileID: 4691479528535670}
   baseRenderer: {fileID: 1374918788334882}
   backgroundBar: {fileID: 1093294406509342}

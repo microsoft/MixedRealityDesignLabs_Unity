@@ -9,10 +9,13 @@ namespace HUX.Interaction
 {
     public class AppBarButton : MonoBehaviour
     {
+        public const float ButtonWidth = 0.08f;
+        public const float ButtonDepth = -0.0001f;
         const float MoveSpeed = 5f;
 
+        public ButtonIconProfile CustomIconProfile;
         public AppBar ParentToolbar;
-        public AppBar.ButtonTypeEnum Type = AppBar.ButtonTypeEnum.Custom;
+        public AppBar.ButtonTemplate Template;
         public Vector3 DefaultOffset;
         public Vector3 HiddenOffset;
         public Vector3 ManipulateOffset;
@@ -38,11 +41,12 @@ namespace HUX.Interaction
                     // Show hide, adjust, remove buttons
                     // The rest are hidden
                     targetPosition = DefaultOffset;
-                    switch (Type)
+                    switch (Template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Hide:
-                        case AppBar.ButtonTypeEnum.Adjust:
                         case AppBar.ButtonTypeEnum.Remove:
+                        case AppBar.ButtonTypeEnum.Adjust:
+                        case AppBar.ButtonTypeEnum.Custom:
                             Show();
                             break;
 
@@ -56,7 +60,7 @@ namespace HUX.Interaction
                     // Show show button
                     // The rest are hidden
                     targetPosition = HiddenOffset;
-                    switch (Type)
+                    switch (Template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Show:
                             Show();
@@ -72,7 +76,7 @@ namespace HUX.Interaction
                     // Show done / remove buttons
                     // The rest are hidden
                     targetPosition = ManipulateOffset;
-                    switch (Type)
+                    switch (Template.Type)
                     {
                         case AppBar.ButtonTypeEnum.Done:
                         case AppBar.ButtonTypeEnum.Remove:
@@ -107,67 +111,40 @@ namespace HUX.Interaction
 
         private void RefreshType()
         {
-            // TODO move this into button templates
-
-            string buttonName = string.Empty;
-            string buttonText = string.Empty;
-            string buttonIcon = string.Empty;
-            
-            switch (Type)
-            {
-                case AppBar.ButtonTypeEnum.Adjust:
-                    buttonName = "Adjust";
-                    buttonText = "Adjust";
-                    buttonIcon = "EBD2";
-                    DefaultOffset = new Vector3(0.0f, 0f, -0.0001f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0001f);
-                    break;
-
-                case AppBar.ButtonTypeEnum.Done:
-                    buttonName = "Done";
-                    buttonText = "Done";
-                    buttonIcon = "E8FB";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0002f);
-                    ManipulateOffset = new Vector3(-0.04f, 0f, -0.0002f);
-                    break;
-
-                case AppBar.ButtonTypeEnum.Hide:
-                    buttonName = "Hide";
-                    buttonText = "Hide Menu";
-                    buttonIcon = "E76C";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0003f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0003f);
-                    break;
-
-                case AppBar.ButtonTypeEnum.Remove:
-                    buttonName = "Remove";
-                    buttonText = "Remove";
-                    buttonIcon = "EC90";
-                    DefaultOffset = new Vector3(0.08f, 0f, -0.0004f);
-                    ManipulateOffset = new Vector3(0.04f, 0f, -0.0004f);
-                    break;
-
-                case AppBar.ButtonTypeEnum.Show:
-                    buttonName = "Show";
-                    buttonText = "Show Menu";
-                    buttonIcon = "E700";
-                    DefaultOffset = new Vector3(-0.08f, 0f, -0.0005f);
-                    ManipulateOffset = new Vector3(0.0f, 0f, -0.0005f);
-                    break;
-
-                case AppBar.ButtonTypeEnum.Custom:
-                default:
-                    break;
-            }
-
-            gameObject.name = buttonName;
+            gameObject.name = Template.Name;
             cButton = GetComponent<CompoundButton>();
             cButton.MainRenderer.enabled = false;
             text = GetComponent<CompoundButtonText>();
-            text.Text = buttonText;
+            text.Text = Template.Text;
             icon = GetComponent<CompoundButtonIcon>();
-            icon.IconName = buttonIcon;
+            if (CustomIconProfile != null) {
+                icon.IconProfile = CustomIconProfile;
+                icon.IconName = string.Empty;
+            }
+            icon.IconName = Template.Icon;
 
+
+            // Apply offset based on total number of buttons
+            float xDefaultOffset = (ParentToolbar.NumDefaultButtons / 2) * ButtonWidth;
+            float xManipulationOffset = (ParentToolbar.NumManipulationButtons / 2) * ButtonWidth;
+
+            // For odd numbers of buttons, add an additional 1/2 button offset
+            if (ParentToolbar.NumDefaultButtons > 1 && ParentToolbar.NumDefaultButtons % 2 == 0) {
+                xDefaultOffset -= (ButtonWidth / 2);
+            }
+            if (ParentToolbar.NumManipulationButtons > 1 && ParentToolbar.NumManipulationButtons % 2 == 0) {
+                xManipulationOffset -= (ButtonWidth / 2);
+            }
+
+            DefaultOffset = new Vector3(
+                Template.DefaultPosition * ButtonWidth - xDefaultOffset,
+                0f,
+                Template.DefaultPosition * ButtonDepth);
+            ManipulateOffset = new Vector3(
+                Template.ManipulationPosition * ButtonWidth - xManipulationOffset,
+                0f,
+                Template.ManipulationPosition * ButtonDepth);
+            HiddenOffset = Vector3.zero;
         }
 
         private Vector3 targetPosition;

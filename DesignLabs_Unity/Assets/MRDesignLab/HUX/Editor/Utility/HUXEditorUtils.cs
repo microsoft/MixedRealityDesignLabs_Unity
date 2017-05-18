@@ -19,6 +19,7 @@ namespace HUX
         public readonly static Color WarningColor = new Color(1f, 0.85f, 0.6f);
         public readonly static Color ErrorColor = new Color(1f, 0.55f, 0.5f);
         public readonly static Color SuccessColor = new Color(0.8f, 1f, 0.75f);
+        public readonly static Color ObjectColor = new Color(0.85f, 0.9f, 1f);
 
         /// <summary>
         /// Draws a field for scriptable object profiles
@@ -160,6 +161,39 @@ namespace HUX
                 throw new ArgumentException("T must be an enum.");
             }
             return EnumCheckboxField<T>(label, enumObj, string.Empty, (T)Activator.CreateInstance(typeof(T)));
+        }
+
+        public static T SceneObjectField<T>(string label, T sceneObject) where T : Component {
+
+            EditorGUILayout.BeginHorizontal();
+            if (string.IsNullOrEmpty(label)) {
+                sceneObject = (T)EditorGUILayout.ObjectField(sceneObject, typeof(T), true);
+            } else {
+                sceneObject = (T)EditorGUILayout.ObjectField(label, sceneObject, typeof(T), true);
+            }
+            if (sceneObject != null && sceneObject.gameObject.scene.name == null) {
+                // Don't allow objects that aren't in the scene!
+                sceneObject = null;
+            }
+
+            T[] objectsInScene = GameObject.FindObjectsOfType<T>();
+            int selectedIndex = 0;
+            string[] displayedOptions = new string[objectsInScene.Length + 1];
+            displayedOptions[0] = "(None)";
+            for (int i = 0; i < objectsInScene.Length; i++) {
+                displayedOptions[i + 1] = objectsInScene[i].name;
+                if (objectsInScene[i] == sceneObject) {
+                    selectedIndex = i + 1;
+                }
+            }
+            selectedIndex = EditorGUILayout.Popup(selectedIndex, displayedOptions);
+            if (selectedIndex == 0) {
+                sceneObject = null;
+            } else {
+                sceneObject = objectsInScene[selectedIndex - 1];
+            }
+            EditorGUILayout.EndHorizontal();
+            return sceneObject;
         }
 
         /// <summary>
@@ -377,7 +411,7 @@ namespace HUX
         {
             Color tColor = GUI.color;
             GUI.color = Color.Lerp(tColor, Color.grey, 0.5f);
-            EditorGUILayout.LabelField(label, EditorStyles.miniLabel);
+            EditorGUILayout.LabelField(label, EditorStyles.wordWrappedMiniLabel);
             GUI.color = tColor;
         }
 
