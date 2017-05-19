@@ -17,7 +17,8 @@ https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Exa
 
 
 # More from Mixed Reality Design Labs #
-**Sample app - Periodic Table of the Elements**
+## Sample app - Periodic Table of the Elements ##
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable/blob/master/External/ReadMeImages/PeriodicTable_Hero.jpg" alt="Periodic Table of the Elements">
 https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable
 
 
