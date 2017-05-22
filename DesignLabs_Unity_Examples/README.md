@@ -152,7 +152,11 @@ Clone and open the project [MRDesignLabs_Unity](https://github.com/Microsoft/MRD
 The default **HololensCamera** prefab provided in [MRDesignLabs_Unity](https://github.com/Microsoft/MRDesignLabs_Unity) provides global event and input handling required for the Holobar and Bounding box to work. It can be found at [/MRDesignLab/Hux/Prefab/Interface](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Prefabs/Interface). Additionally, once **MRDesignLabs** is in your unity project, you can use the menu system to create an instance of the HoloLens default camera.
 
 
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/BoundingBoxAppBar-scene.jpg" alt="The bounding box and app bar prefabs in the scene" width="450px">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/BoundingBoxAppBar-InteractionManager.jpg" alt="Interaction Manager under HoloLensCamera" width="550px">
+
+Please make sure **ManipulationTranslate** is checked in **InteractionManager** in HoloLens object.
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/BoundingBoxAppBar-scene.jpg" alt="The bounding box and app bar prefabs in the scene" width="550px">
 
 You can find the **AppBar.prefab** in [/MRDesignLab/HUX/Prefabs/Dialogs](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Prefabs/Dialogs/) and the **BoundingBox.prefab** can be found in [/MRDesignLab/HUX/Examples/Prefabs/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/MRDesignLab/HUX/Prefabs/Dialogs/Assets/MRDesignLab/HUX/Examples/Prefabs/) Drag both of these prefabs into the scene.
 
