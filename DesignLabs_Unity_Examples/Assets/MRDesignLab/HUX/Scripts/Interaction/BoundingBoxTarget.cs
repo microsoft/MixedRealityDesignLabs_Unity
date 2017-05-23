@@ -64,37 +64,32 @@ namespace HUX.Interaction
             GetComponent<Button>().FilterTag = TagOnDeselected;
         }
 
-        public void Tapped() {
-            // If we've already got a bounding box and it's pointing to us, do nothing
-            if (boundingBox != null && boundingBox.Target == this.gameObject)
+        public void Tapped()
+        {
+
+            // Return if there isn't a Manipulation Manager
+            if (ManipulationManager.Instance == null)
+            {
+                Debug.LogError("No manipulation manager for " + name);
                 return;
+            }
 
             // Try to find our bounding box
             if (boundingBox == null)
             {
-                boundingBox = GameObject.FindObjectOfType<BoundingBoxManipulate>();
-                if (boundingBox == null)
-                {
-                    Debug.LogError("Couldn't find bounding box for object " + name);
-                    return;
-                }
+                boundingBox = ManipulationManager.Instance.ActiveBoundingBox;
             }
 
             // Try to find our toolbar
             if (toolbar == null)
             {
-                toolbar = GameObject.FindObjectOfType<AppBar>();
-                if (toolbar == null)
-                {
-                    // This is only a problem if we want to display one
-                    if (ShowAppBar)
-                    {
-                        Debug.LogError("Couldn't find toolbar for object " + name);
-                        return;
-                    }
-                }
+                toolbar = ManipulationManager.Instance.ActiveAppBar;
             }
 
+            // If we've already got a bounding box and it's pointing to us, do nothing
+            if (boundingBox != null && boundingBox.Target == this.gameObject)
+                return;
+            
             // Set the bounding box's target and permitted operations
             boundingBox.PermittedOperations = PermittedOperations;
             boundingBox.Target = gameObject;
