@@ -114,6 +114,7 @@ Transform:
   - {fileID: 432882}
   - {fileID: 405582}
   - {fileID: 4000013876486668}
+  - {fileID: 4715479874284664}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -301,12 +302,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FilterTags:
-    ValidTags: []
+    ValidTags:
+    - Default
+    - Default
+    - Default
+    - Default
   MaxGazeDistance: 5
   ShellRadius: 3
   RaycastLayerMask:
     serializedVersion: 2
-    m_Bits: 4294930939
+    m_Bits: 4290736635
   m_UseFocalPoint: 1
   m_FixedFocalPoint: {x: 0, y: 0, z: 0}
   m_VoiceGazeFocus: 1
@@ -338,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e39378387d77f47add7b80773bc5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RecognizableGesures: 55
+  RecognizableGesures: 15
   bLockFocus: 0
 --- !u!1001 &100100000
 Prefab:
@@ -457,6 +462,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1257573970551866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4715479874284664}
+  - component: {fileID: 114295064799608358}
+  m_Layer: 0
+  m_Name: ManipulationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1657284661482368
 GameObject:
   m_ObjectHideFlags: 1
@@ -568,6 +589,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 432882}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4715479874284664
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257573970551866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400002}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010162710480
 MonoBehaviour:
@@ -1111,6 +1145,20 @@ MonoBehaviour:
       pressed: 0
       prevPressed: 0
   GamepadCursor: 0
+--- !u!114 &114295064799608358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257573970551866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948d6cffec83bac4588254f528df4a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoundingBoxPrefab: {fileID: 160298, guid: cd435fa946a12fb42b7fe3f3e3bd24dc, type: 2}
+  AppBarPrefab: {fileID: 1275815092924048, guid: 9ed6d3e8b228a604d839073eff5bba5f,
+    type: 2}
 --- !u!114 &114395704739087206
 MonoBehaviour:
   m_ObjectHideFlags: 1
