@@ -221,11 +221,12 @@ namespace HUX.Buttons
 
         private void RefreshAlpha()
         {
-            if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
+            string alphaColorProperty = string.IsNullOrEmpty(IconProfile.AlphaColorProperty) ? "_Color" : IconProfile.AlphaColorProperty;
+            if (instantiatedMaterial != null)
             {
-                Color c = instantiatedMaterial.GetColor(IconProfile.AlphaColorProperty);
+                Color c = instantiatedMaterial.GetColor(alphaColorProperty);
                 c.a = alpha;
-                instantiatedMaterial.SetColor(IconProfile.AlphaColorProperty, c);
+                instantiatedMaterial.SetColor(alphaColorProperty, c);
             }
         }
 
@@ -272,18 +273,19 @@ namespace HUX.Buttons
         {
             float startTime = Time.time;
             Color color = Color.white;
-            if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
+            string alphaColorProperty = string.IsNullOrEmpty(IconProfile.AlphaColorProperty) ? "_Color" : IconProfile.AlphaColorProperty;
+            if (instantiatedMaterial != null)
             {
-                color = instantiatedMaterial.GetColor(IconProfile.AlphaColorProperty);
+                color = instantiatedMaterial.GetColor(alphaColorProperty);
                 color.a = alpha;
             }
             while (Time.time < startTime + IconProfile.AlphaTransitionSpeed)
             {
                 alpha = Mathf.Lerp(alpha, alphaTarget, (Time.time - startTime) / IconProfile.AlphaTransitionSpeed);
-                if (instantiatedMaterial != null && !string.IsNullOrEmpty(IconProfile.AlphaColorProperty))
+                if (instantiatedMaterial != null && !string.IsNullOrEmpty(alphaColorProperty))
                 {
                     color.a = alpha;
-                    instantiatedMaterial.SetColor(IconProfile.AlphaColorProperty, color);
+                    instantiatedMaterial.SetColor(alphaColorProperty, color);
                 }
                 yield return null;
             }

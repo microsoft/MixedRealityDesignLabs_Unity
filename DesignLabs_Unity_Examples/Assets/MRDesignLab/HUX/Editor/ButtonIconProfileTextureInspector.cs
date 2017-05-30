@@ -24,7 +24,7 @@ namespace HUX
             iconProfile._IconNotFound_ = (Texture2D)EditorGUILayout.ObjectField("Icon not found texture", iconProfile._IconNotFound_, typeof(Texture2D), false, GUILayout.MaxHeight(35f), GUILayout.MaxHeight(35f));
             iconProfile.IconMesh = (Mesh)EditorGUILayout.ObjectField("Icon mesh", iconProfile.IconMesh, typeof(Mesh), false);
             iconProfile.IconMaterial = (Material)EditorGUILayout.ObjectField("Icon material", iconProfile.IconMaterial, typeof(Material), false);
-            iconProfile.AlphaColorProperty = HUXEditorUtils.MaterialPropertyName(iconProfile.AlphaColorProperty, iconProfile.IconMaterial, ShaderUtil.ShaderPropertyType.Color);
+            iconProfile.AlphaColorProperty = HUXEditorUtils.MaterialPropertyName(iconProfile.AlphaColorProperty, iconProfile.IconMaterial, ShaderUtil.ShaderPropertyType.Color, false);
             iconProfile.AlphaTransitionSpeed = EditorGUILayout.Slider("Alpha Transition Speed", iconProfile.AlphaTransitionSpeed, 0f, 2f);
             HUXEditorUtils.EndSectionBox();
 
