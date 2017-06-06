@@ -25,6 +25,8 @@ namespace HUX
             }
 
             HUXEditorUtils.DrawProfileInspector(soundButton.SoundProfile, soundButton);
+
+            HUXEditorUtils.SaveChanges(target, soundButton.SoundProfile);
         }
     }
 }
