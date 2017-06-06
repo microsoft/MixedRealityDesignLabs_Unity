@@ -23,7 +23,6 @@ namespace HUX
             DrawClipEditor(ref soundProfile.ButtonHeld, ref soundProfile.ButtonHeldVolume, "Button Held");
             DrawClipEditor(ref soundProfile.ButtonReleased, ref soundProfile.ButtonReleasedVolume, "Button Released");
             DrawClipEditor(ref soundProfile.ButtonCancelled, ref soundProfile.ButtonCancelledVolume, "Button Cancelled");
-            DrawClipEditor(ref soundProfile.ButtonCancelled, ref soundProfile.ButtonCancelledVolume, "Button Cancelled");
             DrawClipEditor(ref soundProfile.ButtonObservation, ref soundProfile.ButtonObservationVolume, "Button Observation");
             DrawClipEditor(ref soundProfile.ButtonObservationTargeted, ref soundProfile.ButtonObservationTargetedVolume, "Button Observation Targeted");
 
