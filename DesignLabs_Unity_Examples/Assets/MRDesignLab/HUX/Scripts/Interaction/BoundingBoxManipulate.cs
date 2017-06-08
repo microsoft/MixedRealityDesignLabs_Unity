@@ -13,7 +13,7 @@ namespace HUX.Interaction
     /// <summary>
     /// Listens to messages from attached BoundingBoxHandle objects and manipulates the target
     /// </summary>
-    public class BoundingBoxManipulate : InteractionReceiver
+    public class BoundingBoxManipulate : BoundingBox
     {
         [System.Flags]
         public enum OperationEnum
@@ -69,16 +69,6 @@ namespace HUX.Interaction
                 }
             }
         }
-
-        /// <summary>
-        /// Layer for drawing & colliders
-        /// </summary>
-        public int PhysicsLayer = 0;
-
-        /// <summary>
-        /// Any renderers on this layer will be ignored when calculating object bounds
-        /// </summary>
-        public int IgnoreLayer = 2;//Ignore Raycast
 
         /// <summary>
         /// How quickly objects move when being dragged
@@ -167,7 +157,7 @@ namespace HUX.Interaction
         /// <summary>
         /// The target object being manipulated
         /// </summary>
-        public GameObject Target
+        public override GameObject Target
         {
             get
             {
@@ -203,28 +193,6 @@ namespace HUX.Interaction
                 {
                     ActiveHandle = null;
                 }
-            }
-        }
-
-        /// <summary>
-        /// The world-space center of the target object's bounds
-        /// </summary>
-        public Vector3 TargetBoundsCenter
-        {
-            get
-            {
-                return targetBoundsWorldCenter;
-            }
-        }
-
-        /// <summary>
-        /// The local scale of the target object's bounds
-        /// </summary>
-        public Vector3 TargetBoundsLocalScale
-        {
-            get
-            {
-                return targetBoundsLocalScale;
             }
         }
 
@@ -274,20 +242,10 @@ namespace HUX.Interaction
             }
         }
 
-        public override void OnDisable()
-        {
-            base.OnDisable();
-            if (transformHelper != null)
-            {
-                GameObject.Destroy(transformHelper.gameObject);
-            }
-        }
-
         public override void OnEnable()
         {
-            manipulatingNow = false;
-            RefreshActiveHandles();
             base.OnEnable();
+            manipulatingNow = false;
         }
 
         #endregion
@@ -380,21 +338,21 @@ namespace HUX.Interaction
         }
         #endif
 
-        protected void Update()
+        protected override void Update()
         {
             if (!Application.isPlaying)
                 return;
 
             // Check to see if our hands have exited the screen
             // If they have, stop manipulating
-            if (!Veil.Instance.HandVisible)
-            {
+            if (!Veil.Instance.HandVisible) {
                 ManipulatingNow = false;
             }
 
             UpdateUserManipulation();
             UpdateTargetManipulation();
-            RefreshTargetBounds();
+
+            base.Update();
         }
 
         /// <summary>
@@ -606,59 +564,6 @@ namespace HUX.Interaction
 
         }
 
-        private void RefreshTargetBounds()
-        {
-            if (target == null)
-            {
-                targetBoundsWorldCenter = Vector3.zero;
-                targetBoundsLocalScale = Vector3.one;
-                return;
-            }
-
-            // Get the new target bounds
-            boundsPoints.Clear();
-
-            MeshFilter[] mfs = target.GetComponentsInChildren<MeshFilter>();
-            foreach (MeshFilter mf in mfs)
-            {
-                if (mf.gameObject.layer == IgnoreLayer)
-                    continue;
-
-                Vector3 v3Center = mf.sharedMesh.bounds.center;
-                Vector3 v3Extents = mf.sharedMesh.bounds.extents;
-
-                // Get the world-space corner points of the bounds
-                // Add them to our global list of points
-                mf.sharedMesh.bounds.GetCornerPositions(mf.transform, ref corners);
-                boundsPoints.AddRange(corners);
-            }
-
-            if (boundsPoints.Count > 0)
-            {
-                // We now have a list of all points in world space
-                // Translate them all to local space
-                for (int i = 0; i < boundsPoints.Count; i++)
-                {
-                    boundsPoints[i] = target.transform.InverseTransformPoint(boundsPoints[i]);
-                }
-
-                // Encapsulate the points with a local bounds
-                localTargetBounds.center = boundsPoints[0];
-                localTargetBounds.size = Vector3.zero;
-                foreach (Vector3 point in boundsPoints)
-                {
-                    localTargetBounds.Encapsulate(point);
-                }
-            }
-
-            // Store the world center of the target bb
-            targetBoundsWorldCenter = target.transform.TransformPoint(localTargetBounds.center);
-
-            // Store the local scale of the target bb
-            targetBoundsLocalScale = localTargetBounds.size;
-            targetBoundsLocalScale.Scale(target.transform.localScale);
-        }
-
         private void RefreshActiveHandles()
         {
             foreach (GameObject handleGo in Interactibles)
@@ -666,17 +571,6 @@ namespace HUX.Interaction
                 BoundingBoxHandle handle = handleGo.GetComponent<BoundingBoxHandle>();
                 OperationEnum handleOperation = GetBoundingBoxOperationFromHandleType(handle.HandleType);
                 handleGo.SetActive((handleOperation & permittedOperations) != 0);
-            }
-        }
-
-        private void CreateTransforms()
-        {
-            // Create our transform helpers if they don't exist
-            if (transformHelper == null)
-            {
-                transformHelper = new GameObject("BoundingBoxTransformHelper").transform;
-                targetStandIn = new GameObject("TargetStandIn").transform;
-                targetStandIn.parent = transformHelper;
             }
         }
 
@@ -703,9 +597,6 @@ namespace HUX.Interaction
         private BoundingBoxHandle activeHandle;
 
         [SerializeField]
-        private GameObject target;
-
-        [SerializeField]
         private bool acceptInput = true;
 
         [SerializeField]
@@ -714,25 +605,13 @@ namespace HUX.Interaction
         [SerializeField]
         private OperationEnum permittedOperations = OperationEnum.Drag | OperationEnum.RotateY | OperationEnum.ScaleUniform;
 
-        /// <summary>
-        /// These are used to make complex scaling operations simpler
-        /// </summary>
-        private Transform transformHelper = null;
-        private Transform targetStandIn = null;
-
-        private Vector3 targetBoundsWorldCenter = Vector3.zero;
-        private Vector3 targetBoundsLocalScale = Vector3.zero;
-
         private Vector3 lastNavigatePos = Vector3.zero;
         private Vector3 navigateVelocity = Vector3.zero;
 
         private Vector3 smoothVelocity = Vector3.zero;
         private Vector3 adjustedScaleTarget = Vector3.one;
         private Vector3 targetPosition = Vector3.zero;
-
-        private Vector3[] corners = null;
-        private Bounds localTargetBounds = new Bounds();
-        private List<Vector3> boundsPoints = new List<Vector3>();
+        
         private Vector3 scaleOnStartManipulation = Vector3.one;
         private AFocuser focuser = null;
 

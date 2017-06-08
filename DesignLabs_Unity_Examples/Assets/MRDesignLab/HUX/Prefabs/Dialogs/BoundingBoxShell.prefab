@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 114332580240500686}
   - component: {fileID: 114030465538688920}
   m_Layer: 5
-  m_Name: BoundingBox
+  m_Name: BoundingBoxShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,8 +837,10 @@ MonoBehaviour:
   - {fileID: 1576189420098738}
   - {fileID: 1256611109961520}
   Targets: []
+  bLockFocus: 0
   PhysicsLayer: 0
   IgnoreLayer: 2
+  target: {fileID: 0}
   DragMultiplier: 2.5
   RotateMultiplier: 3
   ScaleMultiplier: 3
@@ -924,19 +926,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 160298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afaaf647e592574d8a56bc26e61f82d, type: 3}
+  m_Script: {fileID: 11500000, guid: 707cdc4c7367b4f47a382d6e50288f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScalePadding: 0.15
+  PhysicsLayer: 0
+  boundingBox: {fileID: 114030465538688920}
+  scaleTransform: {fileID: 4696603081318228}
   BoxMesh: {fileID: 4300052, guid: df7e3630162f8004f9b6aec77a60b9a5, type: 3}
   SphereMesh: {fileID: 4300050, guid: df7e3630162f8004f9b6aec77a60b9a5, type: 3}
   HandleMaterial: {fileID: 2100000, guid: 7ee801dc9e39c5f4cb9edfbf58fb5aba, type: 2}
   ActiveColor: {r: 0, g: 0.4862745, b: 0.79607844, a: 1}
   InactiveColor: {r: 0, g: 0.2694871, b: 0.44117647, a: 1}
   TargetColor: {r: 1, g: 0.51724136, b: 0, a: 1}
-  ScalePadding: 0.15
-  PhysicsLayer: 0
-  manipulator: {fileID: 114030465538688920}
-  scaleTransform: {fileID: 4696603081318228}
   edgeRenderer: {fileID: 23987205505907492}
   activeHandleIndex: -1
 --- !u!114 &114339758476995214
