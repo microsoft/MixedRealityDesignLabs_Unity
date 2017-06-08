@@ -7,7 +7,22 @@ using System.Collections;
 
 public class InputSourceUnityGamepad : InputSourceGamepadBase
 {
-	bool present;
+    public const string ButtonA = "Xbox_A";
+    public const string ButtonB = "Xbox_B";
+    public const string ButtonX = "Xbox_X";
+    public const string ButtonY = "Xbox_Y";
+    public const string ButtonStart = "Xbox_MenuButton";
+    public const string AxisLeftStickH = "Xbox_LeftStick_X";
+    public const string AxisLeftStickV = "Xbox_LeftStick_Y";
+    public const string AxisRightStickH = "Xbox_RightStick_X";
+    public const string AxisRightStickV = "Xbox_RightStick_Y";
+    public const string AxisDpadH = "Xbox_Dpad_X";
+    public const string AxisDpadV = "Xbox_Dpad_Y";
+    public const string TriggerLeft = "Xbox_LeftTrigger";
+    public const string TriggerRight = "Xbox_RightTrigger";
+    public const string TriggerShared = "Xbox_Trigger_Shared";
+
+    bool present;
 
 	public override bool IsPresent()
 	{
@@ -20,16 +35,16 @@ public class InputSourceUnityGamepad : InputSourceGamepadBase
 
         if (IsPresent())
         {
-            aButtonState.ApplyState(Input.GetButton("360_AButton"));
-            bButtonState.ApplyState(Input.GetButton("360_BButton"));
-            xButtonState.ApplyState(Input.GetButton("360_XButton"));
-            yButtonState.ApplyState(Input.GetButton("360_YButton"));
-            startButtonState.ApplyState(Input.GetButton("360_StartButton"));
+            aButtonState.ApplyState(Input.GetButton(ButtonA));
+            bButtonState.ApplyState(Input.GetButton(ButtonB));
+            xButtonState.ApplyState(Input.GetButton(ButtonX));
+            yButtonState.ApplyState(Input.GetButton(ButtonY));
+            startButtonState.ApplyState(Input.GetButton(ButtonStart));
 
-            leftJoyVector = new Vector2(Input.GetAxis("LeftStickH"), Input.GetAxis("LeftStickV"));
-            rightJoyVector = new Vector2(Input.GetAxis("RightStickH"), Input.GetAxis("RightStickV"));
-            trigVector = new Vector2(Input.GetAxis("360_LTrigger"), Input.GetAxis("360_RTrigger"));
-            padVector = new Vector2(Input.GetAxis("360_HorizontalDPAD"), Input.GetAxis("360_VerticalDPAD"));
+            leftJoyVector = new Vector2(Input.GetAxis(AxisLeftStickH), Input.GetAxis(AxisLeftStickV));
+            rightJoyVector = new Vector2(Input.GetAxis(AxisRightStickH), Input.GetAxis(AxisRightStickV));
+            trigVector = new Vector2(Input.GetAxis(TriggerLeft), Input.GetAxis(TriggerRight));
+            padVector = new Vector2(Input.GetAxis(AxisDpadH), Input.GetAxis(AxisDpadV));
         }
 	}
 }
