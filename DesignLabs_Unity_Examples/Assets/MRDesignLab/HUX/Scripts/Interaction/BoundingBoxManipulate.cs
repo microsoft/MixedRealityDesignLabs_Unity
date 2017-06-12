@@ -278,6 +278,21 @@ namespace HUX.Interaction
         {
             base.OnManipulationStarted(obj, eventArgs);
             TryToSetHandle(obj, eventArgs.Position, eventArgs.Focuser);
+
+            // Compute a vector as a reference for determining the amount of rotation.
+            // In order to operate with the vertical and horizontal movements of the hand, 
+            // the reference vector is assumed to be the coordinate axis of the BoundingBox projected on the screen
+            if (CurrentOperation == OperationEnum.RotateX || CurrentOperation == OperationEnum.RotateY || CurrentOperation == OperationEnum.RotateZ)
+            {
+                Vector3 axisVect = Vector3.ProjectOnPlane(
+                CurrentOperation == OperationEnum.RotateX ? transform.right :
+                CurrentOperation == OperationEnum.RotateY ? transform.up :
+                transform.forward,
+                Camera.main.transform.forward);
+
+                orthogonalVect = Vector3.Cross(Camera.main.transform.forward, axisVect);
+                orthogonalVect.Normalize();
+            }
         }
 
         protected override void OnManipulationCanceled(GameObject obj, InteractionManager.InteractionEventArgs eventArgs)
@@ -362,6 +377,9 @@ namespace HUX.Interaction
         {
             if (ManipulatingNow)
             {
+                // Projecting the movement vector of the hand on the reference vector
+                Vector3 proj = Vector3.Project(smoothVelocity, orthogonalVect);
+
                 // Change the transform helper based on the current operation
                 // We're using some magic numbers in here to keep the multiplier ranges intuitive
                 switch (CurrentOperation)
@@ -389,15 +407,18 @@ namespace HUX.Interaction
                         break;
 
                     case OperationEnum.RotateX:
-                        transformHelper.Rotate(-smoothVelocity.y * RotateMultiplier * 360, 0f, 0f, Space.World);
+                        // transformHelper.Rotate(-smoothVelocity.y * RotateMultiplier * 360, 0f, 0f, Space.World);
+                        transformHelper.RotateAround(transformHelper.position, transform.right, smoothVelocity.magnitude * Vector3.Dot(proj.normalized, orthogonalVect.normalized) * -360);
                         break;
 
                     case OperationEnum.RotateY:
-                        transformHelper.Rotate(0f, smoothVelocity.x * RotateMultiplier * 360, 0f, Space.World);
+                        // transformHelper.Rotate(0f, smoothVelocity.x * RotateMultiplier * 360, 0f, Space.World);
+                        transformHelper.RotateAround(transformHelper.position, transform.up, smoothVelocity.magnitude * Vector3.Dot(proj.normalized, orthogonalVect.normalized) * -360);
                         break;
 
                     case OperationEnum.RotateZ:
-                        transformHelper.Rotate(0f, 0f, smoothVelocity.x * RotateMultiplier * 360, Space.World);
+                        // transformHelper.Rotate(0f, 0f, smoothVelocity.x * RotateMultiplier * 360, Space.World);
+                        transformHelper.RotateAround(transformHelper.position, transform.up, smoothVelocity.magnitude * Vector3.Dot(proj.normalized, orthogonalVect.normalized) * -360);
                         break;
 
                     default:
@@ -611,7 +632,12 @@ namespace HUX.Interaction
         private Vector3 smoothVelocity = Vector3.zero;
         private Vector3 adjustedScaleTarget = Vector3.one;
         private Vector3 targetPosition = Vector3.zero;
-        
+
+        /// <summary>
+        /// A vector orthogonal to the rotation axis.
+        /// </summary>
+        private Vector3 orthogonalVect = Vector3.one;
+
         private Vector3 scaleOnStartManipulation = Vector3.one;
         private AFocuser focuser = null;
 
