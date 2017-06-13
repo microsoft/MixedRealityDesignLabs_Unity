@@ -294,7 +294,7 @@ namespace HUX
             return enumFlags;
         }
 
-        public static string MaterialPropertyName(string property, Material mat, ShaderUtil.ShaderPropertyType type)
+        public static string MaterialPropertyName(string property, Material mat, ShaderUtil.ShaderPropertyType type, bool allowNone = true, string defaultProperty = "_Color")
         {
             Color tColor = GUI.color;
             // Create a list of available color and value properties
@@ -302,7 +302,9 @@ namespace HUX
 
             int selectedPropIndex = 0;
 
-            props.Add("(None)");
+            if (allowNone) {
+                props.Add("(None)");
+            }
 
             if (mat != null)
             {
@@ -324,7 +326,15 @@ namespace HUX
 
                 GUI.color = string.IsNullOrEmpty(property) ? HUXEditorUtils.DisabledColor : HUXEditorUtils.DefaultColor;
                 int newPropIndex = EditorGUILayout.Popup(type.ToString(), selectedPropIndex, props.ToArray());
-                property = (newPropIndex > 0 ? props[newPropIndex] : string.Empty);
+                if (allowNone) {
+                    property = (newPropIndex > 0 ? props[newPropIndex] : string.Empty);
+                } else {
+                    if (props.Count > 0) {
+                        property = props[newPropIndex];
+                    } else {
+                        property = defaultProperty;
+                    }
+                }
                 GUI.color = HUXEditorUtils.DefaultColor;
                 return property;
             }

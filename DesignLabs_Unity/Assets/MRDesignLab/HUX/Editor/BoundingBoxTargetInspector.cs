@@ -11,22 +11,9 @@ namespace HUX
     [CustomEditor(typeof(BoundingBoxTarget))]
     public class BoundingBoxTargetInspector : Editor
     {
-        const string BoundingBoxPrefabPath = "Assets/MRDesignLab/HUX/Prefabs/Dialogs/BoundingBox.prefab";
-        const string ToolbarPrefabPath = "Assets/MRDesignLab/HUX/Prefabs/Dialogs/AppBar.prefab";
-
         public override void OnInspectorGUI()
         {
             BoundingBoxTarget bbt = (BoundingBoxTarget)target;
-
-            // See if there's a bounding box yet
-            BoundingBoxManipulate bbm = GameObject.FindObjectOfType<BoundingBoxManipulate>();
-            AppBar toolbar = GameObject.FindObjectOfType<AppBar>();
-            if (bbm == null || toolbar == null)
-            {                
-                HUXEditorUtils.ErrorMessage(
-                    "Couldn't find a bounding box prefab and/or manipulation toolbar in the scene. Bounding box target won't work without them.",
-                    AddBoundingBox);
-            }
 
             HUXEditorUtils.DrawFilterTagField(serializedObject, "TagOnSelected");
             HUXEditorUtils.DrawFilterTagField(serializedObject, "TagOnDeselected");
@@ -41,24 +28,6 @@ namespace HUX
 
 
             HUXEditorUtils.SaveChanges(bbt);
-        }
-
-        private void AddBoundingBox ()
-        {
-            BoundingBoxManipulate bbm = GameObject.FindObjectOfType<BoundingBoxManipulate>();
-            AppBar toolbar = GameObject.FindObjectOfType<AppBar>();
-            if (bbm == null)
-            {
-                Object prefab = AssetDatabase.LoadAssetAtPath(BoundingBoxPrefabPath, typeof(GameObject));
-                GameObject clone = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-                clone.name = prefab.name;
-            }
-            if (toolbar == null)
-            {
-                Object prefab = AssetDatabase.LoadAssetAtPath(ToolbarPrefabPath, typeof(GameObject));
-                GameObject clone = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-                clone.name = prefab.name;
-            }
         }
     }
 }
