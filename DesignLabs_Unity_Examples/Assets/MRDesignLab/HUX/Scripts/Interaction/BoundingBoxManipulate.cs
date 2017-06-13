@@ -418,7 +418,7 @@ namespace HUX.Interaction
 
                     case OperationEnum.RotateZ:
                         // transformHelper.Rotate(0f, 0f, smoothVelocity.x * RotateMultiplier * 360, Space.World);
-                        transformHelper.RotateAround(transformHelper.position, transform.up, smoothVelocity.magnitude * Vector3.Dot(proj.normalized, orthogonalVect.normalized) * -360);
+                        transformHelper.RotateAround(transformHelper.position, transform.forward, smoothVelocity.magnitude * Vector3.Dot(proj.normalized, orthogonalVect.normalized) * -360);
                         break;
 
                     default:
