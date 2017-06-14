@@ -46,6 +46,14 @@ This example shows a traditional 2D style button with some dimension. Each input
 
 With HoloLens, you can leverage physical space. Imagine a holographic push button on the physical wall. Or how about a coffee cup on the real table? Using 3D models imported from modeling software, we can create Interactable Object that resembles real life object. Since it is digital object, we can add magical interactions to it.
 
+## Importing and assigning HoloLens symbol icon font file ##
+In default, this Unity project does NOT contain required HoloLens symbol font file. You need to download from Microsoft's desgin resources page.(https://docs.microsoft.com/en-us/windows/uwp/design-downloads/index)
+Without font file, you will see placeholder icons on the buttons. After importing the font file, find **DefaultButtonIconProfileFont** and click **
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont1.jpg" width="450px">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont2.jpg" width="450px">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont3.jpg" width="450px">
+
+
 ## Ways to use Interactable Objects ##
 
 In the scene **InteractableObject_Examples.unity**, you will be able to find various combinations of 'CompoundButton' scripts. To create your own Interactable Object, you can combine different types of 'CompountButton' scripts. You can find them in **MRDesignLab\HUX\Scripts\Buttons**. It is designed to support various types of Interactable Object in flexible way.
