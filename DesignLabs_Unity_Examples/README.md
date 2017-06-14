@@ -1,3 +1,5 @@
+**You can find example test scenes for these controls under https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes**
+
 ## [Interactable Object](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/InteractableObject_Examples.unity)
 
 
