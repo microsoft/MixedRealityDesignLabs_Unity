@@ -48,10 +48,10 @@ With HoloLens, you can leverage physical space. Imagine a holographic push butto
 
 ## Importing and assigning HoloLens symbol icon font file ##
 In default, this Unity project does NOT contain required HoloLens symbol font file. You need to download from Microsoft's desgin resources page.(https://docs.microsoft.com/en-us/windows/uwp/design-downloads/index)
-Without font file, you will see placeholder icons on the buttons. After importing the font file, find **DefaultButtonIconProfileFont** and click **
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont1.jpg" width="450px">
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont2.jpg" width="450px">
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont3.jpg" width="450px">
+Without font file, you will see placeholder icons on the buttons. After importing the font file, find **DefaultButtonIconProfileFont** and click **Auto-assign HoloLens MDL2 Symbols font**
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont1.jpg">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont2.jpg">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont3.jpg">
 
 
 ## Ways to use Interactable Objects ##
