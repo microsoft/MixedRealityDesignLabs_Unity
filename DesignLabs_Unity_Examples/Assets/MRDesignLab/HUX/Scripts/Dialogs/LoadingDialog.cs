@@ -84,6 +84,12 @@ namespace HUX.Dialogs
         [SerializeField]
         private Animator animator;
 
+        public float Progress {
+            get {
+                return smoothProgress;
+            }
+        }
+
         private float smoothProgress = 0f;
         private float targetProgress = 0f;
         private bool closing = false;

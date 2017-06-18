@@ -16,7 +16,7 @@ namespace HUX.Dialogs
         [Tooltip("The scene object to activate and reposition.")]
         public GameObject StartupObject;
         
-        private float Distance = 2.0f;
+        private float Distance = 1.0f;
         private Interpolator interpolator;
         // The offset from the Camera to the StartupObject when
         // the app starts up. This is used to place the StartupObject
