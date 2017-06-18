@@ -1,3 +1,5 @@
+**You can find example test scenes for these controls under https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes**
+
 ## [Interactable Object](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/InteractableObject_Examples.unity)
 
 
@@ -44,6 +46,14 @@ This example shows a traditional 2D style button with some dimension. Each input
 
 With HoloLens, you can leverage physical space. Imagine a holographic push button on the physical wall. Or how about a coffee cup on the real table? Using 3D models imported from modeling software, we can create Interactable Object that resembles real life object. Since it is digital object, we can add magical interactions to it.
 
+## Importing and assigning HoloLens symbol icon font file ##
+In default, this Unity project does NOT contain required HoloLens symbol font file. You need to download from Microsoft's desgin resources page.(https://docs.microsoft.com/en-us/windows/uwp/design-downloads/index)
+Without font file, you will see placeholder icons on the buttons. After importing the font file, find **DefaultButtonIconProfileFont** and click **Auto-assign HoloLens MDL2 Symbols font**
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont1.jpg">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont2.jpg">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HoloLensSymbolFont3.jpg">
+
+
 ## Ways to use Interactable Objects ##
 
 In the scene **InteractableObject_Examples.unity**, you will be able to find various combinations of 'CompoundButton' scripts. To create your own Interactable Object, you can combine different types of 'CompountButton' scripts. You can find them in **MRDesignLab\HUX\Scripts\Buttons**. It is designed to support various types of Interactable Object in flexible way.
@@ -59,22 +69,22 @@ This is the base of the button component. You will need this script to build any
 
 Use this script to use various types of custom mesh. You can use your own 3D models imported from 3D modeling software. Using this scripts, you can easily change the scale, offset of the mesh or material properties such as color for the different input interaction states. To create an Interactable Object using script, it is recommended to create an empty GameObject as a container and put the 3D mesh model under it as child component. This will prevent unexpected behavior from different scaling or offset values.
 
-### Icon ###
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_CompoundButtonIcon.jpg" alt="Compound Button" width="450px">
+### Compound Button Icon ###
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_CompoundButtonIcon.jpg" alt="Compound Button">
 
 Using this scripts, you can use various types of icon provided by Windows fonts. To use this feature, you should have your Windows updated to 'Creators Update'.
 
-### Text ###
+### Compound Button Text ###
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_CompoundButtonText.jpg" alt="Compound Button" width="450px">
 
 This scripts helps you manage a TextMesh component to display text on your button. This script can be used in conjunction with a CompoundButtonSpeech component to automatically link your button to spoken keywords.
 
-### Sound ###
+### Compound Button Sound ###
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_CompoundButtonSounds.jpg" alt="Compound Button" width="450px">
 
 Use this script to add audio feedback for the different input interaction states.
 
-### Speech ###
+### Compound Button Speech ###
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_CompoundButtonSpeech.jpg" alt="Compound Button" width="450px">
 
 Use this script to automatically register keywords for your button in the Speech Manager (This script is experimental and still being tested).
