@@ -4,10 +4,7 @@
 //
 using UnityEngine;
 
-namespace HUX.Interaction
+public class ContextMenu : MonoBehaviour
 {
-    public class ContextMenu : MonoBehaviour
-    {
-        public bool Visible = false;
-    }
+    public bool Visible = false;
 }
