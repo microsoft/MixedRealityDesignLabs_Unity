@@ -100,6 +100,11 @@ namespace HUX.Collections
         public LayoutTypeEnum LayoutType = LayoutTypeEnum.ColumnThenRow;
 
         /// <summary>
+        /// Whether to treat inactive transforms as 'invisible'
+        /// </summary>
+        public bool IgnoreInactiveTransforms = true;
+
+        /// <summary>
         /// This is the radius of either the Cylinder or Sphere mapping and is ignored when using the plane mapping.
         /// </summary>
         [Range(0.05f, 5.0f)]
@@ -167,7 +172,7 @@ namespace HUX.Collections
 
             for (int i = 0; i < NodeList.Count; i++)
             {
-                if (NodeList[i].transform == null)
+                if (NodeList[i].transform == null || (IgnoreInactiveTransforms && !NodeList[i].transform.gameObject.activeSelf))
                 {
                     emptyNodes.Add(NodeList[i]);
                 }
@@ -186,7 +191,7 @@ namespace HUX.Collections
             {
                 Transform child = this.transform.GetChild(i);
 
-                if (!ContainsNode(child))
+                if (!ContainsNode(child) && (child.gameObject.activeSelf || !IgnoreInactiveTransforms))
                 {
                     CollectionNode node = new CollectionNode();
 
