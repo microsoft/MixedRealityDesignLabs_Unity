@@ -20,6 +20,7 @@ namespace HUX.Buttons
         private AudioSource audioSource;
         private static string lastClipName = string.Empty;
         private static float lastClipTime = 0f;
+        private Button.ButtonStateEnum lastState = Button.ButtonStateEnum.Disabled;
 
         void Start ()
         {
@@ -35,6 +36,16 @@ namespace HUX.Buttons
 
         void StateChange(Button.ButtonStateEnum newState)
         {
+            // Don't play the same state multiple times
+            if (lastState == newState)
+                return;
+
+            lastState = newState;
+
+            // Don't play sounds for inactive buttons
+            if (!gameObject.activeSelf || !gameObject.activeInHierarchy)
+                return;
+
             if (SoundProfile == null)
             {
                 Debug.LogError("Sound profile was null in button " + name);

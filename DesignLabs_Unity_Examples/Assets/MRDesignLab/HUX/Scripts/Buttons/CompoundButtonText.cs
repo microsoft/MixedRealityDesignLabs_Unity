@@ -87,6 +87,18 @@ namespace HUX.Buttons
             }
         }
 
+        public float Alpha {
+            get {
+                return alpha;
+            }
+            set {
+                if (value != alpha) {
+                    alpha = value;
+                    UpdateStyle();
+                }
+            }
+        }
+
         private void OnEnable()
         {
             UpdateStyle();
@@ -115,7 +127,9 @@ namespace HUX.Buttons
                     TextMesh.fontStyle = OverrideFontStyle ? Style : TextProfile.Style;
                     TextMesh.anchor = OverrideAnchor ? Anchor : TextProfile.Anchor;
                     TextMesh.alignment = TextProfile.Alignment;
-                    TextMesh.color = TextProfile.Color;
+                    Color c = TextProfile.Color;
+                    c.a = alpha;
+                    TextMesh.color = c;
 
                     // Apply offset
                     if (!OverrideOffset)
