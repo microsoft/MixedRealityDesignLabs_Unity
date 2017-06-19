@@ -781,7 +781,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 289
   m_Lightmapping: 1
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -817,6 +817,8 @@ MonoBehaviour:
   CursorWidgetFilter: 
   AnimCursorType: 0
   AnimData: []
+  UseLight: 1
+  _cursorLight: {fileID: 10800000}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

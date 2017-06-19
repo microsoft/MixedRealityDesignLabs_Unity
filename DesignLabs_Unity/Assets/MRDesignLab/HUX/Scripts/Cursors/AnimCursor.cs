@@ -33,6 +33,10 @@ namespace HUX.Cursors
         [Header("Frame Data")]
         public AnimFrameData[] AnimData;
 
+        public bool UseLight = true;
+
+        [SerializeField]
+        private Light _cursorLight;
         private Animator _cursorAnimator;
         private Animation _cursorAnim;
         private AnimationState _animState;
@@ -93,6 +97,8 @@ namespace HUX.Cursors
         public override void LateUpdate()
         {
             base.LateUpdate();
+
+            _cursorLight.enabled = UseLight;
 
             if (AnimCursorType == AnimCursorTypeEnum.Linear)
             {

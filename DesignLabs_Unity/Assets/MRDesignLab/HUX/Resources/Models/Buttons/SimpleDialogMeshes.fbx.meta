@@ -15,6 +15,12 @@ ModelImporter:
     100014: UISimpleDialogButtonFace
     100016: UISimpleDialogBackdropBody
     100018: UISimpleDialogBackdropHeader
+    100020: UISimpleDialogButton_1
+    100022: UISimpleDialogButton_1_Face
+    100024: UISimpleDialogButton_2
+    100026: UISimpleDialogButton_2_Face
+    100028: UISimpleDialogButton_3
+    100030: UISimpleDialogButton_3_Face
     400000: back
     400002: Directional Light
     400004: //RootNode
@@ -25,6 +31,12 @@ ModelImporter:
     400014: UISimpleDialogButtonFace
     400016: UISimpleDialogBackdropBody
     400018: UISimpleDialogBackdropHeader
+    400020: UISimpleDialogButton_1
+    400022: UISimpleDialogButton_1_Face
+    400024: UISimpleDialogButton_2
+    400026: UISimpleDialogButton_2_Face
+    400028: UISimpleDialogButton_3
+    400030: UISimpleDialogButton_3_Face
     2300000: UISimpleDialogBackdrop
     2300002: UIButtonRectangle
     2300004: UIButtonRectangleFace
@@ -32,6 +44,12 @@ ModelImporter:
     2300008: UISimpleDialogButtonFace
     2300010: UISimpleDialogBackdropBody
     2300012: UISimpleDialogBackdropHeader
+    2300014: UISimpleDialogButton_1
+    2300016: UISimpleDialogButton_1_Face
+    2300018: UISimpleDialogButton_2
+    2300020: UISimpleDialogButton_2_Face
+    2300022: UISimpleDialogButton_3
+    2300024: UISimpleDialogButton_3_Face
     3300000: UISimpleDialogBackdrop
     3300002: UIButtonRectangle
     3300004: UIButtonRectangleFace
@@ -39,6 +57,12 @@ ModelImporter:
     3300008: UISimpleDialogButtonFace
     3300010: UISimpleDialogBackdropBody
     3300012: UISimpleDialogBackdropHeader
+    3300014: UISimpleDialogButton_1
+    3300016: UISimpleDialogButton_1_Face
+    3300018: UISimpleDialogButton_2
+    3300020: UISimpleDialogButton_2_Face
+    3300022: UISimpleDialogButton_3
+    3300024: UISimpleDialogButton_3_Face
     4300000: UISimpleDialogBackdrop
     4300002: UIButtonRectangleFace
     4300004: UIButtonRectangle
@@ -46,6 +70,12 @@ ModelImporter:
     4300008: UISimpleDialogButton
     4300010: UISimpleDialogBackdropHeader
     4300012: UISimpleDialogBackdropBody
+    4300014: UISimpleDialogButton_1_Face
+    4300016: UISimpleDialogButton_1
+    4300018: UISimpleDialogButton_2
+    4300020: UISimpleDialogButton_2_Face
+    4300022: UISimpleDialogButton_3
+    4300024: UISimpleDialogButton_3_Face
     7400000: Take 001
     9500000: //RootNode
   materials:

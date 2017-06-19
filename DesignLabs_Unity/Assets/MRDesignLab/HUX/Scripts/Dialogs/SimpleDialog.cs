@@ -2,12 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
+using HUX.Interaction;
 using HUX.Receivers;
+using System;
 using System.Collections;
 using UnityEngine;
-using HUX.Interaction;
-using System;
-using HUX.Buttons;
 
 namespace HUX.Dialogs
 {
@@ -54,20 +53,15 @@ namespace HUX.Dialogs
         [Flags]
         public enum ButtonTypeEnum
         {
-            Close = 0,
-            Confirm = 1,
-            Cancel = 2,
-            Yes = 4,
-            No = 8,
-            OK = 16,
+            None = 0,
+            Close = 1,
+            Confirm = 2,
+            Cancel = 4,
+            Accept = 8,
+            Yes = 16,
+            No = 32,
+            OK = 64,
         }
-
-        /// <summary>
-        /// The prefab used to generate buttons
-        /// Must have at least one script that inherits from InteractableObject
-        /// </summary>
-        [SerializeField]
-        private GameObject buttonPrefab;
 
         /// <summary>
         /// Where the instantiated buttons will be placed
@@ -116,6 +110,20 @@ namespace HUX.Dialogs
             GenerateButtons();
             SetTitleAnMessage();
             FinalizeLayout();
+            // Register all active buttons under buttonParent as interactibles
+            foreach (Transform button in buttonParent)
+            {
+                if (button.gameObject.activeSelf)
+                {
+                    SimpleDialogButton sdb = button.gameObject.GetComponent<SimpleDialogButton>();
+                    if (sdb == null)
+                    {
+                        UnityEngine.Debug.LogError("No 'SimpleDialogButton' component attached to dialog button!");
+                    }
+                    RegisterInteractible(button.gameObject);
+                }
+            }
+
             // Open dialog
             state = StateEnum.Opening;
             yield return StartCoroutine(OpenDialog());
@@ -133,6 +141,10 @@ namespace HUX.Dialogs
             if (OnClosed != null) {
                 OnClosed(result);
             }
+            // Wait a moment to give scripts a chance to respond
+            yield return null;
+            // Destroy ourselves
+            GameObject.Destroy(gameObject);
             yield break;
         }
 
@@ -161,38 +173,9 @@ namespace HUX.Dialogs
         }
 
         /// <summary>
-        /// Generates buttons and registers them as an interactables
+        /// Generates buttons - Must parent them under buttonParent!
         /// </summary>
-        protected virtual void GenerateButtons() {
-            foreach (ButtonTypeEnum buttonType in Enum.GetValues(typeof (ButtonTypeEnum))) {
-                // If this button type flag is set
-                if ((buttonType & result.Buttons) == buttonType) {
-                    GameObject buttonGo = GenerateButton(buttonType);
-                    RegisterInteractible(buttonGo);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Generates a button based on type
-        /// Sets button text based on type
-        /// </summary>
-        /// <param name="buttonType"></param>
-        protected virtual GameObject GenerateButton (ButtonTypeEnum buttonType) {
-            GameObject buttonGo = GameObject.Instantiate(buttonPrefab, buttonParent) as GameObject;
-            // Set the text
-            CompoundButtonText text = buttonGo.GetComponent<CompoundButtonText>();
-            if (text != null) {
-                text.Text = buttonType.ToString();
-            }
-            // Add the dialog button component
-            SimpleDialogButton simpleDialogButton = buttonGo.GetComponent<SimpleDialogButton>();
-            if (simpleDialogButton == null) {
-                simpleDialogButton = buttonGo.AddComponent<SimpleDialogButton>();
-            }
-            simpleDialogButton.Type = buttonType;
-            return buttonGo;
-        }
+        protected abstract void GenerateButtons();
 
         /// <summary>
         /// Lays out the buttons on the dialog
@@ -221,7 +204,7 @@ namespace HUX.Dialogs
             state = StateEnum.Closing;
         }
 
-        private SimpleDialogResult result;
+        protected SimpleDialogResult result;
         private StateEnum state = StateEnum.Uninitialized;
 
         /// <summary>
