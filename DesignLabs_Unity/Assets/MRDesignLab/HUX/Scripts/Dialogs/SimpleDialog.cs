@@ -108,7 +108,7 @@ namespace HUX.Dialogs
         protected IEnumerator RunDialogOverTime() {
             // Create our buttons and set up our message
             GenerateButtons();
-            SetTitleAnMessage();
+            SetTitleAndMessage();
             FinalizeLayout();
             // Register all active buttons under buttonParent as interactibles
             foreach (Transform button in buttonParent)
@@ -187,7 +187,7 @@ namespace HUX.Dialogs
         /// Set the title and message using the result
         /// Eg using TextMesh components 
         /// </summary>
-        protected abstract void SetTitleAnMessage();
+        protected abstract void SetTitleAndMessage();
 
         protected override void OnTapped(GameObject obj, InteractionManager.InteractionEventArgs eventArgs) {
             base.OnTapped(obj, eventArgs);

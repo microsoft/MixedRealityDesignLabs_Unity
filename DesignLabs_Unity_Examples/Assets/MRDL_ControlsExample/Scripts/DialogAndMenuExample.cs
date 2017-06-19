@@ -11,7 +11,6 @@ using UnityEngine;
 namespace HUX
 {
     public class DialogAndMenuExample : InteractionReceiver
-
     {
         public GameObject DialogPrefab;
         public GameObject[] LaunchDialogButtons;

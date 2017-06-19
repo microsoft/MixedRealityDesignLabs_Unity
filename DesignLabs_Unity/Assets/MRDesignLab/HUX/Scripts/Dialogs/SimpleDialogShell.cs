@@ -1,8 +1,8 @@
-﻿using HUX.Buttons;
-//
+﻿//
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
+using HUX.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -88,7 +88,7 @@ namespace HUX.Dialogs
             }
         }
 
-        protected override void SetTitleAnMessage() {
+        protected override void SetTitleAndMessage() {
             titleText.text = Result.Title;
             messageText.text = WordWrap(Result.Message, MaxCharsPerLine);
         }
