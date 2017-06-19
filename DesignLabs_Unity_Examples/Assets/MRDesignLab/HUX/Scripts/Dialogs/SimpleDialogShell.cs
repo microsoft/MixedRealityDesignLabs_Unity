@@ -3,8 +3,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
-using HUX.Collections;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -24,47 +24,68 @@ namespace HUX.Dialogs
         private TextMesh messageText;
 
         [SerializeField]
-        private GameObject BackdropBody;
+        private GameObject[] oneButtonSet;
 
-        protected override void OnDrawGizmos() {
-            if (!Application.isPlaying) {
-                messageText.text = WordWrap(messageText.text, MaxCharsPerLine);
-                FinalizeLayout();
-            }
+        [SerializeField]
+        private GameObject[] twoButtonSet;
+
+        /*[SerializeField]
+        private GameObject[] threeButtonSet;*/
+
+        protected override void OnDrawGizmos()
+        {
+            messageText.text = WordWrap(messageText.text, MaxCharsPerLine);
         }
 
         protected override void FinalizeLayout() {
-            // Reset scale and position of buttons / backdrop
-            BackdropBody.transform.localScale = Vector3.one;
-            buttonParent.localPosition = Vector3.zero;
-            float backdropPadding = 0.015f;
+            // nothing to do here
+            // in another dialog we might resize to accomodate text size, etc
+        }
 
-            // Update the collection
-            ObjectCollection collection = buttonParent.GetComponent<ObjectCollection>();
-            collection.Rows = buttonParent.childCount;
-            collection.UpdateCollection();
+        protected override void GenerateButtons()
+        {
+            List<ButtonTypeEnum> buttonTypes = new List<ButtonTypeEnum>();
+            foreach (ButtonTypeEnum buttonType in Enum.GetValues(typeof(ButtonTypeEnum)))
+            {
+                if (buttonType == ButtonTypeEnum.None)
+                    continue;
 
-            // Get the render bounds for our buttons, message and backdrop
-            Bounds messageBounds = messageText.GetComponent<Renderer>().bounds;
-            Bounds backdropBounds = BackdropBody.GetComponent<Renderer>().bounds;
-            Bounds collectionBounds = new Bounds();
-            bool setFirstPoint = false;
-            foreach (Transform child in buttonParent) {
-                CompoundButton button = child.GetComponent<CompoundButton>();
-                if (!setFirstPoint) {
-                    setFirstPoint = true;
-                    collectionBounds = button.MainRenderer.bounds;
-                } else {
-                    collectionBounds.Encapsulate(button.MainRenderer.bounds);
+                // If this button type flag is set
+                if ((buttonType & result.Buttons) == buttonType)
+                {
+                    buttonTypes.Add(buttonType);
                 }
             }
-            // Move the button parent so that the first button appears below the message
-            float buttonsOffset = messageBounds.min.y - collectionBounds.max.y;
-            buttonParent.Translate(0f, buttonsOffset, 0f, Space.Self);
-            // Scale the backdrop so that the bottom of the backdrop is below the last button
-            float backdropBoundsSize = (backdropBounds.max.y - (collectionBounds.min.y + buttonsOffset)) + backdropPadding;
-            float yScale = backdropBoundsSize / backdropBounds.size.y;
-            BackdropBody.transform.localScale = new Vector3(1f, yScale, 1f);
+
+            GameObject[] buttonSet = null;
+            switch (buttonTypes.Count)
+            {
+                case 1:
+                    buttonSet = oneButtonSet;
+                    break;
+
+                case 2:
+                    buttonSet = twoButtonSet;
+                    break;
+
+                /*case 3:
+                    buttonSet = threeButtonSet;
+                    break;*/
+
+                default:
+                    UnityEngine.Debug.LogError("This dialog only supports up to 2 buttons - you've tried to create " + buttonTypes.Count);
+                    return;
+
+            }
+
+            for (int i = 0; i < buttonSet.Length; i++)
+            {
+                CompoundButtonText text = buttonSet[i].GetComponent<CompoundButtonText>();
+                text.Text = buttonTypes[i].ToString();
+                buttonSet[i].AddComponent<SimpleDialogButton>().Type = buttonTypes[i];
+                RegisterInteractible(buttonSet[i].gameObject);
+                buttonSet[i].gameObject.SetActive(true);
+            }
         }
 
         protected override void SetTitleAnMessage() {
