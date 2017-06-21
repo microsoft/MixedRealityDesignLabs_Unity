@@ -4,6 +4,9 @@
 //
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_WINRT && !UNITY_EDITOR
+#define USE_WINRT
+#endif
 
 namespace HUX.Buttons
 {
@@ -57,13 +60,17 @@ namespace HUX.Buttons
             iconKeys = new List<string>();
 
             // Store all icons in iconLookup via reflection
-            var properties = this.GetType().GetFields();
-            foreach (var property in properties)
+            #if USE_WINRT
+		    var fields = GetType().GetTypeInfo().DeclaredFields;
+            #else
+            var fields = this.GetType().GetFields();
+            #endif
+            foreach (var field in fields)
             {
-                if (property.FieldType == typeof(Texture2D) && !property.Name.StartsWith("_"))
+                if (field.FieldType == typeof(Texture2D) && !field.Name.StartsWith("_"))
                 {
-                    iconLookup.Add(property.Name, (Texture2D)property.GetValue(this));
-                    iconKeys.Add(property.Name);
+                    iconLookup.Add(field.Name, (Texture2D)field.GetValue(this));
+                    iconKeys.Add(field.Name);
                 }
             }
 
@@ -145,7 +152,7 @@ namespace HUX.Buttons
         private List<string> iconKeys;
         private Dictionary<string, Texture2D> iconLookup;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public override string DrawIconSelectField(string iconName)
         {
             int selectedIconIndex = -1;
@@ -163,7 +170,7 @@ namespace HUX.Buttons
             iconName = (newIconIndex < 0 ? string.Empty : iconKeys[newIconIndex]);
             return iconName;
         }
-        #endif
+#endif
     }
 
 }
