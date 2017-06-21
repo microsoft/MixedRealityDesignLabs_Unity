@@ -142,18 +142,14 @@ namespace HUX.Interaction
             // Get the new target bounds
             boundsPoints.Clear();
 
-            MeshFilter[] mfs = target.GetComponentsInChildren<MeshFilter>();
-            foreach (MeshFilter mf in mfs)
+            Renderer[] renderers = target.GetComponentsInChildren<Renderer>();
+            for(int i =0; i<renderers.Length; ++i)
             {
-                if (mf.gameObject.layer == IgnoreLayer)
+                var rendererObj = renderers[i];
+                if(rendererObj.gameObject.layer == IgnoreLayer)
                     continue;
 
-                Vector3 v3Center = mf.sharedMesh.bounds.center;
-                Vector3 v3Extents = mf.sharedMesh.bounds.extents;
-
-                // Get the world-space corner points of the bounds
-                // Add them to our global list of points
-                mf.sharedMesh.bounds.GetCornerPositions(mf.transform, ref corners);
+                rendererObj.bounds.GetCornerPositionsFromRendererBounds(ref corners);
                 boundsPoints.AddRange(corners);
             }
 
