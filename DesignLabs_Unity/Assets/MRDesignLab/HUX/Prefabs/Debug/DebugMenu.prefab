@@ -260,7 +260,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 12800000, guid: b8c84083371bef44ba405331d0a6bded, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_PrevButton: {fileID: 114000012657982672}
   m_NextButton: {fileID: 114000011867858136}
   m_PageText: {fileID: 11471808}
-  m_SolverLink: {fileID: 0}
+  m_SolverHandler: {fileID: 114708257292317312}
   DebugItemGroupPrefab: {fileID: 11480294, guid: 0a4f736feb6e4fb4c9d959bd2c6bcd7d,
     type: 2}
   DebugPagePrefab: {fileID: 11479678, guid: b26398b9e6a6a41439038b8ebb4cadce, type: 2}
@@ -465,19 +465,22 @@ MonoBehaviour:
     type: 2}
   DebugVector3ItemPrefab: {fileID: 114000012316316826, guid: 6bb1dda2e62fb854184e567e9ffe6eb1,
     type: 2}
-  DebugVector2ItemPrefab: {fileID: 0}
+  DebugVector2ItemPrefab: {fileID: 114520012053997510, guid: ab216ca7dfe147843800015bc82e31a5,
+    type: 2}
   DebugPulldownItemPrefab: {fileID: 11424732, guid: 1eca8b46459da584fa06649f253c5442,
     type: 2}
   DebugButtonItemPrefab: {fileID: 11420800, guid: a31f98a905a2b874685a2ce4ad02415d,
     type: 2}
-  DebugLabelItemPrefab: {fileID: 0}
+  DebugLabelItemPrefab: {fileID: 114604320609599842, guid: 73f615f0c3e2ef7489e798d37972aebb,
+    type: 2}
   OpenMenuKeyword: open debug menu
   CloseMenuKeyword: close debug menu
   EditorOpenKey: 280
   EditorDownKey: 281
+  LogToggleControllerMap: Xbox_MenuButton
   ShowDebugFields: 1
-  m_ScaleForOculus: 4
-  m_MaxViewDegreesForOculus: 30
+  m_ScaleForHMD: 4
+  m_MaxViewDegreesForHMD: 30
 --- !u!114 &11471808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,7 +501,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -608,7 +611,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140100}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -617,6 +620,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1048,7 +1052,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -1160,7 +1164,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 12800000, guid: b8c84083371bef44ba405331d0a6bded, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -1220,7 +1224,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c10c3294f7105b74c82ad44e005ea08c, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
@@ -1244,22 +1248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87713fbad4edbc46a3cc23770b0b4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpdateLinkedTransform: 0
-  MoveLerpTime: 0.1
-  RotateLerpTime: 0.1
-  ScaleLerpTime: 0
-  GoalPosition: {x: 0, y: 0, z: 0}
-  GoalRotation: {x: 0, y: 0, z: 0, w: 0}
-  GoalScale: {x: 1, y: 1, z: 1}
-  Smoothing: 1
-  Lifetime: 0
-  AltScale:
-    current: {x: 1, y: 1, z: 1}
-    goal: {x: 1, y: 1, z: 1}
-    smoothTime: 0.1
-  PostGazerUpdate: 1
-  WorkFromTransform: 1
-  deltaTime: 0
 --- !u!114 &114917583945336744
 MonoBehaviour:
   m_ObjectHideFlags: 1

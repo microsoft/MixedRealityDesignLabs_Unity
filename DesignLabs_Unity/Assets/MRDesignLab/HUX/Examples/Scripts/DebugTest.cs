@@ -90,12 +90,17 @@ public class DebugTest : MonoBehaviour
 
 	[DebugVector3Tunable("Vector3 Test Group\\m_Vector3Test2", 0.5f, 0.2f, 0.1f)]
 	public Vector3 m_Vector3Test4 = Vector3.one;
-	#endregion
+    #endregion
 
-	// Use this for initialization
-	void Start ()
+    private EnumTest m_EnumTest;
+    private float m_FloatTest;
+    private int m_IntTest;
+
+
+    // Use this for initialization
+    void Start ()
     {
-		/*DebugMenu.Instance.AddEnumItem<EnumTest>("Enum Test Group\\Enum Test", (int newVal) => { m_EnumTest = (EnumTest)newVal; }, null, (int)m_EnumTest, (int)EnumTest.Value1, (int)EnumTest.Value3, this.gameObject);
+		DebugMenu.Instance.AddEnumItem<EnumTest>("Enum Test Group\\Enum Test", (int newVal) => { m_EnumTest = (EnumTest)newVal; }, null, (int)m_EnumTest, (int)EnumTest.Value1, (int)EnumTest.Value3, this.gameObject);
 
         DebugMenu.Instance.AddFloatItem("Test 1\\Float Test", (float newVal) => { m_FloatTest = newVal; }, null, m_FloatTest, 1f, 10f, this.gameObject, 0.5f);
 
@@ -108,7 +113,7 @@ public class DebugTest : MonoBehaviour
 		DebugMenu.Instance.AddButtonItem("Button Test", "Button 1", OnDebugBtn1Pressed);
         DebugMenu.Instance.AddButtonItem("Button Test", "Button 2", OnDebugBtn2Pressed);
 
-        DebugMenu.Instance.AddEnumItem<EnumTest>("Enum Test Group\\Enum Test", (int newVal) => { m_EnumTest = (EnumTest)newVal; }, null, (int)m_EnumTest, (int)EnumTest.Value1, (int)EnumTest.Value3, this.gameObject);*/
+        DebugMenu.Instance.AddEnumItem<EnumTest>("Enum Test Group\\Enum Test", (int newVal) => { m_EnumTest = (EnumTest)newVal; }, null, (int)m_EnumTest, (int)EnumTest.Value1, (int)EnumTest.Value3, this.gameObject);
 
 		//DebugMenu.Instance.AddButtonItem("Group 1\\Button Test", "Button 1", OnDebugBtn1Pressed);
 		//DebugMenu.Instance.AddButtonItem("Group 2\\Button Test", "Button 2", OnDebugBtn2Pressed);

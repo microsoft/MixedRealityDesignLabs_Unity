@@ -243,7 +243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &188548
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188548}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -760,7 +760,8 @@ MonoBehaviour:
   OpenLogKeyword: open debug log
   CloseLogKeyword: close debug log
   LogOpenKey: 278
-  LogDownKey: 279
+  LogCloseKey: 279
+  LogToggleControllerMap: Xbox_ViewButton
   ScrollUpKeyword: scroll up
   ScrollDownKeyword: scroll down
   GoToTopKeyword: go to top
@@ -775,8 +776,8 @@ MonoBehaviour:
   HideErrorsKeyword: hide errors
   ToggleErrorsKeyword: toggle errors
   ClearLogKeyword: clear log
-  m_ScaleForOculus: 0.0015
-  m_MaxViewDegreesForOculus: 30
+  m_ScaleForHMD: 0.0015
+  m_MaxViewDegreesForHMD: 30
   buttonFilterLogs: {fileID: 114528695845219126}
   buttonFilterWarnings: {fileID: 114522434941336714}
   buttonFilterErrors: {fileID: 114775684931201094}
@@ -961,7 +962,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186952}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -970,6 +971,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1160,7 +1162,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0798404, y: 0.0000076293945}
-  m_SizeDelta: {x: -760, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22475050
 RectTransform:
@@ -1246,7 +1248,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

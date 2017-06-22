@@ -155,7 +155,13 @@ namespace HUX.Dialogs.Debug
         /// The key pressed to hide the debug log. (Only works in editor.)
         /// </summary>
         [Tooltip("The key pressed to hide the debug log. (Only works in editor.)")]
-        public KeyCode LogDownKey = KeyCode.End;
+        public KeyCode LogCloseKey = KeyCode.End;
+
+        /// <summary>
+        /// The controller pressed to toggle the debug log.
+        /// </summary>
+        [Tooltip("The controller label for toggling log")]
+        public string LogToggleControllerMap = "Xbox_ViewButton";
 
         /// <summary>
         /// The Speech command spoken to scroll up the debug log.
@@ -233,13 +239,13 @@ namespace HUX.Dialogs.Debug
         /// The scale when displayed on Oculus
         /// </summary>
         [Tooltip("The scale when displayed on Oculus")]
-        public float m_ScaleForOculus = 0.0015f;
+        public float m_ScaleForHMD = 0.0015f;
 
         /// <summary>
         /// The max view degrees on Oculus
         /// </summary>
         [Tooltip("The max view degrees on Oculus")]
-        public float m_MaxViewDegreesForOculus = 30.0f;
+        public float m_MaxViewDegreesForHMD = 30.0f;
 
 
         /// <summary>
@@ -385,13 +391,13 @@ namespace HUX.Dialogs.Debug
                 RectTransform rectTransform = m_DebugLogObj.GetComponent<RectTransform>();
                 if (rectTransform)
                 {
-                    rectTransform.localScale = new Vector3(m_ScaleForOculus, m_ScaleForOculus, 1.0f);
+                    rectTransform.localScale = new Vector3(m_ScaleForHMD, m_ScaleForHMD, 1.0f);
                 }
 
                 SolverRectView solverRectView = m_DebugLogObj.GetComponent<SolverRectView>();
                 if (solverRectView)
                 {
-                    solverRectView.MaxViewDegrees = new Vector2(m_MaxViewDegreesForOculus, m_MaxViewDegreesForOculus);
+                    solverRectView.MaxViewDegrees = new Vector2(m_MaxViewDegreesForHMD, m_MaxViewDegreesForHMD);
                 }
             }
         }
@@ -433,22 +439,25 @@ namespace HUX.Dialogs.Debug
         private void OnDestroy()
         {
             s_DebugOutputs.Remove(this);
-            KeywordManager.Instance.RemoveKeyword(OpenLogKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(CloseLogKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ScrollUpKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ScrollDownKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(GoToTopKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(GoToBottomKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ShowMessagesKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(HideMessagesKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ToggleMessagesKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ShowWarningsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(HideWarningsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ToggleWarningsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ShowErrorsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(HideErrorsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ToggleErrorsKeyword, OnWord);
-            KeywordManager.Instance.RemoveKeyword(ClearLogKeyword, OnWord);
+            if(KeywordManager.Instance != null)
+            {
+                KeywordManager.Instance.RemoveKeyword(OpenLogKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(CloseLogKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ScrollUpKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ScrollDownKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(GoToTopKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(GoToBottomKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ShowMessagesKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(HideMessagesKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ToggleMessagesKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ShowWarningsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(HideWarningsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ToggleWarningsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ShowErrorsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(HideErrorsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ToggleErrorsKeyword, OnWord);
+                KeywordManager.Instance.RemoveKeyword(ClearLogKeyword, OnWord);
+            }
         }
 
         /// <summary>
@@ -482,12 +491,12 @@ namespace HUX.Dialogs.Debug
             {
                 Activate();
             }
-            else if (Input.GetKeyDown(LogDownKey))
+            else if (Input.GetKeyDown(LogCloseKey))
             {
                 Deactivate();
             }
 #endif
-            if (Input.GetButtonDown("360_LeftBumper"))
+            if (Input.GetButtonDown(LogToggleControllerMap))
             {
                 if (m_DebugLogObj.activeSelf)
                 {

@@ -126,6 +126,13 @@ namespace HUX.Dialogs.Debug
         [Tooltip("The button to press to hide the debug menu. (Only works in the editor)")]
         public KeyCode EditorDownKey = KeyCode.PageDown;
 
+
+        /// <summary>
+        /// The controller pressed to toggle the debug log.
+        /// </summary>
+        [Tooltip("The controller label for toggling menu")]
+        public string LogToggleControllerMap = "Xbox_MenuButton";
+
         /// <summary>
         /// The default group name for items that have not been given a group name.
         /// </summary>
@@ -143,13 +150,13 @@ namespace HUX.Dialogs.Debug
         /// The scale when displayed on Oculus
         /// </summary>
         [Tooltip("The scale when displayed on Oculus")]
-        public float m_ScaleForOculus = 4.0f;
+        public float m_ScaleForHMD = 4.0f;
 
         /// <summary>
         /// The max view degrees on Oculus
         /// </summary>
         [Tooltip("The max view degrees on Oculus")]
-        public float m_MaxViewDegreesForOculus = 30.0f;
+        public float m_MaxViewDegreesForHMD = 30.0f;
 
         /// <summary>
         /// The Page index.
@@ -235,12 +242,12 @@ namespace HUX.Dialogs.Debug
             if (m_MenuContainer && (UnityEngine.VR.VRSettings.loadedDeviceName == "Oculus" || UnityEngine.VR.VRSettings.loadedDeviceName == "OpenVR"))
             {
                 // Scale up -- We have to do this every time the page is dirty.
-                transform.localScale = Vector3.one * m_ScaleForOculus;
+                transform.localScale = Vector3.one * m_ScaleForHMD;
 
                 SolverRectView solverRectView = m_MenuContainer.GetComponent<SolverRectView>();
                 if (solverRectView)
                 {
-                    solverRectView.MaxViewDegrees = new Vector2(m_MaxViewDegreesForOculus, m_MaxViewDegreesForOculus);
+                    solverRectView.MaxViewDegrees = new Vector2(m_MaxViewDegreesForHMD, m_MaxViewDegreesForHMD);
                 }
             }
 
@@ -270,7 +277,7 @@ namespace HUX.Dialogs.Debug
                 Deactivate();
             }
 #endif
-            if (Input.GetButtonDown("360_RightBumper"))
+            if (Input.GetButtonDown(LogToggleControllerMap))
             {
                 if (m_MenuContainer.activeSelf)
                 {
