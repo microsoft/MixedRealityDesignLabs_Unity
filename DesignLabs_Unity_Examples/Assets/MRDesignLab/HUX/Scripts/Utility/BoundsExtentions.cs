@@ -94,6 +94,38 @@ public static class BoundsExtentions
         positions[BoundsExtentions.RTB] = transform.TransformPoint(rightEdge, topEdge, backEdge);
     }
 
+    /// <summary>
+    /// Gets all the corner points from Renderer's Bounds
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <param name="positions"></param>
+    public static void GetCornerPositionsFromRendererBounds(this Bounds bounds, ref Vector3[] positions)
+    {
+        Vector3 center = bounds.center;
+        Vector3 extents = bounds.extents;
+        float leftEdge = center.x - extents.x;
+        float rightEdge = center.x + extents.x;
+        float bottomEdge = center.y - extents.y;
+        float topEdge = center.y + extents.y;
+        float frontEdge = center.z - extents.z;
+        float backEdge = center.z + extents.z;
+
+        const int numPoints = 8;
+        if(positions == null || positions.Length != numPoints)
+        {
+            positions = new Vector3[numPoints];
+        }
+
+        positions[BoundsExtentions.LBF] = new Vector3(leftEdge, bottomEdge, frontEdge);
+        positions[BoundsExtentions.LBB] = new Vector3(leftEdge, bottomEdge, backEdge);
+        positions[BoundsExtentions.LTF] = new Vector3(leftEdge, topEdge, frontEdge);
+        positions[BoundsExtentions.LTB] = new Vector3(leftEdge, topEdge, backEdge);
+        positions[BoundsExtentions.RBF] = new Vector3(rightEdge, bottomEdge, frontEdge);
+        positions[BoundsExtentions.RBB] = new Vector3(rightEdge, bottomEdge, backEdge);
+        positions[BoundsExtentions.RTF] = new Vector3(rightEdge, topEdge, frontEdge);
+        positions[BoundsExtentions.RTB] = new Vector3(rightEdge, topEdge, backEdge);
+    }
+
     public static void GetCornerAndMidPointPositions (this Bounds bounds, Transform transform, ref Vector3[] positions)
     {
         // Calculate the local points to transform.
