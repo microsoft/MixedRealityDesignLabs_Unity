@@ -270,7 +270,7 @@ namespace HUX.Collections
                         {
                             if (cellCounter < NodeList.Count)
                             {
-                                nodeGrid[cellCounter] = new Vector3((c * CellWidth) - startOffsetX + _halfCell.x, (r * CellHeight) - startOffsetY + _halfCell.y, 0f) + (Vector3)((CollectionNode)(NodeList[cellCounter])).Offset;
+                                nodeGrid[cellCounter] = new Vector3((c * CellWidth) - startOffsetX + _halfCell.x, -(r * CellHeight) + startOffsetY - _halfCell.y, 0f) + (Vector3)((CollectionNode)(NodeList[cellCounter])).Offset;
                             }
                             cellCounter++;
                         }
@@ -284,7 +284,7 @@ namespace HUX.Collections
                         {
                             if (cellCounter < NodeList.Count)
                             {
-                                nodeGrid[cellCounter] = new Vector3((c * CellWidth) - startOffsetX + _halfCell.x, (r * CellHeight) - startOffsetY + _halfCell.y, 0f) + (Vector3)((CollectionNode)(NodeList[cellCounter])).Offset;
+                                nodeGrid[cellCounter] = new Vector3((c * CellWidth) - startOffsetX + _halfCell.x, -(r * CellHeight) + startOffsetY - _halfCell.y, 0f) + (Vector3)((CollectionNode)(NodeList[cellCounter])).Offset;
                             }
                             cellCounter++;
                         }
@@ -454,7 +454,7 @@ namespace HUX.Collections
             Vector3 newPos = new Vector3(0f, 0f, Radius);
 
             float xAngle = (source.x / _circ) * 360f;
-            float yAngle = (source.y / _circ) * 360f;
+            float yAngle = -(source.y / _circ) * 360f;
 
             Quaternion rot = Quaternion.Euler(yAngle, xAngle, 0.0f);
             newPos = rot * newPos;
