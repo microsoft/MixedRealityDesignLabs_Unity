@@ -33,7 +33,7 @@ namespace HUX.Spatial
 		public float MaxDistance = 2f;
 
 		[Tooltip("The element will stay at least this far away from the center of view")]
-		public float MinViewDegrees = 10f;
+		public float MinViewDegrees = 0f;
 		[Tooltip("The element will stay at least this close to the center of view")]
 		public float MaxViewDegrees = 30f;
 		[Tooltip("Apply a different clamp to vertical FOV than horizontal.  Vertical = Horizontal * AspectV")]
