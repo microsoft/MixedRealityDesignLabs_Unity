@@ -3,10 +3,8 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 //
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
-#if UNITY_WINRT && !UNITY_EDITOR
-#define USE_WINRT
-#endif
 
 namespace HUX.Buttons
 {
@@ -60,11 +58,11 @@ namespace HUX.Buttons
             iconKeys = new List<string>();
 
             // Store all icons in iconLookup via reflection
-            #if USE_WINRT
-		    var fields = GetType().GetTypeInfo().DeclaredFields;
-            #else
+#if UNITY_WSA && !UNITY_EDITOR
+            var fields = GetType().GetTypeInfo().DeclaredFields;
+#else
             var fields = this.GetType().GetFields();
-            #endif
+#endif
             foreach (var field in fields)
             {
                 if (field.FieldType == typeof(Texture2D) && !field.Name.StartsWith("_"))
