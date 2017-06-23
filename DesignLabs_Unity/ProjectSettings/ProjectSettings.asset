@@ -512,7 +512,7 @@ PlayerSettings:
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
   apiCompatibilityLevelPerPlatform:
-    Metro: 3
+    Metro: 2
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: DesignLab_Unity
