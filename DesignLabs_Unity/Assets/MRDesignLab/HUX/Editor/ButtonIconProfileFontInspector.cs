@@ -16,7 +16,6 @@ namespace HUX
         public override void OnInspectorGUI()
         {
             ButtonIconProfileFont iconProfile = (ButtonIconProfileFont)target;
-            //CompoundButtonIcon iconButton = (CompoundButtonIcon)targetComponent;
 
             HUXEditorUtils.BeginProfileBox();
 
@@ -99,7 +98,7 @@ namespace HUX
 
             HUXEditorUtils.EndProfileBox();
 
-            HUXEditorUtils.SaveChanges(this);
+            HUXEditorUtils.SaveChanges(iconProfile);
         }
 
         private void SelectFontAsset()
