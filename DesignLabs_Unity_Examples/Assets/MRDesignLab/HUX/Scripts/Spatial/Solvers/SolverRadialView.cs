@@ -17,9 +17,22 @@ namespace HUX.Spatial
 		#region public enums
 		public enum ReferenceDirectionEnum
 		{
+            /// <summary>
+            /// Orient towards head including roll, pitch and yaw
+            /// </summary>
 			HeadOriented,
+            /// <summary>
+            /// Orient toward head but ignore roll
+            /// </summary>
 			HeadFacingWorldUp,
-			HeadMoveDirection
+            /// <summary>
+            /// Orient torwards the head movement direction found in veil singleton
+            /// </summary>
+			HeadMoveDirection,
+            /// <summary>
+            /// Orient towards head but remain vertical or gravity aligned
+            /// </summary>
+            HeadGravityAligned
 		}
 		#endregion
 
@@ -73,15 +86,16 @@ namespace HUX.Spatial
 		Vector3 GetReferenceDirection()
 		{
 			Vector3 ret = Vector3.one;
-			if (ReferenceDirection == ReferenceDirectionEnum.HeadOriented || ReferenceDirection == ReferenceDirectionEnum.HeadFacingWorldUp)
+			if (ReferenceDirection == ReferenceDirectionEnum.HeadMoveDirection)
 			{
-				ret = head != null ? head.forward : Vector3.forward;
+                ret = Veil.Instance.MoveDirection;
 			}
-			else if (ReferenceDirection == ReferenceDirectionEnum.HeadMoveDirection)
+			else
 			{
-				ret = Veil.Instance.MoveDirection;
-			}
-			return ret;
+                ret = head != null ? head.forward : Vector3.forward;
+            }
+
+            return ret;
 		}
 
 		/// <summary>
@@ -103,6 +117,9 @@ namespace HUX.Spatial
 			return head != null ? head.transform.position : Vector3.zero; //Veil.Instance.HeadPositionFiltered;
 		}
 
+        /// <summary>
+        /// Solver update function used to orient to the user
+        /// </summary>
 		public override void SolverUpdate()
 		{
 			Vector3 desiredPos = this.WorkingPos;
@@ -126,7 +143,8 @@ namespace HUX.Spatial
 			// Element orientation
 			Vector3 refDirUp = GetReferenceUp();
 			Quaternion desiredRot = Quaternion.identity;
-			if (OrientToRefDir)
+
+            if (OrientToRefDir)
 			{
 				desiredRot = Quaternion.LookRotation(GetReferenceDirection(), refDirUp);
 			}
@@ -136,7 +154,13 @@ namespace HUX.Spatial
 				desiredRot = Quaternion.LookRotation(desiredPos - refPoint, refDirUp);
 			}
 
-			this.GoalPosition = desiredPos;
+            // If gravity aligned then zero out the x and z eulers on the rotation
+            if(ReferenceDirection == ReferenceDirectionEnum.HeadGravityAligned)
+            {
+                desiredRot.x = desiredRot.z = 0f;
+            }
+
+            this.GoalPosition = desiredPos;
 			this.GoalRotation = desiredRot;
 
 			//UpdateWorkingToGoal();
