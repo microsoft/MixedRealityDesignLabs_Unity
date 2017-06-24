@@ -4,9 +4,6 @@
 //
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_WINRT && !UNITY_EDITOR
-#define USE_WINRT
-#endif
 
 namespace HUX.Buttons
 {

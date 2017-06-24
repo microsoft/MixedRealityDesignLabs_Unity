@@ -32,7 +32,7 @@ namespace HUX.Dialogs
         /*[SerializeField]
         private GameObject[] threeButtonSet;*/
 
-        protected override void OnDrawGizmos()
+        protected new void OnDrawGizmos()
         {
             messageText.text = WordWrap(messageText.text, MaxCharsPerLine);
         }
