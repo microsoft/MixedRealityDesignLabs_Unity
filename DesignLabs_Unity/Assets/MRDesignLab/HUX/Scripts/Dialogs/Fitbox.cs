@@ -46,8 +46,8 @@ namespace HUX.Dialogs
                 if (MoveCollectionOnDismiss)
                 {
                     // Update the Hologram Collection's position so it shows up
-                    // where the Fitbox left off. Start with the camera's localRotation...
-                    Quaternion camQuat = Camera.main.transform.localRotation;
+                    // where the Fitbox left off. Start with the camera's rotation...
+                    Quaternion camQuat = Camera.main.transform.rotation;
 
                     // ... ignore pitch by disabling rotation around the x axis
                     camQuat.x = 0;
@@ -60,7 +60,7 @@ namespace HUX.Dialogs
                     StartupObject.transform.position = Camera.main.transform.position + newPosition;
 
                     // Rotate the Hologram Collection to face the user.
-                    Quaternion toQuat = Camera.main.transform.localRotation * StartupObject.transform.rotation;
+                    Quaternion toQuat = Camera.main.transform.rotation * StartupObject.transform.rotation;
                     toQuat.x = 0;
                     toQuat.z = 0;
                     StartupObject.transform.rotation = toQuat;
