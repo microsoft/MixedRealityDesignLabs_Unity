@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86772d5ca853e924ba484bc960537c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeshProfile: {fileID: 11400000, guid: a8d44b5a728a0474f8d90d4bdf3ce25c, type: 2}
+  Profile: {fileID: 11400000, guid: 15e468fba7c2552479d525032a881daa, type: 2}
   TargetTransform: {fileID: 4736971027315294}
   Renderer: {fileID: 23336536448819794}
   MeshFilter: {fileID: 0}
