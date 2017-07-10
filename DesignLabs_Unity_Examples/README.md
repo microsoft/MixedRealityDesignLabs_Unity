@@ -221,7 +221,7 @@ The simplest way to create the effect of tag-along behavior is to cast a cone fr
 1. Clone and open the project MRDesignLabs_Unity in Unity.
 2. You can find the RadialViewSolver prefab under /MRDesignLab/HUX/Prefabs/Spatial/Solvers/.
  
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/radialViewSolverApplied.png" alt="Unity scene hierarchy with Radial view solver applied">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/radialViewSolverApplied.PNG" alt="Unity scene hierarchy with Radial view solver applied">
 To apply the tag-along behavior to an object in the scene, add a RadialViewSolver prefab to the scene. Drag any object or prefab the onto RadialViewSolver so it becomes a child. 
 
 
