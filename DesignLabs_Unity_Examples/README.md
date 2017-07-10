@@ -176,7 +176,7 @@ You can find the **AppBar.prefab** in [/MRDesignLab/HUX/Prefabs/Dialogs](https:/
 Apply the **BoundingBoxTarget.cs** [/MRDesignLab/HUX/Scripts/interaction/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Scripts/Interaction/) script to any object in the scene to enable object manipulation. The script provides full customization of how the object can transform. The default set is Drag, ScaleUniform, and RotateY.
 
 
-## [Billboarding and tag-along](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ObjectCollection_Examples.unity)
+## Billboarding and tag-along
 
 ### What is billboarding? ###
 
@@ -186,21 +186,21 @@ Objects with billboarding enabled can rotate freely, or on the Y axis depending 
 
 ### How to use billboarding ###
 
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Billboarding-fragments.png" alt="Billboarding menu system in Fragments">
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Billboarding-fragments.gif" alt="Billboarding menu system in Fragments">
 
 Billboarding can be applied to any world-locked object. It simply creates a directional vector that points from the user to the object. On update, the script applies a LookRotation Quaternion that is the negative value of the directional vector to the object’s rotation transform. To use billboarding, follow the steps below: 
 
-1. Clone and open the project **MRDesignLabs_Unity** in Unity. In this project, you can find the **Billboard.cs** script under */Assets/HoloToolKit/Utilities/Scripts*.
+1. Clone and open the project MRDesignLabs_Unity in Unity. In this project, you can find the Billboard.cs script under /Assets/HoloToolKit/Utilities/Scripts.
 
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/billboard-dialogue.png" alt="Billboarding properties in the inspector">
-2. To create a enable billboarding behavior, assign the **Billboard.cs** script to any GameObject or prefab in the scene. 
+2. To create a enable billboarding behavior, assign the Billboard.cs script to any GameObject or prefab in the scene. 
 
 3. Once the script is applied to an object, you can choose between free and Y for the pivot axis of the billboard.
 
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/NewHLCamera.png" alt="Use the HUX menu to create a new HoloLens camera instance">
-The **Billboard.cs** script is calculated based on the camera with the tag MainCamera. To make things easy just use the Default HoloLens camera Prefab provided in **MRDesignLabs_Unity** as your camera. It can be found at */MRDesignLab/Hux/Prefab/Interface*. Additionally, once **MRDesignLabs** is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
+The Billboard.cs script is calculated based on the camera with the tag MainCamera. To make things easy just use the Default HoloLens camera Prefab provided in MRDesignLabs_Unity as your camera. It can be found at /MRDesignLab/Hux/Prefab/Interface. Additionally, once MRDesignLabs is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
 
 ### What is tag-along? ###
 
@@ -218,14 +218,14 @@ Just like truly head-locked content, tag-along objects can prove overwhelming or
 
 The simplest way to create the effect of tag-along behavior is to cast a cone from the user's camera. As the user's head turns, the tag-along object is calculated on update to stay within the bounds of the base of the cone. This functionality can be applied to your scene below.
 
-1. Clone and open the project **MRDesignLabs_Unity** in Unity.
-2. You can find the **RadialViewSolver** prefab under */MRDesignLab/HUX/Prefabs/Spatial/Solvers/*.
+1. Clone and open the project MRDesignLabs_Unity in Unity.
+2. You can find the RadialViewSolver prefab under /MRDesignLab/HUX/Prefabs/Spatial/Solvers/.
  
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/RadialViewSolverApplied.jpg" alt="Tag-along behavior in the pins panel">
-To apply the tag-along behavior to an object in the scene, add a **RadialViewSolver** prefab to the scene. Drag any object or prefab the onto **RadialViewSolver** so it becomes a child. 
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/radialViewSolverApplied.png" alt="Unity scene hierarchy with Radial view solver applied">
+To apply the tag-along behavior to an object in the scene, add a RadialViewSolver prefab to the scene. Drag any object or prefab the onto RadialViewSolver so it becomes a child. 
 
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/NewHLCamera.png" alt="Use the HUX menu to create a new HoloLens camera instance">
-The **RadialViewSolver's** scripts are calculated based on the Default HololensCamera prefab provided in **MRDesignLabs_Unity** as your camera. It can be found at */MRDesignLab/Hux/Prefab/Interface*. Additionally, once **MRDesignLabs** is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
+The RadialViewSolver's scripts are calculated based on the Default HololensCamera prefab provided in MRDesignLabs_Unity as your camera. It can be found at /MRDesignLab/Hux/Prefab/Interface. Additionally, once MRDesignLabs is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
 
-***MRDesignLabs** also provides a **RectViewSolver** script which behaves the same as **RadialViewSolver** but casts a pyramid instead of a cone. /MRDesignLab/HUX/Scripts/Spatial/Solvers/. Replace the **RadialViewSolver.cs** with this script.*
+MRDesignLabs also provides a RectViewSolver script which behaves the same as RadialViewSolver but casts a pyramid instead of a cone. /MRDesignLab/HUX/Scripts/Spatial/Solvers/. Replace the RadialViewSolver.cs with this script.
