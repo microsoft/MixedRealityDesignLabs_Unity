@@ -20,14 +20,14 @@ These are the examples using primitives and imported 3D meshes as Interactable O
 
 ![Holographic button](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_HolographicButton.jpg)
 
-This is an example of Holographic button used in the Start menu and [[Holobar and bounding box|HoloBar]]. This example uses Unity's Animation Controller and Animation Clips.
+This is an example of Holographic button used in the Start menu and ![App Bar](https://developer.microsoft.com/en-us/windows/mixed-reality/app_bar_and_bounding_box). This example uses Unity's Animation Controller and Animation Clips.
 
 
 ### Toolbar ###
 
 ![Toolbar](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Toolbar.jpg)
 
-Toolbar is a widely used pattern in mixed reality experiences. It is a simple collection of buttons with additional behavior such as [[Billboarding and tag-a-long]]. This example uses a Billboarding and tag-a-long script from HoloToolkit. You can control the detailed behavior including distance, moving speed and threshold values.
+Toolbar is a widely used pattern in mixed reality experiences. It is a simple collection of buttons with additional behavior such as Billboarding and tag-a-long. This example uses a Billboarding and tag-a-long script from HoloToolkit. You can control the detailed behavior including distance, moving speed and threshold values.
 
 
 ### Traditional button ###
