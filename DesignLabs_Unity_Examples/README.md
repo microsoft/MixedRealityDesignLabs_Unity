@@ -175,3 +175,37 @@ You can find the **AppBar.prefab** in [/MRDesignLab/HUX/Prefabs/Dialogs](https:/
 
 Apply the **BoundingBoxTarget.cs** [/MRDesignLab/HUX/Scripts/interaction/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Scripts/Interaction/) script to any object in the scene to enable object manipulation. The script provides full customization of how the object can transform. The default set is Drag, ScaleUniform, and RotateY.
 
+
+## [Billboarding and tag-along](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ObjectCollection_Examples.unity)
+
+### What is billboarding? ###
+
+Billboarding is a behavioral concept that can be applied to objects in mixed reality. Objects with billboarding always orient themselves to face the user. This is especially helpful with text and menuing systems where world-locked objects would be otherwise obscured or unreadable if a user were to move around their environment.   
+
+Objects with billboarding enabled can rotate freely, or on the Y axis depending on where they may be placed in the environment. Keep in mind, billboarded objects may clip or occlude themselves if they are placed too close to other objects, or in HoloLens, too close scanned surfaces. To avoid this, think about the total footprint an object may produce when rotated on the axis enabled for billboarding.
+
+### How to use billboarding ###
+
+Billboarding can be applied to any world-locked object. It simply creates a directional vector that points from the user to the object. On update, the script applies a LookRotation Quaternion that is the negative value of the directional vector to the object’s rotation transform. To use billboarding, follow the steps below: 
+
+1. Clone and open the project MRDesignLabs_Unity in Unity. In this project, you can find the Billboard.cs script under /Assets/HoloToolKit/Utilities/Scripts.
+
+2. To create a enable billboarding behavior, assign the Billboard.cs script to any GameObject or prefab in the scene. 
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/billboard-dialogue.png" alt="Billboarding properties in the inspector">
+3. Once the script is applied to an object, you can choose between free and Y for the pivot axis of the billboard.
+
+The Billboard.cs script is calculated based on the camera with the tag MainCamera. To make things easy just use the Default HoloLens camera Prefab provided in MRDesignLabs_Unity as your camera. It can be found at /MRDesignLab/Hux/Prefab/Interface. Additionally, once MRDesignLabs is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
+
+### What is tag-along? ###
+
+Tag-along is a behavioral concept that can be added to holograms, including billboarded objects. This interaction is a more natural and friendly way of achieving the effect of head-locked content. A tag-along object attempts to never leave the user's view. This enables freely interact with what is front of them while also still seeing the holograms outside their direct view.
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/TagAlong.jpg" alt="Tag-along behavior in the pins panel">
+
+Tag-along objects have parameters which can fine-tune the way they behave. Content can be in or out of the user’s line of sight as desired while the user moves around their environment. As the user moves, the content will attempt to stay within the user’s periphery by sliding towards the edge of the view, depending on how quickly a user moves may leave the content temporarily out of view. When the user gazes towards the tag-along object, it comes more fully into view. Think of content always being "a glance away" so users never forget what direction their content is in.
+
+Additional parameters can make the tag-along object feel attached to the user's head by a rubber band. Dampening acceleration or deceleration gives weight to the object making it feel more physically present. This spring behavior is an affordance that helps the user build an accurate mental model of how tag-along works. Audio helps provide additional affordances for when users have objects in tag-along mode. Audio should reinforce the speed of movement; a fast head turn should provide a more noticeable sound effect while walking at a natural speed should have minimal audio if any effects at all.
+
+Just like truly head-locked content, tag-along objects can prove overwhelming or nauseating if they move wildly or spring too much in the user’s view. As users look around and then quickly stop, the user’s senses tell them they have stopped. Their balance informs them their head has stopped turning as well as their vision sees the world stop turning. However, if tag-along keeps on moving when the user has stopped, it may confuse their senses.
+
