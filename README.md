@@ -32,6 +32,8 @@ https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Exa
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable/blob/master/External/ReadMeImages/PeriodicTable_Hero.jpg" alt="Periodic Table of the Elements">
 https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable
 
+Periodic Table of the Elements is a open-source sample app from Microsoft's Mixed Reality Design Lab. With this project, you can learn how to layout an array of objects in 3D space with various surface types using Object collection. Also learn how to create interactable objects that respond to standard inputs from HoloLens. You can use this project's components to create your own mixed reality app experiences.
+
 # Sample app - Lunar Module
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule/blob/master/External/ReadMeImages/LM_hero.jpg" alt="Lunar Module sample app">
 https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule
