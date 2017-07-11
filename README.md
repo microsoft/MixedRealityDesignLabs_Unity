@@ -2,11 +2,12 @@
 This repo is where Microsoft's Windows Mixed Reality Design team publishes examples and explorations. The goal is to inspire creators and help them to build Mixed Reality experiences. We share sample app projects here that demonstrate how to use various types of common controls and patterns in Mixed Reality. Find out details about common controls and sample apps on https://developer.microsoft.com/en-us/windows/mixed-reality/design
 
 
-# Important: Adding submodule 
-As soon as you clone the repo, init and update submodule:
+# Important: Adding submodule MRDesignLab
+As soon as you clone the repo, init and update submodule with git command:
+### cd MRDesignLabs_Unity
 ### "git submodule init"
-Followed by:
 ### "git submodule update"
+This will add HUX and related tools under Assets/MRDesignLab/ folder
 
 
 # Common controls and examples
