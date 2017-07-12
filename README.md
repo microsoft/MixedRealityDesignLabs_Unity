@@ -4,9 +4,11 @@ This repo is where Microsoft's Windows Mixed Reality Design team publishes examp
 
 # Important: Adding submodule MRDesignLab
 As soon as you clone the repo, init and update submodule with git command:
-### cd MRDesignLabs_Unity
-### "git submodule init"
-### "git submodule update"
+```
+cd MRDesignLabs_Unity
+git submodule init
+git submodule update
+```
 This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_Unity_tools) under Assets/MRDesignLab/ folder
 
 
