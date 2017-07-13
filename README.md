@@ -16,19 +16,19 @@ This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_
 Find out technical details on Wiki page:
 https://github.com/Microsoft/MRDesignLabs_Unity/wiki
 
-## Interactable Object ##
+## [Interactable Object](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Interactable-Object) ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Hero.jpg">
 
-## Object Collection ##
+## [Object Collection](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Object-Collection) ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/ObjectCollection_Hero.jpg">
 
-## Progress ##
+## [Progress](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress) ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Hero.jpg">
 
-## Holobar and Bounding Box ##
+## [App Bar and Bounding Box](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box) ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HolobarAndBoundingBox_Hero.jpg">
 
-## Dialog ##
+## [Dialog](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog) ##
 <img src="https://raw.githubusercontent.com/wiki/Microsoft/MRDesignLabs_Unity/images/MRDL_Dialog_Hero.jpg">
 
 # More from Mixed Reality Design Labs #
