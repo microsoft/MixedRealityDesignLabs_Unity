@@ -13,8 +13,8 @@ This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_
 
 
 # Common controls and examples
-## TECHNICAL DETAILS AND TEST SCENES ##
-https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity_Examples
+Find out technical details on Wiki page:
+https://github.com/Microsoft/MRDesignLabs_Unity/wiki
 
 ## Interactable Object ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Hero.jpg">
