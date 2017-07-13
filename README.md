@@ -28,6 +28,8 @@ https://github.com/Microsoft/MRDesignLabs_Unity/wiki
 ## Holobar and Bounding Box ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HolobarAndBoundingBox_Hero.jpg">
 
+## Dialog ##
+<img src="https://raw.githubusercontent.com/wiki/Microsoft/MRDesignLabs_Unity/images/MRDL_Dialog_Hero.jpg">
 
 # More from Mixed Reality Design Labs #
 ## Sample app - Periodic Table of the Elements ##
