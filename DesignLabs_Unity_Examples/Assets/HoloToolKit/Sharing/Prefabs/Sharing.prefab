@@ -5,18 +5,18 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 475158}
-  - 114: {fileID: 114000012667812730}
-  - 114: {fileID: 114000013602799446}
+  - component: {fileID: 475158}
+  - component: {fileID: 114000012667812730}
+  - component: {fileID: 114000013602799446}
   m_Layer: 0
   m_Name: Sharing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &475158
 Transform:
   m_ObjectHideFlags: 1
@@ -59,6 +59,7 @@ MonoBehaviour:
   AutoDiscoverServer: 0
   PingIntervalSec: 2
   IsAudioEndpoint: 1
+  ShowDetailedLogs: 0
 --- !u!114 &114000013602799446
 MonoBehaviour:
   m_ObjectHideFlags: 1

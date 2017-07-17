@@ -1,6 +1,12 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR || UNITY_WSA
 using UnityEngine.VR.WSA.Input;
+#endif
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -114,6 +120,7 @@ namespace HoloToolkit.Unity.InputModule
         /// </summary>
         private void UpdateSourceData()
         {
+#if UNITY_EDITOR || UNITY_WSA
             // Poll for updated reading from hands
             InteractionSourceState[] sourceStates = InteractionManager.GetCurrentReading();
             if (sourceStates != null)
@@ -127,8 +134,10 @@ namespace HoloToolkit.Unity.InputModule
                     UpdateSourceState(handSource, sourceData);
                 }
             }
+#endif
         }
 
+#if UNITY_EDITOR || UNITY_WSA
         /// <summary>
         /// Gets the source data for the specified interaction source if it already exists, otherwise creates it.
         /// </summary>
@@ -187,6 +196,7 @@ namespace HoloToolkit.Unity.InputModule
 
             SendSourceStateEvents(sourceData);
         }
+#endif
 
         /// <summary>
         /// Sends the events for source state changes.

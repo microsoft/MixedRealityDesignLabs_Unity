@@ -1,5 +1,3 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 #include "HLSLSupport.cginc"
 #include "UnityCG.cginc"
 #include "Lighting.cginc"

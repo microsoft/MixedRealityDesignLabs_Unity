@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -177,7 +180,14 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Override for enable functions
         /// </summary>
-        protected virtual void OnEnable() { }
+        protected virtual void OnEnable()
+        {
+            if (gazeManager)
+            {
+                OnFocusedObjectChanged(null, gazeManager.HitObject);
+            }
+            OnCursorStateChange(CursorStateEnum.None);
+        }
 
         /// <summary>
         /// Override for disable functions
@@ -187,6 +197,8 @@ namespace HoloToolkit.Unity.InputModule
             TargetedObject = null;
             TargetedCursorModifier = null;
             visibleHandsCount = 0;
+            IsHandVisible = false;
+            OnCursorStateChange(CursorStateEnum.Contextual);
         }
 
         private void OnDestroy()
@@ -279,9 +291,10 @@ namespace HoloToolkit.Unity.InputModule
             targetScale = Vector3.one;
 
             // If no game object is hit, put the cursor at the default distance
-            if (TargetedObject == null)
+            if (newTargetedObject == null)
             {
                 this.TargetedObject = null;
+                this.TargetedCursorModifier = null;
                 targetPosition = gazeManager.GazeOrigin + gazeManager.GazeNormal * DefaultCursorDistance;
                 targetRotation = lookForward.magnitude > 0 ? Quaternion.LookRotation(lookForward, Vector3.up) : transform.rotation;
             }
@@ -315,7 +328,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Updates the visual representation of the cursor.
         /// </summary>
-        public void SetVisiblity(bool visible)
+        public virtual void SetVisiblity(bool visible)
         {
             if (PrimaryCursorVisual != null)
             {

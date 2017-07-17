@@ -16,39 +16,39 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012084356042}
-  - 23: {fileID: 23000012140561766}
-  - 102: {fileID: 102000012390400920}
-  - 114: {fileID: 114000014126132184}
+  - component: {fileID: 4000012084356042}
+  - component: {fileID: 23000012140561766}
+  - component: {fileID: 102000012390400920}
+  - component: {fileID: 114000014126132184}
   m_Layer: 0
-  m_Name: 
+  m_Name: FPSText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011443254168
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012520274942}
-  - 23: {fileID: 23000011797597042}
-  - 65: {fileID: 65000012561365858}
-  - 114: {fileID: 114000013985069792}
-  - 114: {fileID: 114814769360254126}
-  - 114: {fileID: 114000014245746336}
+  - component: {fileID: 4000012520274942}
+  - component: {fileID: 23000011797597042}
+  - component: {fileID: 65000012561365858}
+  - component: {fileID: 114000013985069792}
+  - component: {fileID: 114814769360254126}
+  - component: {fileID: 114000014245746336}
   m_Layer: 0
   m_Name: FPSDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4000012084356042
 Transform:
   m_ObjectHideFlags: 1
@@ -90,7 +90,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -98,7 +100,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -119,7 +121,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -127,7 +131,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -197,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782849a517cd6b445bf06b38c442ccf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 0}
+  textMesh: {fileID: 102000012390400920}
   frameRange: 60
 --- !u!114 &114000014245746336
 MonoBehaviour:

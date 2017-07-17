@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
@@ -21,8 +24,16 @@ namespace HoloToolkit.Unity
         [Tooltip("Specifies the axis about which the object will rotate.")]
         public PivotAxis PivotAxis = PivotAxis.Free;
 
+        [Tooltip("Specifies the target we will orient to. If no Target is specified the main camera will be used.")]
+        public Transform TargetTransform;
+
         private void OnEnable()
         {
+            if (TargetTransform == null)
+            {
+                TargetTransform = Camera.main.transform;
+            }
+
             Update();
         }
 
@@ -31,13 +42,13 @@ namespace HoloToolkit.Unity
         /// </summary>
         private void Update()
         {
-            if (!Camera.main)
+            if (TargetTransform == null)
             {
                 return;
             }
 
             // Get a Vector that points from the target to the main camera.
-            Vector3 directionToTarget = Camera.main.transform.position - transform.position;
+            Vector3 directionToTarget = TargetTransform.position - transform.position;
 
             // Adjust for the pivot axis.
             switch (PivotAxis)

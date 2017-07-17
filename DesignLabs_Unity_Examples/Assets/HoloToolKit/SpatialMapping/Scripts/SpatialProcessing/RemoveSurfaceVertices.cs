@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -146,7 +149,7 @@ namespace HoloToolkit.Unity.SpatialMapping
 
                     // Remove vertices from any mesh that intersects with the bounds.
                     Vector3[] verts = mesh.vertices;
-                    List<int> vertsToRemove = new List<int>();
+                    HashSet<int> vertsToRemove = new HashSet<int>();
 
                     // Find which mesh vertices are within the bounds.
                     for (int i = 0; i < verts.Length; ++i)

@@ -7,21 +7,10 @@ PluginImporter:
   iconMap: {}
   executionOrder: {}
   isPreloaded: 0
-  isOverridable: 0
   platformData:
     Any:
       enabled: 0
-      settings:
-        Exclude Editor: 0
-        Exclude Linux: 1
-        Exclude Linux64: 1
-        Exclude LinuxUniversal: 1
-        Exclude OSXIntel: 1
-        Exclude OSXIntel64: 1
-        Exclude OSXUniversal: 1
-        Exclude Win: 1
-        Exclude Win64: 1
-        Exclude WindowsStoreApps: 1
+      settings: {}
     Editor:
       enabled: 1
       settings:
@@ -29,7 +18,7 @@ PluginImporter:
         DefaultValueInitialized: true
         OS: Windows
     Linux:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: x86
     Linux64:
@@ -39,9 +28,9 @@ PluginImporter:
     LinuxUniversal:
       enabled: 0
       settings:
-        CPU: None
+        CPU: x86
     OSXIntel:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
     OSXIntel64:
@@ -51,9 +40,9 @@ PluginImporter:
     OSXUniversal:
       enabled: 0
       settings:
-        CPU: None
+        CPU: x86
     Win:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
     Win64:

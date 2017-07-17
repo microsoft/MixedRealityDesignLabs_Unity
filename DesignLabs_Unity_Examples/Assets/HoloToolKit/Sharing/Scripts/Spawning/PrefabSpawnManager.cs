@@ -1,3 +1,8 @@
+//
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+//
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +32,7 @@ namespace HoloToolkit.Sharing.Spawning
         /// </summary>
         /// <remarks>It is assumed that this list is the same on all connected applications.</remarks>
         [SerializeField]
-        private List<PrefabToDataModel> spawnablePrefabs;
+        private List<PrefabToDataModel> spawnablePrefabs = null;
 
         private Dictionary<string, GameObject> typeToPrefab;
 
@@ -37,8 +42,10 @@ namespace HoloToolkit.Sharing.Spawning
         /// </summary>
         private int objectCreationCounter;
 
-        private void Awake()
+        protected override void Start()
         {
+            base.Start();
+
             InitializePrefabs();
         }
 

@@ -1,4 +1,7 @@
-﻿namespace HoloToolkit.Sharing
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+namespace HoloToolkit.Sharing
 {
     /// <summary>
     /// Allows users of NetworkConnection to register to receive event callbacks without

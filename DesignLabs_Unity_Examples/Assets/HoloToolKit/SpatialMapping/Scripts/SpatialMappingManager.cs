@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -43,6 +46,11 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         [HideInInspector]
         public float StartTime { get; private set; }
+
+        /// <summary>
+        /// SurfaceMappingObserver GET
+        /// </summary>
+        public SpatialMappingObserver SurfaceObserver { get { return surfaceObserver; } }
 
         /// <summary>
         /// The current source of spatial mapping data.
@@ -209,7 +217,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             if (!IsObserverRunning())
             {
                 surfaceObserver.StartObserving();
-                StartTime = Time.time;
+                StartTime = Time.unscaledTime;
             }
         }
 

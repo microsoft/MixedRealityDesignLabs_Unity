@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
 
 namespace HoloToolkit.Sharing.Utilities
 {
@@ -51,8 +54,8 @@ namespace HoloToolkit.Sharing.Utilities
                 {
                     if (SharingStage.Instance.ShowDetailedLogs)
                     {
-                        Debug.LogFormat("Session conn {0} Sessions: {1}.", sessionsTracker.IsServerConnected.ToString(), sessionsTracker.Sessions.Count.ToString());
-                        Debug.Log("Looking for " + SessionName);
+                        Debug.LogFormat("AutoJoinSession: Session connected is {0} with {1} Sessions.", sessionsTracker.IsServerConnected.ToString(), sessionsTracker.Sessions.Count.ToString());
+                        Debug.Log("AutoJoinSession: Looking for " + SessionName);
                     }
                     bool sessionFound = false;
 

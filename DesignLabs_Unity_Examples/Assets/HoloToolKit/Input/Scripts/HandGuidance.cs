@@ -1,5 +1,11 @@
-﻿using UnityEngine;
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using UnityEngine;
+
+#if UNITY_EDITOR || UNITY_WSA
 using UnityEngine.VR.WSA.Input;
+#endif
 
 namespace HoloToolkit.Unity.InputModule
 {
@@ -25,6 +31,7 @@ namespace HoloToolkit.Unity.InputModule
 
         private uint? currentlyTrackedHand = null;
 
+#if UNITY_EDITOR || UNITY_WSA
         protected override void Awake()
         {
             base.Awake();
@@ -162,5 +169,6 @@ namespace HoloToolkit.Unity.InputModule
 
             base.OnDestroy();
         }
+#endif
     }
 }
