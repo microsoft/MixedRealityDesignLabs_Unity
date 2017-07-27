@@ -14,6 +14,8 @@ MonoBehaviour:
   ColorPropertyName: _Color
   ValuePropertyName: 
   SmoothStateChanges: 1
+  StickyPressedEvents: 0
+  StickyPressedTime: 0.15
   AnimationSpeed: 1
   ButtonStates:
   - Name: Pressed
