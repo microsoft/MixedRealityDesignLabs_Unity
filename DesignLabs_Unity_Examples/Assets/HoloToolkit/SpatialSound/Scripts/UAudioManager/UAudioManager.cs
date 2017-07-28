@@ -460,7 +460,7 @@ namespace HoloToolkit.Unity
         }
 
 #if UNITY_EDITOR
-        [ContextMenu("Sort Events")]
+        [UnityEngine.ContextMenu("Sort Events")]
         private void AlphabetizeEventList()
         {
             Array.Sort<AudioEvent>(events);
