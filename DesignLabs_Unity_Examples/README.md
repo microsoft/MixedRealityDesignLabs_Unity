@@ -20,14 +20,14 @@ These are the examples using primitives and imported 3D meshes as Interactable O
 
 ![Holographic button](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_HolographicButton.jpg)
 
-This is an example of Holographic button used in the Start menu and [[Holobar and bounding box|HoloBar]]. This example uses Unity's Animation Controller and Animation Clips.
+This is an example of Holographic button used in the Start menu and ![App Bar](https://developer.microsoft.com/en-us/windows/mixed-reality/app_bar_and_bounding_box). This example uses Unity's Animation Controller and Animation Clips.
 
 
 ### Toolbar ###
 
 ![Toolbar](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Toolbar.jpg)
 
-Toolbar is a widely used pattern in mixed reality experiences. It is a simple collection of buttons with additional behavior such as [[Billboarding and tag-a-long]]. This example uses a Billboarding and tag-a-long script from HoloToolkit. You can control the detailed behavior including distance, moving speed and threshold values.
+Toolbar is a widely used pattern in mixed reality experiences. It is a simple collection of buttons with additional behavior such as Billboarding and tag-a-long. This example uses a Billboarding and tag-a-long script from HoloToolkit. You can control the detailed behavior including distance, moving speed and threshold values.
 
 
 ### Traditional button ###
@@ -146,12 +146,17 @@ You can find Progress.prefab under **Assets/MRDesignLab/HUX/Prefabs/Dialogs/**
 
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HolobarAndBoundingBox_Hero.jpg">
 
-There are three components to ensure the Holobar and bounding box work inside of your Unity project. The first is the **AppBar.prefab**. It behaves much like a singleton. You only need one in your scene hierarchy. If an object in the scene is interacted with, it will request the App bar and take it from the last interacted object. The AppBar.prefab has a [AppBar.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Dialogs/AppBar.cs) script which handles all of the properties of how and what the Holobar should display.
+There are three components to ensure the Holobar and bounding box work inside of your Unity project.
 
-The second is the **BoundingBox.prefab**. This prefab works much like the AppBar.prefab. You only need one bounding box in the scene. If an object in the scene is put into adjust mode, the object will take the bounding box from the last adjusted object. The prefab has two scripts associated with it. The [BoundingBoxManipulate.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxManipulate.cs) script which does the actual manipulating of the object its currently assigned to. The other script is the  [BoundingBoxGizmo.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxGizmo.cs) prefab. This script handles the visual representation of the bounding box and renders the transform affordances dynamically.
+The first is the **BoundingBoxTarget.cs** component. If an InteractableObject with a [BoundingBoxTarget.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxTarget.cs) component is interacted with, it will request the App bar and take it from the last interacted object. It essentially is the glue to make all of the MRDesignLab manipulation components talk to each other. Assign BoundingBoxTarget.cs script to any objects that you want to use bounding box and app bar.
 
-The last is the **BoundingBoxTarget** [BoundingBoxTarget.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxTarget.cs) script. This script gives objects in the scene ability to request the Holobar and bounding box by linking the two prefabs together. It essentially is the glue to make all of the MRDesignLab manipulation components talk to each other. Assign BoundingBoxTarget.cs script to any objects that you want to use bounding box and app bar.
+The [ManipulationManager.cs](https://github.com/Microsoft/MRDesignLabs_Unity_Tools/blob/master/HUX/Scripts/Interaction/ManipulationManager.cs) component makes it easy to ensure that the prefabs necessary for [BoundingBoxTarget.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxTarget.cs) to function are present in your scene. This singleton instantiates **AppBar.prefab** and **BoundingBoxShell.prefab** on startup and provides properties to access them both.
 
+The second, **AppBar.prefab**, behaves much like a singleton. You only need one in your scene hierarchy. The AppBar.prefab has a [AppBar.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Dialogs/AppBar.cs) script which handles all of the properties of how and what the Holobar should display.
+
+The third is the **BoundingBoxShell.prefab**. This prefab works much like the AppBar.prefab. You only need one bounding box in the scene. If an object in the scene is put into adjust mode, the object will take the bounding box from the last adjusted object. The prefab has two scripts associated with it. The [BoundingBoxManipulate.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxManipulate.cs) script which does the actual manipulating of the object its currently assigned to. The other script is the  [BoundingBoxGizmoShell.cs](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDesignLab/HUX/Scripts/Interaction/BoundingBoxGizmoShell.cs) prefab. This script handles the visual representation of the bounding box and renders the transform affordances dynamically.
+
+This is only one way to use BoundingBox components. If you want a custom manipulation style or a unique look we recommend you extend the BoundingBox.cs and BoundingBoxGizmo.cs base classes to create your own BoundingBox prefabs.
 
 Clone and open the project [MRDesignLabs_Unity](https://github.com/Microsoft/MRDesignLabs_Unity) in Unity.
 
@@ -175,3 +180,57 @@ You can find the **AppBar.prefab** in [/MRDesignLab/HUX/Prefabs/Dialogs](https:/
 
 Apply the **BoundingBoxTarget.cs** [/MRDesignLab/HUX/Scripts/interaction/](https://github.com/Microsoft/MRDesignLabs_Unity/tree/master/DesignLabs_Unity/Assets/MRDesignLab/HUX/Scripts/Interaction/) script to any object in the scene to enable object manipulation. The script provides full customization of how the object can transform. The default set is Drag, ScaleUniform, and RotateY.
 
+
+## Billboarding and tag-along
+
+### What is billboarding? ###
+
+Billboarding is a behavioral concept that can be applied to objects in mixed reality. Objects with billboarding always orient themselves to face the user. This is especially helpful with text and menuing systems where world-locked objects would be otherwise obscured or unreadable if a user were to move around their environment.   
+
+Objects with billboarding enabled can rotate freely, or on the Y axis depending on where they may be placed in the environment. Keep in mind, billboarded objects may clip or occlude themselves if they are placed too close to other objects, or in HoloLens, too close scanned surfaces. To avoid this, think about the total footprint an object may produce when rotated on the axis enabled for billboarding.
+
+### How to use billboarding ###
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Billboarding-fragments.gif" alt="Billboarding menu system in Fragments">
+
+Billboarding can be applied to any world-locked object. It simply creates a directional vector that points from the user to the object. On update, the script applies a LookRotation Quaternion that is the negative value of the directional vector to the object’s rotation transform. To use billboarding, follow the steps below: 
+
+1. Clone and open the project MRDesignLabs_Unity in Unity. In this project, you can find the Billboard.cs script under /Assets/HoloToolKit/Utilities/Scripts.
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/billboard-dialogue.png" alt="Billboarding properties in the inspector">
+2. To create a enable billboarding behavior, assign the Billboard.cs script to any GameObject or prefab in the scene. 
+
+3. Once the script is applied to an object, you can choose between free and Y for the pivot axis of the billboard.
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/NewHLCamera.png" alt="Use the HUX menu to create a new HoloLens camera instance">
+The Billboard.cs script is calculated based on the camera with the tag MainCamera. To make things easy just use the Default HoloLens camera Prefab provided in MRDesignLabs_Unity as your camera. It can be found at /MRDesignLab/Hux/Prefab/Interface. Additionally, once MRDesignLabs is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
+
+### What is tag-along? ###
+
+Tag-along is a behavioral concept that can be added to holograms, including billboarded objects. This interaction is a more natural and friendly way of achieving the effect of head-locked content. A tag-along object attempts to never leave the user's view. This enables freely interact with what is front of them while also still seeing the holograms outside their direct view.
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/TagAlong.jpg" alt="Tag-along behavior in the pins panel">
+
+Tag-along objects have parameters which can fine-tune the way they behave. Content can be in or out of the user’s line of sight as desired while the user moves around their environment. As the user moves, the content will attempt to stay within the user’s periphery by sliding towards the edge of the view, depending on how quickly a user moves may leave the content temporarily out of view. When the user gazes towards the tag-along object, it comes more fully into view. Think of content always being "a glance away" so users never forget what direction their content is in.
+
+Additional parameters can make the tag-along object feel attached to the user's head by a rubber band. Dampening acceleration or deceleration gives weight to the object making it feel more physically present. This spring behavior is an affordance that helps the user build an accurate mental model of how tag-along works. Audio helps provide additional affordances for when users have objects in tag-along mode. Audio should reinforce the speed of movement; a fast head turn should provide a more noticeable sound effect while walking at a natural speed should have minimal audio if any effects at all.
+
+Just like truly head-locked content, tag-along objects can prove overwhelming or nauseating if they move wildly or spring too much in the user’s view. As users look around and then quickly stop, the user’s senses tell them they have stopped. Their balance informs them their head has stopped turning as well as their vision sees the world stop turning. However, if tag-along keeps on moving when the user has stopped, it may confuse their senses.
+
+### How to use tag-along ###
+
+The simplest way to create the effect of tag-along behavior is to cast a cone from the user's camera. As the user's head turns, the tag-along object is calculated on update to stay within the bounds of the base of the cone. This functionality can be applied to your scene below.
+
+1. Clone and open the project MRDesignLabs_Unity in Unity.
+2. You can find the RadialViewSolver prefab under /MRDesignLab/HUX/Prefabs/Spatial/Solvers/.
+ 
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/radialViewSolverApplied.PNG" alt="Unity scene hierarchy with Radial view solver applied">
+To apply the tag-along behavior to an object in the scene, add a RadialViewSolver prefab to the scene. Drag any object or prefab the onto RadialViewSolver so it becomes a child. 
+
+
+<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/NewHLCamera.png" alt="Use the HUX menu to create a new HoloLens camera instance">
+The RadialViewSolver's scripts are calculated based on the Default HololensCamera prefab provided in MRDesignLabs_Unity as your camera. It can be found at /MRDesignLab/Hux/Prefab/Interface. Additionally, once MRDesignLabs is in your unity project, you can use the menu system to create an instance of the HoloLens default camera. 
+
+MRDesignLabs also provides a RectViewSolver script which behaves the same as RadialViewSolver but casts a pyramid instead of a cone. /MRDesignLab/HUX/Scripts/Spatial/Solvers/. Replace the RadialViewSolver.cs with this script.

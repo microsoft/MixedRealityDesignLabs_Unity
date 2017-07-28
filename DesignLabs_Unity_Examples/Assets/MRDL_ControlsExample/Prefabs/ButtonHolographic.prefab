@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 1248559929496356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0048, z: -0.0075}
-  m_LocalScale: {x: 0.000225, y: 0.000225, z: 0.000225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4666554649646858}
   m_RootOrder: 2
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f67074a40850544a196681fad1325f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundProfile: {fileID: 11400000, guid: f9af5d824507da24b8bbd97f4948aec7, type: 2}
+  Profile: {fileID: 11400000, guid: f9af5d824507da24b8bbd97f4948aec7, type: 2}
   audioSource: {fileID: 0}
 --- !u!114 &114724965930856538
 MonoBehaviour:
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff02dbb374b62340a93479237fb9319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IconProfile: {fileID: 11400000, guid: a9c1795616f7f6d4a9e866e757eb2b46, type: 2}
+  Profile: {fileID: 11400000, guid: a9c1795616f7f6d4a9e866e757eb2b46, type: 2}
   DisableIcon: 0
   OverrideIcon: 0
   iconOverride: {fileID: 0}
@@ -467,8 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc886b5774e0184990bff0ce51eaf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: 470603dbc72fbc14f8c1b69d314faf75, type: 2}
   TextMesh: {fileID: 102082490485545312}
-  TextProfile: {fileID: 11400000, guid: 470603dbc72fbc14f8c1b69d314faf75, type: 2}
   OverrideFontStyle: 0
   Style: 0
   OverrideAnchor: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86772d5ca853e924ba484bc960537c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeshProfile: {fileID: 11400000, guid: 041d19d84778e4544a8a7cf1c4783f9c, type: 2}
+  Profile: {fileID: 11400000, guid: 041d19d84778e4544a8a7cf1c4783f9c, type: 2}
   TargetTransform: {fileID: 4666554649646858}
   Renderer: {fileID: 23082058135631330}
   MeshFilter: {fileID: 33935470722482786}

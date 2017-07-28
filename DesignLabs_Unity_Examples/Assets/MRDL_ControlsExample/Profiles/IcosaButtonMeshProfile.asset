@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa22bce62b991ca4b9aadff296ae1e8b, type: 3}
   m_Name: IcosaButtonMeshProfile
   m_EditorClassIdentifier: 
-  ColorPropertyName: _Color
+  ColorPropertyName: 
   ValuePropertyName: 
   SmoothStateChanges: 1
   StickyPressedEvents: 0
