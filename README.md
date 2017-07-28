@@ -11,10 +11,14 @@ As soon as you clone the repo, init and update submodule with git command:
 cd MRDesignLabs_Unity
 git submodule init
 git submodule update
+```
+
+To update the submodules you'll still need to pull from master by either going into the individual submodule directory and doing a git pull or by doing the following command to do pulls on all the submodules:
+```
 git submodule foreach git pull
 ```
-This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_Unity_tools) under Assets/MRDesignLab/ folder
 
+This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_Unity_tools) under Assets/MRDesignLab/ folder
 
 # Common controls and examples
 Find out technical details on Wiki page:
