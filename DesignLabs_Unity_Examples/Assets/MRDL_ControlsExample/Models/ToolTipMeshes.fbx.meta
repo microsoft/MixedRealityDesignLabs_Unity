@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 700a4a785d3adcd41ba165065e0b91b8
+timeCreated: 1502898690
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Camera
+    100002: CubistBackground
+    100004: CubistBotLeft
+    100006: CubistBotRight
+    100008: CubistTopLeft
+    100010: CubistTopRight
+    100012: Directional Light
+    100014: //RootNode
+    100016: CubistLine
+    100018: Texture Group
+    100020: ModernBotLeft
+    100022: ModernBotRight
+    100024: ModernTopLeft
+    100026: ModernTopRight
+    100028: CubistShape
+    100030: Texture Group (2)
+    400000: Camera
+    400002: CubistBackground
+    400004: CubistBotLeft
+    400006: CubistBotRight
+    400008: CubistTopLeft
+    400010: CubistTopRight
+    400012: Directional Light
+    400014: //RootNode
+    400016: CubistLine
+    400018: Texture Group
+    400020: ModernBotLeft
+    400022: ModernBotRight
+    400024: ModernTopLeft
+    400026: ModernTopRight
+    400028: CubistShape
+    400030: Texture Group (2)
+    2300000: CubistBackground
+    2300002: CubistBotLeft
+    2300004: CubistBotRight
+    2300006: CubistTopLeft
+    2300008: CubistTopRight
+    2300010: CubistLine
+    2300012: ModernBotLeft
+    2300014: ModernBotRight
+    2300016: ModernTopLeft
+    2300018: ModernTopRight
+    2300020: CubistShape
+    3300000: CubistBackground
+    3300002: CubistBotLeft
+    3300004: CubistBotRight
+    3300006: CubistTopLeft
+    3300008: CubistTopRight
+    3300010: CubistLine
+    3300012: ModernBotLeft
+    3300014: ModernBotRight
+    3300016: ModernTopLeft
+    3300018: ModernTopRight
+    3300020: CubistShape
+    4300000: CubistTopLeft
+    4300002: CubistBotRight
+    4300004: CubistTopRight
+    4300006: CubistBotLeft
+    4300008: CubistBackground
+    4300010: CubistLine
+    4300012: ModernTopLeft
+    4300014: ModernTopRight
+    4300016: ModernBotLeft
+    4300018: ModernBotRight
+    4300020: CubistShape
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
