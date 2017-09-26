@@ -4,6 +4,7 @@
 //
 
 using UnityEngine;
+using System.Collections;
 using System.Net;
 using System;
 using System.IO;
@@ -418,7 +419,7 @@ namespace HoloToolkit.Unity
                     // Open it up in default text editor
                     System.Diagnostics.Process.Start(logFile);
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
                     Debug.LogError(ex.ToString());
                     return false;

@@ -48,11 +48,6 @@ namespace HoloToolkit.Unity.SpatialMapping
         public float StartTime { get; private set; }
 
         /// <summary>
-        /// SurfaceMappingObserver GET
-        /// </summary>
-        public SpatialMappingObserver SurfaceObserver { get { return surfaceObserver; } }
-
-        /// <summary>
         /// The current source of spatial mapping data.
         /// </summary>
         public SpatialMappingSource Source
@@ -212,7 +207,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
 #if UNITY_EDITOR || UNITY_UWP
             // Allow observering if a device is present (Holographic Remoting)
-            if (!UnityEngine.VR.VRDevice.isPresent) return;
+            if (!UnityEngine.XR.XRDevice.isPresent) return;
 #endif
             if (!IsObserverRunning())
             {
@@ -228,7 +223,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         {
 #if UNITY_EDITOR || UNITY_UWP
             // Allow observering if a device is present (Holographic Remoting)
-            if (!UnityEngine.VR.VRDevice.isPresent) return;
+            if (!UnityEngine.XR.XRDevice.isPresent) return;
 #endif
             if (IsObserverRunning())
             {

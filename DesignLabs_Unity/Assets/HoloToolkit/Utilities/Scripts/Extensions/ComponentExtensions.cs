@@ -9,7 +9,7 @@ namespace HoloToolkit.Unity
 {
     /// <summary>
     /// Extensions methods for the Unity Component class.
-    /// This also includes some component-related extensions for the GameObject class.
+    /// This also includes some component-related extensions for the GameObjet class.
     /// </summary>
     public static class ComponentExtensions
     {

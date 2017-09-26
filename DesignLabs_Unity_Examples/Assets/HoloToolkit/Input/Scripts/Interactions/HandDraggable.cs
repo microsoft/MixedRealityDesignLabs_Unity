@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEngine;
@@ -31,24 +31,12 @@ namespace HoloToolkit.Unity.InputModule
 
         [Tooltip("Scale by which hand movement in z is multipled to move the dragged object.")]
         public float DistanceScale = 2f;
-        
-        public enum RotationModeEnum
-        {
-            Default,
-            LockObjectRotation,
-            OrientTowardUser,
-            OrientTowardUserAndKeepUpright
-        }
 
-        public RotationModeEnum RotationMode = RotationModeEnum.Default;
+        [Tooltip("Should the object be kept upright as it is being dragged?")]
+        public bool IsKeepUpright = false;
 
-        [Tooltip("Controls the speed at which the object will interpolate toward the desired position")]
-        [Range(0.01f, 1.0f)]
-        public float PositionLerpSpeed = 0.2f;
-
-        [Tooltip("Controls the speed at which the object will interpolate toward the desired rotation")]
-        [Range(0.01f, 1.0f)]
-        public float RotationLerpSpeed = 0.2f;
+        [Tooltip("Should the object be oriented towards the user as it is being dragged?")]
+        public bool IsOrientTowardsUser = true;
 
         public bool IsDraggingEnabled = true;
 
@@ -102,7 +90,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Starts dragging the object.
         /// </summary>
-        public void StartDragging()
+        public void StartDragging(Vector3 initialDraggingPosition)
         {
             if (!IsDraggingEnabled)
             {
@@ -114,6 +102,9 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
+            // TODO: robertes: Fix push/pop and single-handler model so that multiple HandDraggable components
+            //       can be active at once.
+
             // Add self as a modal input handler, to get all inputs during the manipulation
             InputManager.Instance.PushModalInputHandler(gameObject);
 
@@ -121,21 +112,20 @@ namespace HoloToolkit.Unity.InputModule
             //GazeCursor.Instance.SetState(GazeCursor.State.Move);
             //GazeCursor.Instance.SetTargetObject(HostTransform);
 
-            Vector3 gazeHitPosition = GazeManager.Instance.HitInfo.point;
             Vector3 handPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out handPosition);
+            currentInputSource.TryGetGripPosition(currentInputSourceId, out handPosition);
 
             Vector3 pivotPosition = GetHandPivotPosition();
             handRefDistance = Vector3.Magnitude(handPosition - pivotPosition);
-            objRefDistance = Vector3.Magnitude(gazeHitPosition - pivotPosition);
+            objRefDistance = Vector3.Magnitude(initialDraggingPosition - pivotPosition);
 
             Vector3 objForward = HostTransform.forward;
             Vector3 objUp = HostTransform.up;
 
             // Store where the object was grabbed from
-            objRefGrabPoint = mainCamera.transform.InverseTransformDirection(HostTransform.position - gazeHitPosition);
+            objRefGrabPoint = mainCamera.transform.InverseTransformDirection(HostTransform.position - initialDraggingPosition);
 
-            Vector3 objDirection = Vector3.Normalize(gazeHitPosition - pivotPosition);
+            Vector3 objDirection = Vector3.Normalize(initialDraggingPosition - pivotPosition);
             Vector3 handDirection = Vector3.Normalize(handPosition - pivotPosition);
 
             objForward = mainCamera.transform.InverseTransformDirection(objForward);       // in camera space
@@ -148,7 +138,7 @@ namespace HoloToolkit.Unity.InputModule
 
             // Store the initial offset between the hand and the object, so that we can consider it when dragging
             gazeAngularOffset = Quaternion.FromToRotation(handDirection, objDirection);
-            draggingPosition = gazeHitPosition;
+            draggingPosition = initialDraggingPosition;
 
             StartedDragging.RaiseEvent();
         }
@@ -188,7 +178,7 @@ namespace HoloToolkit.Unity.InputModule
         private void UpdateDragging()
         {
             Vector3 newHandPosition;
-            currentInputSource.TryGetPosition(currentInputSourceId, out newHandPosition);
+            currentInputSource.TryGetGripPosition(currentInputSourceId, out newHandPosition);
 
             Vector3 pivotPosition = GetHandPivotPosition();
 
@@ -206,15 +196,11 @@ namespace HoloToolkit.Unity.InputModule
 
             draggingPosition = pivotPosition + (targetDirection * targetDistance);
 
-            if (RotationMode == RotationModeEnum.OrientTowardUser || RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright) 
+            if (IsOrientTowardsUser)
             {
                 draggingRotation = Quaternion.LookRotation(HostTransform.position - pivotPosition);
             }
-            else if (RotationMode == RotationModeEnum.LockObjectRotation)
-            {
-                draggingRotation = HostTransform.rotation;
-            }
-            else // RotationModeEnum.Default
+            else
             {
                 Vector3 objForward = mainCamera.transform.TransformDirection(objRefForward); // in world space
                 Vector3 objUp = mainCamera.transform.TransformDirection(objRefUp);   // in world space
@@ -222,14 +208,13 @@ namespace HoloToolkit.Unity.InputModule
             }
 
             // Apply Final Position
-            HostTransform.position = Vector3.Lerp(HostTransform.position, draggingPosition + mainCamera.transform.TransformDirection(objRefGrabPoint), PositionLerpSpeed);
-            // Apply Final Rotation
-            HostTransform.rotation = Quaternion.Lerp(HostTransform.rotation, draggingRotation, RotationLerpSpeed);
+            HostTransform.position = draggingPosition + mainCamera.transform.TransformDirection(objRefGrabPoint);
+            HostTransform.rotation = draggingRotation;
 
-            if (RotationMode == RotationModeEnum.OrientTowardUserAndKeepUpright)		
-            {		
-                Quaternion upRotation = Quaternion.FromToRotation(HostTransform.up, Vector3.up);		
-                HostTransform.rotation = upRotation * HostTransform.rotation;		
+            if (IsKeepUpright)
+            {
+                Quaternion upRotation = Quaternion.FromToRotation(HostTransform.up, Vector3.up);
+                HostTransform.rotation = upRotation * HostTransform.rotation;
             }
         }
 
@@ -286,6 +271,8 @@ namespace HoloToolkit.Unity.InputModule
             if (currentInputSource != null &&
                 eventData.SourceId == currentInputSourceId)
             {
+                eventData.Use(); // Mark the event as used, so it doesn't fall through to other handlers.
+
                 StopDragging();
             }
         }
@@ -304,9 +291,18 @@ namespace HoloToolkit.Unity.InputModule
                 return;
             }
 
+            eventData.Use(); // Mark the event as used, so it doesn't fall through to other handlers.
+
             currentInputSource = eventData.InputSource;
             currentInputSourceId = eventData.SourceId;
-            StartDragging();
+
+            FocusDetails? details = FocusManager.Instance.TryGetFocusDetails(eventData);
+
+            Vector3 initialDraggingPosition = (details == null)
+                ? HostTransform.position
+                : details.Value.Point;
+
+            StartDragging(initialDraggingPosition);
         }
 
         public void OnSourceDetected(SourceStateEventData eventData)

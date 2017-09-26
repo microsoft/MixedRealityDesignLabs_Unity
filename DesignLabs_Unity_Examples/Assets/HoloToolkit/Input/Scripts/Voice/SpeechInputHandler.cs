@@ -10,7 +10,7 @@ namespace HoloToolkit.Unity.InputModule
 {
     public class SpeechInputHandler : MonoBehaviour, ISpeechHandler
     {
-        [Serializable]
+        [System.Serializable]
         public struct KeywordAndResponse
         {
             [Tooltip("The keyword to handle.")]
@@ -20,24 +20,21 @@ namespace HoloToolkit.Unity.InputModule
         }
 
         [Tooltip("The keywords to be recognized and optional keyboard shortcuts.")]
-        public KeywordAndResponse[] Keywords;
-
-        [Tooltip("Determines if this handler is a global listener, not connected to a specific gameobject")]
-        public bool IsGlobalListener = false;
+        public KeywordAndResponse[] keywords;
 
         [NonSerialized]
         private readonly Dictionary<string, UnityEvent> responses = new Dictionary<string, UnityEvent>();
 
+        // Use this for initialization
         protected virtual void Start()
         {
             // Convert the struct array into a dictionary, with the keywords and the methods as the values.
             // This helps easily link the keyword recognized to the UnityEvent to be invoked.
-            int keywordCount = Keywords.Length;
+            int keywordCount = keywords.Length;
             for (int index = 0; index < keywordCount; index++)
             {
-                KeywordAndResponse keywordAndResponse = Keywords[index];
+                KeywordAndResponse keywordAndResponse = keywords[index];
                 string keyword = keywordAndResponse.Keyword.ToLower();
-
                 if (responses.ContainsKey(keyword))
                 {
                     Debug.LogError("Duplicate keyword '" + keyword + "' specified in '" + gameObject.name + "'.");
@@ -46,10 +43,6 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     responses.Add(keyword, keywordAndResponse.Response);
                 }
-            }
-            if (IsGlobalListener)
-            {
-                InputManager.Instance.AddGlobalListener(gameObject);
             }
         }
 

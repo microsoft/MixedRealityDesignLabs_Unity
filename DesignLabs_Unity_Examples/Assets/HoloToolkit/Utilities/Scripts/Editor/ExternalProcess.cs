@@ -31,10 +31,10 @@ namespace HoloToolkit.Unity
 
         private IntPtr mHandle;
 
-        /// <summary>
-        /// First some static utility functions, used by some other code as well.
-        /// They are related to "external processes" so they appear here.
-        /// </summary>
+        /*
+        * First some static utility functions, used by some other code as well.
+        * They are related to "external processes" so they appear here.
+        */
         private static string sAppDataPath;
 
         public static void Launch(string appName)
@@ -136,11 +136,9 @@ namespace HoloToolkit.Unity
             return relativePath.OriginalString;
         }
 
-        /// <summary>
-        /// The actual ExternalProcess class.
-        /// </summary>
-        /// <param name="appName"></param>
-        /// <returns></returns>
+        /*
+        * The actual ExternalProcess class.
+        */
         public static ExternalProcess CreateExternalProcess(string appName)
         {
             return CreateExternalProcess(appName, null);

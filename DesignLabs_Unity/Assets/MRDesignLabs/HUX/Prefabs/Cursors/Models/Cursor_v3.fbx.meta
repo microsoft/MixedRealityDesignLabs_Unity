@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: de72572043603e540ba81358b8ce65ff
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: cursor_interaction_ring_geo
+    100002: cursor_main_interaction_shadowGlow_geo
+    100004: cursor_main_observation_geo
+    100006: cursor_main_observation_shadowGlow_card
+    100008: CURSOR_main_offset
+    100010: cursor_main_press_geo
+    100012: cursor_main_press_shadowGlow_card
+    100014: CURSOR_offset
+    100016: //RootNode
+    100018: main_interaction
+    100020: main_interaction_root
+    100022: main_interaction_scale
+    100024: main_observation
+    100026: main_observation_root
+    100028: main_observation_scale
+    100030: main_press
+    100032: main_press_root
+    100034: main_press_scale
+    100036: pPlane6
+    400000: cursor_interaction_ring_geo
+    400002: cursor_main_interaction_shadowGlow_geo
+    400004: cursor_main_observation_geo
+    400006: cursor_main_observation_shadowGlow_card
+    400008: CURSOR_main_offset
+    400010: cursor_main_press_geo
+    400012: cursor_main_press_shadowGlow_card
+    400014: CURSOR_offset
+    400016: //RootNode
+    400018: main_interaction
+    400020: main_interaction_root
+    400022: main_interaction_scale
+    400024: main_observation
+    400026: main_observation_root
+    400028: main_observation_scale
+    400030: main_press
+    400032: main_press_root
+    400034: main_press_scale
+    400036: pPlane6
+    2300000: cursor_interaction_ring_geo
+    2300002: cursor_main_interaction_shadowGlow_geo
+    2300004: cursor_main_observation_geo
+    2300006: cursor_main_observation_shadowGlow_card
+    2300008: cursor_main_press_geo
+    2300010: cursor_main_press_shadowGlow_card
+    2300012: pPlane6
+    3300000: cursor_interaction_ring_geo
+    3300002: cursor_main_interaction_shadowGlow_geo
+    3300004: cursor_main_observation_geo
+    3300006: cursor_main_observation_shadowGlow_card
+    3300008: cursor_main_press_geo
+    3300010: cursor_main_press_shadowGlow_card
+    3300012: pPlane6
+    4300000: cursor_main_press_shadowGlow_card
+    4300002: cursor_main_press_geo
+    4300004: cursor_main_observation_shadowGlow_card
+    4300006: cursor_main_observation_geo
+    4300008: cursor_main_interaction_shadowGlow_geo
+    4300010: cursor_interaction_ring_geo
+    4300012: pPlane6
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    pivotNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 

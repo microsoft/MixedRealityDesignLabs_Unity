@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MRDesignLabs/HUX/Examples/ControllerExample.unity
+    guid: 4067ba3aabfd29e488697d958ee5c856

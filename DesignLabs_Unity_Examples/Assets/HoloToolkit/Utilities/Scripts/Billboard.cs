@@ -14,7 +14,8 @@ namespace HoloToolkit.Unity
     }
 
     /// <summary>
-    /// The Billboard class implements the behaviors needed to keep a GameObject oriented towards the user.
+    /// The Billboard class implements the behaviors needed to keep a GameObject 
+    /// oriented towards the user.
     /// </summary>
     public class Billboard : MonoBehaviour
     {
@@ -24,16 +25,8 @@ namespace HoloToolkit.Unity
         [Tooltip("Specifies the axis about which the object will rotate.")]
         public PivotAxis PivotAxis = PivotAxis.Free;
 
-        [Tooltip("Specifies the target we will orient to. If no Target is specified the main camera will be used.")]
-        public Transform TargetTransform;
-
         private void OnEnable()
         {
-            if (TargetTransform == null)
-            {
-                TargetTransform = Camera.main.transform;
-            }
-
             Update();
         }
 
@@ -42,13 +35,13 @@ namespace HoloToolkit.Unity
         /// </summary>
         private void Update()
         {
-            if (TargetTransform == null)
+            if (!Camera.main)
             {
                 return;
             }
 
             // Get a Vector that points from the target to the main camera.
-            Vector3 directionToTarget = TargetTransform.position - transform.position;
+            Vector3 directionToTarget = Camera.main.transform.position - transform.position;
 
             // Adjust for the pivot axis.
             switch (PivotAxis)
