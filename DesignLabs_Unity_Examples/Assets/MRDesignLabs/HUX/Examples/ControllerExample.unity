@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 187639683}
-  - component: {fileID: 187639684}
   m_Layer: 0
   m_Name: MotionControllers
   m_TagString: Untagged
@@ -145,26 +144,6 @@ Transform:
   m_Father: {fileID: 1025656712}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &187639684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114423343260862302, guid: e1a3c5f7154774f4fbf0b8b9b2714bcf,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 187639682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50dd6c73dc39c094baa075c51741a5da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftControllerModelPrefab: {fileID: 1271838405576960, guid: ddd7f8f27e03d624a857c2555ab633ee,
-    type: 2}
-  RightControllerModelPrefab: {fileID: 1211045288455414, guid: 7193cc74e4811d143a39bed7f19aa1c7,
-    type: 2}
-  LeftControllerInputSource: {fileID: 2006842444}
-  RightControllerInputSource: {fileID: 629770252}
-  TouchpadTouchedOverride: {fileID: 0}
-  GLTFShader: {fileID: 0}
 --- !u!1 &342292153
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,8 +632,9 @@ MonoBehaviour:
       pressed: 0
       prevPressed: 0
   debugSphere: {fileID: 0}
-  MotionControllerReceiver: {fileID: 187639684}
-  handedness: 2
+  Handedness: 2
+  ControllerPrefab: {fileID: 1211045288455414, guid: 7193cc74e4811d143a39bed7f19aa1c7,
+    type: 2}
 --- !u!1 &643298990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,5 +1653,6 @@ MonoBehaviour:
       pressed: 0
       prevPressed: 0
   debugSphere: {fileID: 0}
-  MotionControllerReceiver: {fileID: 187639684}
-  handedness: 1
+  Handedness: 1
+  ControllerPrefab: {fileID: 1271838405576960, guid: ddd7f8f27e03d624a857c2555ab633ee,
+    type: 2}

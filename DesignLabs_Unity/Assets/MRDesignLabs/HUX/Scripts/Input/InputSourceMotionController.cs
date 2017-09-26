@@ -10,68 +10,103 @@ using UnityEngine.XR.WSA.Input;
 
 public class InputSourceMotionController : InputSourceSixDOFBase
 {
-    public InputMotionControllerReceiver MotionControllerReceiver;
-    
-    /*#region Events
-    public event Action<InputSourceMotionController> MenuButtonClicked = delegate { };
-    public event Action<InputSourceMotionController> MenuButtonUnclicked = delegate { };
-    public event Action<InputSourceMotionController> TriggerClicked = delegate { };
-    public event Action<InputSourceMotionController> TriggerUnclicked = delegate { };
-    public event Action<InputSourceMotionController> PadClicked = delegate { };
-    public event Action<InputSourceMotionController> PadUnclicked = delegate { };
-    public event Action<InputSourceMotionController> PadTouched = delegate { };
-    public event Action<InputSourceMotionController> PadUntouched = delegate { };
-    public event Action<InputSourceMotionController> Gripped = delegate { };
-    public event Action<InputSourceMotionController> Ungripped = delegate { };
-    #endregion*/
+    [Tooltip("Handedness for motion controller")] 
+    public InteractionSourceHandedness Handedness = InteractionSourceHandedness.Right;
+    public GameObject ControllerPrefab;
 
-//public override Vector3 position
-//{
-//    get
-//    {
-//        Debug.Log(m_Position);
-//        return m_Position;
-//    }
-//}
-
-//public override Quaternion rotation
-//{
-//    get { return m_Rotation; }
-//}
-
-#if UNITY_WSA
-    private Transform GetTransform(InteractionSourceHandedness hand)
+    public class ControllerState
     {
-        ControllerInfo controllerInfo = null;
-        if(MotionControllerReceiver != null)
+        public InteractionSourceHandedness Handedness; 
+        public Vector3 PointerPosition = Vector3.zero; 
+        public Quaternion PointerRotation = Quaternion.identity; 
+        public Vector3 GripPosition = Vector3.zero; 
+        public Quaternion GripRotation = Quaternion.identity; 
+        public bool Grasped; 
+        public bool MenuPressed; 
+        public bool SelectPressed; 
+        public float SelectPressedAmount; 
+        public bool ThumbstickPressed; 
+        public Vector2 ThumbstickPosition = Vector2.zero; 
+        public bool TouchpadPressed; 
+        public bool TouchpadTouched; 
+        public Vector2 TouchpadPosition = Vector2.zero;
+        public Vector3 LinearVelocity = Vector3.zero;
+        public Vector3 AngularVelocity = Vector3.zero;
+    }
+
+    public ControllerState CurrentState { get { return m_currentState; } } 
+    public uint ID { get { return m_controllerID; } } 
+
+    private ControllerState m_currentState = new ControllerState(); 
+    private uint m_controllerID; 
+    private bool m_controllerPresent;
+    private GameObject m_controller;
+
+    public void OnEnable()
+    {
+#if UNITY_WSA
+        InteractionManager.InteractionSourceDetected += InteractionManager_InteractionSourceDetected;
+        InteractionManager.InteractionSourceLost += InteractionManager_InteractionSourceLost;
+        InteractionManager.InteractionSourceUpdated += InteractionManager_InteractionSourceUpdated;
+#endif
+        if (ControllerPrefab != null)
         {
-            if (hand == InteractionSourceHandedness.Left)
+            m_controller = Instantiate(ControllerPrefab, transform);
+            m_controller.transform.localPosition = Vector3.zero;
+        }
+    }
+
+    public void OnDisable()
+    {
+#if UNITY_WSA
+        InteractionManager.InteractionSourceDetected -= InteractionManager_InteractionSourceDetected;
+        InteractionManager.InteractionSourceLost -= InteractionManager_InteractionSourceLost;
+        InteractionManager.InteractionSourceUpdated -= InteractionManager_InteractionSourceUpdated;
+#endif
+        if(m_controller != null)
+        {
+            Destroy(m_controller);
+        }
+    }
+
+    private void InteractionManager_InteractionSourceUpdated(InteractionSourceUpdatedEventArgs obj)
+    {
+        if (IsSourceValid(obj.state.source) && m_controllerID == obj.state.source.id)
+        {
+            UpdateState(obj.state);
+        }
+    }
+
+    private void InteractionManager_InteractionSourceLost(InteractionSourceLostEventArgs obj)
+    {
+        if (IsSourceValid(obj.state.source) && m_controllerID == obj.state.source.id)
+        {
+            m_controllerPresent = false;
+        }
+    }
+
+    private void InteractionManager_InteractionSourceDetected(InteractionSourceDetectedEventArgs obj)
+    {
+        if (IsSourceValid(obj.state.source))
+        {
+            if (!m_controllerPresent)
             {
-                controllerInfo = MotionControllerReceiver.controllerDictionary.Where(x => x.Value.name.Equals("LeftController")).Select(x=>x.Value).FirstOrDefault();
+                m_controllerID = obj.state.source.id;
+                UpdateState(obj.state);
+                m_controllerPresent = true;
             }
-            else if (hand == InteractionSourceHandedness.Right)
+            else 
             {
-                controllerInfo = MotionControllerReceiver.controllerDictionary.Where(x => x.Value.name.Equals("RightController")).Select(x => x.Value).FirstOrDefault();
+                Debug.LogWarning("[MotionControllerInput] Two same handed controllers present!");
             }
         }
-
-        Transform trans = null;
-        if (controllerInfo != null)
-            trans = controllerInfo.GetComponent<Transform>();
-        return trans;
     }
-#endif
+
     public override Vector3 position
     {
         get
         {
-            float locationShift = 0f;
-#if UNITY_WSA
-            locationShift = (this.handedness == InteractionSourceHandedness.Left) ? -0.01f : 0.01f;
-            Transform transform = GetTransform(this.handedness);
-#endif
-            // magic numbers by Noble
-            return transform != null ? transform.position + new Vector3(locationShift, -0.02f, 0.0075f) : Vector3.one;
+            return m_currentState.PointerPosition;
         }
     }
 
@@ -79,146 +114,98 @@ public class InputSourceMotionController : InputSourceSixDOFBase
     {
         get
         {
-#if UNITY_WSA
-            Transform transform = GetTransform(this.handedness);
-#endif
-            return transform != null ? transform.rotation * Quaternion.Euler(45f, 0, 0) : Quaternion.identity;
+            return m_currentState.PointerRotation;
         }
     }
 
 
-    /// <summary>
-    /// Returns a rotation between -180 and 180.
-    /// </summary>
-    public float Yaw
+
+    private bool IsSourceValid(InteractionSource source)
+    { 
+        return source.kind == InteractionSourceKind.Controller && source.handedness == Handedness;  
+    } 
+
+    /// <summary> 
+    /// Process the updated pose data 
+    /// </summary> 
+    /// <param name="sourcePose"></param> 
+    private void UpdatePose(InteractionSourcePose sourcePose)
+    { 
+        sourcePose.TryGetPosition(out m_currentState.PointerPosition, InteractionSourceNode.Pointer); 
+        sourcePose.TryGetRotation(out m_currentState.PointerRotation, InteractionSourceNode.Pointer); 
+        sourcePose.TryGetPosition(out m_currentState.GripPosition, InteractionSourceNode.Grip); 
+        sourcePose.TryGetRotation(out m_currentState.GripRotation, InteractionSourceNode.Grip);
+
+        sourcePose.TryGetAngularVelocity(out m_currentState.AngularVelocity);
+        sourcePose.TryGetVelocity(out m_currentState.LinearVelocity);
+
+        if(m_controller != null)
+        {
+            m_controller.transform.position = m_currentState.PointerPosition;
+            m_controller.transform.rotation = m_currentState.PointerRotation;
+        }
+    } 
+
+    /// <summary> 
+    /// Update the state info from an interaction source state 
+    /// </summary> 
+    private void UpdateState(InteractionSourceState sourceState)
     {
-        get
-        {
-            Quaternion rot = rotation;
-            return Mathf.Asin((2.0f * rot.x * rot.y) + (2.0f * rot.z * rot.w)) * Mathf.Rad2Deg;
-        }
-    }
+        UpdatePose(sourceState.sourcePose); 
 
-    /// <summary>
-    /// Returns a rotation between -180 and 180.
-    /// </summary>
-    public float Roll
-    {
-        get
-        {
-            Quaternion rot = rotation;
-            return Mathf.Atan2((2.0f * rot.y * rot.w) - (2.0f * rot.x * rot.z), 1 - (2.0f * rot.y * rot.y) - (2.0f * rot.z * rot.z)) * Mathf.Rad2Deg;
-        }
-    }
-
-    /// <summary>
-    /// Returns a rotation between -180 and 180.
-    /// </summary>
-    public float Pitch
-    {
-        get
-        {
-            Quaternion rot = rotation;
-            return Mathf.Atan2((2.0f * rot.x * rot.w) - (2.0f * rot.y * rot.z), 1 - (2.0f * rot.x * rot.x) - (2.0f * rot.z * rot.z)) * Mathf.Rad2Deg;
-        }
-    }
-
-    public void UpdateInput(InteractionSourceUpdatedEventArgs obj)
-    {
-        // Position
-        Vector3 newPosition;
-        if (obj.state.sourcePose.TryGetPosition(out newPosition, InteractionSourceNode.Grip))
-        {
-            m_Position = newPosition;
-        }
-
-        // Rotation
-        Quaternion newRotation;
-        if (obj.state.sourcePose.TryGetRotation(out newRotation, InteractionSourceNode.Grip))
-        {
-            m_Rotation = newRotation;
-        }
-
-        // Select/Trigger
-        m_ButtonSelectPressed = obj.state.selectPressed;
-        m_SelectPressedAmount = obj.state.selectPressedAmount;
-
-        // Menu
-        m_ButtonMenuPressed = obj.state.menuPressed;
-
-        // Grip
-        m_ButtonGripPressed = obj.state.grasped;
-
-        // Touchpad
-        m_PadTouchPosition = obj.state.touchpadPosition;
-        m_PadTouched = obj.state.touchpadTouched;
-        m_PadPressed = obj.state.touchpadPressed;
-
-        // Thumbstick
-        m_ThumbstickPosition = obj.state.thumbstickPosition;
-        m_ThumbstickPressed = obj.state.thumbstickPressed;
-
-        // Handedness
-        handedness = obj.state.source.handedness;
-        //m_Handedness = obj.state.source.handedness;
-    }
-    
+        m_currentState.Grasped = sourceState.grasped; 
+        m_currentState.MenuPressed = sourceState.menuPressed; 
+        m_currentState.SelectPressed = sourceState.selectPressed; 
+        m_currentState.SelectPressedAmount = sourceState.selectPressedAmount; 
+        m_currentState.ThumbstickPressed = sourceState.thumbstickPressed; 
+        m_currentState.ThumbstickPosition = sourceState.thumbstickPosition; 
+        m_currentState.TouchpadPressed = sourceState.touchpadPressed; 
+        m_currentState.TouchpadTouched = sourceState.touchpadTouched; 
+        m_currentState.TouchpadPosition = sourceState.touchpadPosition; 
+    } 
+ 
     public override bool buttonSelectPressed
     {
-        get { return m_ButtonSelectPressed; }
+        get { return m_currentState.SelectPressed; }
     }
 
     public float selectPressedAmount
     {
-        get { return m_SelectPressedAmount; }
+        get { return m_currentState.SelectPressedAmount; }
     }
 
     public override bool buttonMenuPressed
     {
-        get { return m_ButtonMenuPressed; }
+        get { return m_currentState.MenuPressed; }
     }
 
     public bool buttonGripPressed
     {
-        get { return m_ButtonGripPressed; }
+        get { return m_currentState.Grasped; }
     }
 
     public Vector2 padTouchPosition
     {
-        get { return m_PadTouchPosition; }
+        get { return m_currentState.TouchpadPosition; }
     }
 
     public bool padTouched
     {
-        get { return m_PadTouched; }
+        get { return m_currentState.TouchpadTouched; }
     }
 
     public bool padPressed
     {
-        get { return m_PadPressed; }
+        get { return m_currentState.TouchpadPressed; }
     }
 
     public Vector2 thumbstickPosition
     {
-        get { return m_ThumbstickPosition; }
+        get { return m_currentState.ThumbstickPosition; }
     }
 
     public bool thumbstickPressed
     {
-        get { return m_ThumbstickPressed; }
+        get { return m_currentState.ThumbstickPressed; }
     }
-
-    public InteractionSourceHandedness handedness = InteractionSourceHandedness.Unknown;
-
-    private Vector3 m_Position;
-    private Quaternion m_Rotation;
-    private bool m_ButtonSelectPressed = false;
-    private float m_SelectPressedAmount = 0.0F;
-    private bool m_ButtonMenuPressed = false;
-    private bool m_ButtonGripPressed = false;
-    private Vector2 m_PadTouchPosition = Vector2.zero;
-    private bool m_PadTouched = false;
-    private bool m_PadPressed = false;
-    private Vector2 m_ThumbstickPosition = Vector2.zero;
-    private bool m_ThumbstickPressed = false;
 }
