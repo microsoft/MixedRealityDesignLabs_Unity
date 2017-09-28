@@ -120,9 +120,9 @@ public class InputSourceMotionController : InputSourceSixDOFBase
 
 
 
-    private bool IsSourceValid(InteractionSource source)
+    private bool IsSourceValid(UnityEngine.XR.WSA.Input.InteractionSource source)
     { 
-        return source.kind == InteractionSourceKind.Controller && source.handedness == Handedness;  
+        return source.kind == UnityEngine.XR.WSA.Input.InteractionSourceKind.Controller && source.handedness == Handedness;  
     } 
 
     /// <summary> 
@@ -149,7 +149,7 @@ public class InputSourceMotionController : InputSourceSixDOFBase
     /// <summary> 
     /// Update the state info from an interaction source state 
     /// </summary> 
-    private void UpdateState(InteractionSourceState sourceState)
+    private void UpdateState(UnityEngine.XR.WSA.Input.InteractionSourceState sourceState)
     {
         UpdatePose(sourceState.sourcePose); 
 

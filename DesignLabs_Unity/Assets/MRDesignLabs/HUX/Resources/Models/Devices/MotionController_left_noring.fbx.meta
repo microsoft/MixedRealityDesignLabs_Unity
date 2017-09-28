@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: e01dc3d8e1831c6458fc8f320ce69d28
+timeCreated: 1506543076
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: CK_Left
+    100002: Enclosure
+    100004: Enclosure_MeshPart0
+    100006: Enclosure_MeshPart1
+    100008: Enclosure_MeshPart2
+    100010: Faceplate
+    100012: Grab
+    100014: Joystick
+    100016: Left
+    100018: //RootNode
+    100020: Lights
+    100022: Menu
+    100024: System
+    100026: Touchpad
+    100028: Trigger
+    400000: CK_Left
+    400002: Enclosure
+    400004: Enclosure_MeshPart0
+    400006: Enclosure_MeshPart1
+    400008: Enclosure_MeshPart2
+    400010: Faceplate
+    400012: Grab
+    400014: Joystick
+    400016: Left
+    400018: //RootNode
+    400020: Lights
+    400022: Menu
+    400024: System
+    400026: Touchpad
+    400028: Trigger
+    2100000: lambert2
+    2300000: Enclosure_MeshPart0
+    2300002: Enclosure_MeshPart1
+    2300004: Enclosure_MeshPart2
+    2300006: Faceplate
+    2300008: Grab
+    2300010: Joystick
+    2300012: Menu
+    2300014: System
+    2300016: Touchpad
+    2300018: Trigger
+    3300000: Enclosure_MeshPart0
+    3300002: Enclosure_MeshPart1
+    3300004: Enclosure_MeshPart2
+    3300006: Faceplate
+    3300008: Grab
+    3300010: Joystick
+    3300012: Menu
+    3300014: System
+    3300016: Touchpad
+    3300018: Trigger
+    4300000: Faceplate
+    4300002: Enclosure_MeshPart0
+    4300004: Enclosure_MeshPart1
+    4300006: Enclosure_MeshPart2
+    4300008: Joystick
+    4300010: Menu
+    4300012: System
+    4300014: Grab
+    4300016: Touchpad
+    4300018: Trigger
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
