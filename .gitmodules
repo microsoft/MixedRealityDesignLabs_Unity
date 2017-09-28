@@ -5,3 +5,15 @@
 [submodule "DesignLabs_Unity_Examples/Assets/MRDesignLab"]
 	path = DesignLabs_Unity_Examples/Assets/MRDesignLab
 	url = https://github.com/Microsoft/MRDesignLabs_Unity_Tools.git
+[submodule "DesignLabs_Unity/Assets/Assets/MRDesignLabs"]
+	path = DesignLabs_Unity/Assets/Assets/MRDesignLabs
+	url = https://github.com/Microsoft/MRDesignLabs_Unity_Tools.git
+	branch = Unity-2017.2-Dev
+[submodule "DesignLabs_Unity/Assets/MRDesignLabs"]
+	path = DesignLabs_Unity/Assets/MRDesignLabs
+	url = https://github.com/Microsoft/MRDesignLabs_Unity_Tools.git
+	branch = Unity-2017.2-Dev
+[submodule "DesignLabs_Unity_Examples/Assets/MRDesignLabs"]
+	path = DesignLabs_Unity_Examples/Assets/MRDesignLabs
+	url = https://github.com/Microsoft/MRDesignLabs_Unity_Tools.git
+	branch = Unity-2017.2-Dev
