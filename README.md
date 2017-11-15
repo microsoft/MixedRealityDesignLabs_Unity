@@ -3,10 +3,10 @@
 # Mixed Reality Design Labs
 This repo is where Microsoft's Windows Mixed Reality Design team publishes examples and explorations. The goal is to inspire creators and help them to build Mixed Reality experiences. We share sample app projects here that demonstrate how to use various types of common controls and patterns in Mixed Reality. Find out details about common controls and sample apps on https://developer.microsoft.com/en-us/windows/mixed-reality/design
 
-# Important: Unity Compatibility
+# Supported Unity version: 2017.1.0f3
 The current supported version of Unity is [**Unity 2017.1.0f3**](https://unity3d.com/get-unity/download?thank-you=update&download_nid=47505&os=Win).  If you are looking to have support for previous versions of Unity please check under **[Releases](https://github.com/Microsoft/MRDesignLabs_Unity/releases)**.
 
-# Important: Adding submodule MRDesignLab
+# Important: Requires submodule MRDesignLab
 As soon as you clone the repo, init and update submodule with git command:
 ```
 cd MRDesignLabs_Unity
@@ -20,6 +20,33 @@ git submodule foreach git pull
 ```
 
 This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_Unity_tools) under Assets/MRDesignLab/ folder
+
+# Mixed Reality Design Labs(MRDL) and [Mixed Reality Toolkit(MRTK)](https://github.com/Microsoft/MixedRealityToolkit-Unity)
+We are in process of migrating foundational UI controls and building blocks from MRDL to MRTK. Below you can find the list of the components that have been merged.  
+
+## Merged UI controls and building blocks, now available on MRTK
+- [Buttons(Interactable Object)](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)  
+- [Interaction Receivers](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)
+- [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md)
+- [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
+- [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
+
+
+Two test scenes were included under **Assets/HoloToolkit-Examples/UX/Scenes.** **InteractableObjectExample**.unity and **ObjectCollectionExample**.unity
+
+## Next UI controls and utilities that we will bring from MRDL
+- [App Bar and Bounding Box (with updated support for motion controllers)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box)
+- [Dialogs](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog)
+- [Progress(loading indicator)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress)
+- [Hand coach(from Lunar Module)](https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule)
+- [Tool tips and Tool tip manager](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ToolTips_Examples.unity)
+- Motion controller pointer visualizations (Straight & Parabolic)
+- Radial menu system  
+- Debug Menu and Debug Panel
+- Solvers
+- Utility Extensions
+
+
 
 # Common controls and examples
 Find out technical details on Wiki page:
