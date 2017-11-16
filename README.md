@@ -1,7 +1,7 @@
 ![](External/ReadMeImages/MRDL_Logo_Rev.png)
 
 # Mixed Reality Design Labs
-This repo is where Microsoft's Windows Mixed Reality Design team publishes sample apps and experiments. The goal is to inspire creators and help them to build Mixed Reality experiences. 
+This repo is where Microsoft's Windows Mixed Reality Design team publishes sample apps and experiments. If you are looking for official toolkit, please use **[Mixed Reality Toolkit](https://github.com/Microsoft/MixedRealityToolkit-Unity)**
 
 # Supported Unity version: 2017.1.0f3
 The current supported version of Unity is [**Unity 2017.1.0f3**](https://unity3d.com/get-unity/download?thank-you=update&download_nid=47505&os=Win).  If you are looking to have support for previous versions of Unity please check under **[Releases](https://github.com/Microsoft/MRDesignLabs_Unity/releases)**.
