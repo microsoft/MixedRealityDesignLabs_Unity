@@ -30,6 +30,7 @@ We are in process of migrating foundational UI controls and building blocks from
 - [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md)
 - [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
 - [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
+- [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/HoloToolkit/Utilities/Scripts/Solvers)
 
 
 Two test scenes were included under **Assets/HoloToolkit-Examples/UX/Scenes.** **InteractableObjectExample**.unity and **ObjectCollectionExample**.unity
@@ -43,7 +44,6 @@ Two test scenes were included under **Assets/HoloToolkit-Examples/UX/Scenes.** *
 - Motion controller pointer visualizations (Straight & Parabolic)
 - Radial menu system  
 - Debug Menu and Debug Panel
-- Solvers
 - Utility Extensions
 
 
