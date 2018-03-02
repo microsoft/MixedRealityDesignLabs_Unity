@@ -35,12 +35,12 @@ We are in process of migrating foundational UI controls and building blocks from
 - [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/HoloToolkit/Utilities/Scripts/Solvers)
 
 ## Porting work-in-progress
-- [Dialog](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog)
-- [Progress(loading indicator)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress)
+- [Bounding Box and App Bar](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box)
+- Pull Request in MRTK: https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1783
+- [Dialog](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog) & [Progress(loading indicator)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress)
 - Pull Request in MRTK: https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718
 
 ## Next UI controls and utilities that we will bring from MRDL to MRTK
-- [App Bar and Bounding Box (with updated support for motion controllers)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box)
 - [Hand coach(from Lunar Module)](https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule)
 - [Tool tips and Tool tip manager](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ToolTips_Examples.unity)
 - Motion controller pointer visualizations (Straight & Parabolic)
