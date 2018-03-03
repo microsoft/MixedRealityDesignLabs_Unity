@@ -32,7 +32,7 @@ We are in process of migrating foundational UI controls and building blocks from
 - [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md)
 - [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
 - [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
-- [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/HoloToolkit/Utilities/Scripts/Solvers)
+- [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit-Unity/Utilities/Scripts/Solvers)
 
 ## Pull Request work-in-progress
 - [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1785)
