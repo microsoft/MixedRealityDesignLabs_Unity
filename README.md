@@ -3,7 +3,7 @@
 # Mixed Reality Design Labs
 This repo is where Microsoft's Windows Mixed Reality Design team publishes sample apps and experiments. If you are looking for official toolkit, please use **[Mixed Reality Toolkit](https://github.com/Microsoft/MixedRealityToolkit-Unity)**
 
-**MRDL is based on [HUX](https://github.com/Microsoft/MRDesignLabs_Unity_Tools) which has different input system. Because of this, the building blocks and samples are not compatible with Mixed Reality Toolkit.**
+**MRDL is based on [HUX](https://github.com/Microsoft/MRDesignLabs_Unity_Tools) which has an input system that is not compatible with Mixed Reality Toolkit.**
 
 # Supported Unity version: 2017.1.0f3
 The current supported version of Unity is [**Unity 2017.1.0f3**](https://unity3d.com/get-unity/download?thank-you=update&download_nid=47505&os=Win).  If you are looking to have support for previous versions of Unity please check under **[Releases](https://github.com/Microsoft/MRDesignLabs_Unity/releases)**.
@@ -34,42 +34,10 @@ We are in process of migrating foundational UI controls and building blocks from
 - [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
 - [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/HoloToolkit/Utilities/Scripts/Solvers)
 
-## Porting work-in-progress
-- [Bounding Box and App Bar](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box)
-- Pull Request in MRTK: https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1783
-- [Dialog](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog) & [Progress(loading indicator)](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress)
-- Pull Request in MRTK: https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718
+## Pull Request work-in-progress
+- [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1785)
+- [Dialog and Progress](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718)
 
-## Next UI controls and utilities that we will bring from MRDL to MRTK
-- [Hand coach(from Lunar Module)](https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule)
-- [Tool tips and Tool tip manager](https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/DesignLabs_Unity_Examples/Assets/MRDL_ControlsExample/Scenes/ToolTips_Examples.unity)
-- Motion controller pointer visualizations (Straight & Parabolic)
-- Radial menu system  
-- Debug Menu and Debug Panel
-- Utility Extensions
-
-
-
-# Common controls and examples
-Find out technical details on Wiki page:
-https://github.com/Microsoft/MRDesignLabs_Unity/wiki
-
-## [Interactable Object](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Interactable-Object) ##
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/InteractibleObject_Hero.jpg">
-
-## [Object Collection](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Object-Collection) ##
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/ObjectCollection_Hero.jpg">
-
-## [Progress](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Progress) ##
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/Progress_Hero.jpg">
-
-## [App Bar and Bounding Box](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/App-Bar-and-Bounding-Box) ##
-<img src="https://github.com/Microsoft/MRDesignLabs_Unity/blob/master/External/ReadMeImages/HolobarAndBoundingBox_Hero.jpg">
-
-## [Dialog](https://github.com/Microsoft/MRDesignLabs_Unity/wiki/Dialog) ##
-<img src="https://raw.githubusercontent.com/wiki/Microsoft/MRDesignLabs_Unity/images/MRDL_Dialog_Hero.jpg">
-
-# More from Mixed Reality Design Labs #
 ## Sample app - Periodic Table of the Elements ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable/blob/master/External/ReadMeImages/PeriodicTable_Hero.jpg" alt="Periodic Table of the Elements">
 https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable
