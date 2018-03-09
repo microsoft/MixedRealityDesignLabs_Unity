@@ -27,16 +27,14 @@ This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_
 We are in process of migrating foundational UI controls and building blocks from MRDL to MRTK. Below you can find the list of the components that have been merged.  
 
 ## Ported UI controls and building blocks, now available on MRTK
+- [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_BoundingBoxGizmoExample.md)
 - [Buttons(Interactable Object)](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)  
 - [Interaction Receivers](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)
 - [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md)
 - [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
 - [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
-- [Solvers(in Dev branch)](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit/Utilities/Scripts/Solvers)
-
-## Pull Request work-in-progress
-- [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1785)
-- [Dialog and Progress](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718)
+- [Solvers](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit/Utilities/Scripts/Solvers)
+- [Dialog and Progress (in PR)](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718)
 
 ## Sample app - Periodic Table of the Elements ##
 <img src="https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable/blob/master/External/ReadMeImages/PeriodicTable_Hero.jpg" alt="Periodic Table of the Elements">
