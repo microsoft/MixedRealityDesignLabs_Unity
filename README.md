@@ -42,7 +42,8 @@ We are in process of migrating foundational UI controls and building blocks from
 - [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
 - [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
 - [Solvers](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit/Utilities/Scripts/Solvers)
-- [Dialog and Progress (in PR)](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1718)
+- [Dialog](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_DialogsExample.md)
+- [Progress](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_ProgressExample.md)
 
 
 
