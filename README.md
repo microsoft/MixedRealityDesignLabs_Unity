@@ -35,16 +35,15 @@ This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_
 We are in process of migrating foundational UI controls and building blocks from MRDL to MRTK. Below you can find the list of the components that have been merged.  
 
 ## Ported UI controls and building blocks, now available on MRTK
-- [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_BoundingBoxGizmoExample.md)
-- [Buttons(Interactable Object)](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)  
-- [Interaction Receivers](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md)
-- [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md)
-- [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305)
-- [Multi-step pointer for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1332)
-- [Solvers](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit/Utilities/Scripts/Solvers)
-- [Dialog](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_DialogsExample.md)
-- [Progress](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_ProgressExample.md)
-- [ToolTip](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_TooltipExample.md)
+- [Bounding Box and App Bar](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_BoundingBoxGizmoExample.md) (in Dev_Working_Branch)
+- [Buttons(Interactable Object)](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md) (in Dev_Working_Branch) 
+- [Interaction Receivers](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_InteractableObjectExample.md) (in master & Dev_Working_Branch)
+- [Object Collection](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/master/Assets/HoloToolkit-Examples/UX/Readme/README_ObjectCollection.md) (in master & Dev_Working_Branch)
+- [Line creation / Rendering classes for parabolic pointers](https://github.com/Microsoft/MixedRealityToolkit-Unity/pull/1305) (in Dev_Working_Branch)
+- [Solvers](https://github.com/Microsoft/MixedRealityToolkit-Unity/tree/Dev_Working_Branch/Assets/MixedRealityToolkit/Utilities/Scripts/Solvers) (in Dev_Working_Branch)
+- [Dialog](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_DialogsExample.md) (in Dev_Working_Branch)
+- [Progress](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_ProgressExample.md) (in Dev_Working_Branch)
+- [ToolTip](https://github.com/Microsoft/MixedRealityToolkit-Unity/blob/Dev_Working_Branch/Assets/MixedRealityToolkit-Examples/UX/Readme/README_TooltipExample.md) (in Dev_Working_Branch)
 
 
 
