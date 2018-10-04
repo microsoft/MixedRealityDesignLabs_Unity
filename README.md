@@ -1,7 +1,7 @@
 ![](External/ReadMeImages/MRDL_Logo_Rev.png)
 
 # What is Mixed Reality Design Labs?
-The Mixed Reality Design Labs (MRDL) is a collection of well-documented, open-source samples, based on the foundation of **[Mixed Reality Toolkit (MRTK)](https://github.com/Microsoft/MixedRealityToolkit-Unity)**. The goal is to inspire creators and help them build compelling, efficient Mixed Reality experiences. 
+The Mixed Reality Design Labs (MRDL) is a collection of well-documented, open-source samples, based on the foundation of **[Mixed Reality Toolkit - Unity (MRTK)](https://github.com/Microsoft/MixedRealityToolkit-Unity)**. The goal is to inspire creators and help them build compelling, efficient Mixed Reality experiences. 
 
 MRTK offers building-block components, and MRDL leverages them to offer more complete experiences and samples. As the name suggests, these samples are experimental/’works-in-progress’, driven by experience design, which provide creators with concrete examples of best practices for app experiences, UX, and MRTK implementation. By ‘experimental’, we mean MRDL is not officially supported/maintained by Microsoft (e.g. updated to latest versions of Unity), whereas MRTK is officially supported/maintained.  
 
@@ -9,7 +9,7 @@ MRTK offers building-block components, and MRDL leverages them to offer more com
 
 
 # Sample apps
-MRDL samples have been a successful pipeline for taking app-specific interactions and pushing them back as controls/patterns for MRTK. MRTK/MRDL have blossomed into a symbiotic relationship where iteration on each side has made the other better. This repo is where Microsoft's Windows Mixed Reality Design team publishes sample apps and experiments. If you are looking for the official toolkit, please use **[Mixed Reality Toolkit](https://github.com/Microsoft/MixedRealityToolkit-Unity)**.
+MRDL samples have been a successful pipeline for taking app-specific interactions and pushing them back as controls/patterns for MRTK. MRTK/MRDL have blossomed into a symbiotic relationship where iteration on each side has made the other better. This repo is where Microsoft's Windows Mixed Reality Design team publishes sample apps and experiments. If you are looking for the official toolkit, please use **[Mixed Reality Toolkit - Unity](https://github.com/Microsoft/MixedRealityToolkit-Unity)**.
 
 | [Sample app - Lunar Module](https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule) | [Sample app - Periodic Table of the Elements](https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable) |
 |:---------|:--------------|
