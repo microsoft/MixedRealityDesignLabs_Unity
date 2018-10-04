@@ -1,7 +1,0 @@
-[submodule "01_PeriodicTable/"]
-	path = 01_PeriodicTable/
-	url = https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable.git
-
-[submodule "02_LunarModule/"]
-	path = 02_LunarModule/
-	url = https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule.git
