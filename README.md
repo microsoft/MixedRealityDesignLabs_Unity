@@ -16,20 +16,22 @@ MRDL samples have been a successful pipeline for taking app-specific interaction
 |Lunar Module demonstrates how to extend Hololens' base gestures with two hand tracking and xbox controller input, reactive objects to surface mapping and plane finding, and simple menu systems. You can use this project's components to create your own mixed reality app experience. |Periodic Table of the Elements app demonstrates how to use Object Collection to lay out an array of objects in three-dimensional space with various surface types. You can also find the example of using Fluent Design elements such as light, depth, motion and material.|
 
 
-# Important: Requires submodule MRDesignLab
-As soon as you clone the repo, init and update submodule with git command:
+# Hydrating the sample app submodules
+
+As soon as you clone, navigate inside the repo and init/update the project submodules with the following git commands:
 ```
-cd MRDesignLabs_Unity
+cd MixedRealityDesignLabs_Unity
 git submodule init
 git submodule update
 ```
 
-To update the submodules you'll still need to pull from master by either going into the individual submodule directory and doing a git pull or by doing the following command to do pulls on all the submodules:
+To update the submodules you'll still need to pull from the remote master by either going into the individual submodule directory and doing a git pull or by doing the following command to do pulls on all the submodules:
 ```
 git submodule foreach git pull
 ```
 
-This will add [HUX and related tools](https://github.com/Microsoft/MRDesignLabs_Unity_tools) under Assets/MRDesignLab/ folder
+
+*The former MRDL prototyping framework built on HUX has been sunset, please consult [releases](https://github.com/Microsoft/MixedRealityDesignLabs_Unity/releases/tag/v0.1.4-Unity-2017) for a previous verison of this repostiory.*
 
 
 # Contributing
