@@ -6,7 +6,7 @@ The Mixed Reality Design Labs (MRDL) is a collection of well-documented, open-so
 
 MRTK offers building-block components, and MRDL leverages them to offer more complete experiences and samples. As the name suggests, these samples are experimental/’works-in-progress’, driven by experience design, which provide creators with concrete examples of best practices for app experiences, UX, and MRTK implementation. By ‘experimental’, we mean MRDL is not officially supported/maintained by Microsoft (e.g. updated to latest versions of Unity), whereas MRTK is officially supported/maintained.  
 
-<img src="External/ReadMeImages/MixedRealityStack-Apps3.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-MRTK-Unity.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-MRTK.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-UWP.png" width="600">
+<img src="External/ReadMeImages/MixedRealityStack-Apps3.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-MRTK-Unity3.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-MRTK.png" width="600"><img src="External/ReadMeImages/MixedRealityStack-UWP.png" width="600">
 
 
 # Sample apps
